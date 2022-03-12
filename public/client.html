@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Long Live the Empress</title>
+    <link rel="stylesheet" href="client.css">
+    <script src="snap.svg-min.js"></script>
+    <script src="snap.svg.zpd.js"></script>
+  </head>
+  <body>
+    <div style="width: 25%; height: 100vh; float: left;">
+      <div style="font-size: 1.5vh; text-align: left; height: 50vh; border: 5px solid black; border-top: 0px; padding: 5px; user-select: none; overflow: auto;">
+        Place 3 plots face down in a row<br>
+        Play left plot<br>
+          - Take listed actions<br>
+          - If total time is 3 per player or more, pay left plot in timeline to court<br>
+          - Lowest ranked take 1 gold for each plot in the court.<br>
+          - Then, lowest ranked pay their plot to the court.<br>
+          - Discard remaining plots<br>
+        Auction<br>
+          - Reveal next plot<br>
+          - Raise bid by any amount at any time<br>
+          - Withdraw if tied<br>
+          - When no one wants to raise, highest untied bidder takes the highest ranked court plot and left timeline plot face up in front of them<br>
+          - Buyer may take any plots from court face up in front of them<br>
+        Trade<br>
+          - Trade gold and revealed plots<br>
+          - When nobody wants to trade, everyone takes revealed plots into their hand<br>
+          - Buyer discards down to 5<br>
+          - Everyone draws up to 5<br>
+        Play last face down plot<br>
+        Ending the game<br>
+          - If timeline is empty at round end, place 2 plots face down<br>
+          - Play left<br>
+          - Play next<br>
+          - Points equals power on plots in hand<br>
+          - 1 point for each gold<br>
+          - Tiebreaker is highest rank plot in hand<br>
+      </div>
+      <div id="detail" style="font-size: 2vh; text-align: left; height: 50vh; border: 5px solid black; border-top: 0px; border-bottom: 0px; padding: 20px 5px; user-select: none; overflow: auto;">
+      </div>
+    </div>
+    <div style="width: 75%; height: 100vh; border: 0px; padding: 0px; float: right;">
+      <svg id="mysvg"></svg>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script> 
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+    <script src="smartdrag.js" type="text/javascript"></script>
+    <script src="client.js" type="text/javascript"></script>
+    <script src="assets/setup.js" type="text/javascript"></script>
+  </body>
+</html>
