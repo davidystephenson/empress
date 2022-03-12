@@ -1,4 +1,4 @@
-/* global io, Snap */
+/* global io, Snap, setup */
 
 window.client = (() => {
   const paper = Snap('#mysvg')
@@ -50,12 +50,12 @@ window.client = (() => {
     if (event.button === 2) paper.zpd({ pan: false }, paperError)
   })
 
-  setSide = function (component, side) {
+  const setSide = function (component, side) {
     if (['card', 'screen'].includes(component.data('type'))) {
-      hidden = hiddens[component.data('hiddenId')]
-      back = backs[component.data('backId')]
-      facedown = facedowns[component.data('facedownId')]
-      if (side == 'hidden') {
+      const hidden = hiddens[component.data('hiddenId')]
+      const back = backs[component.data('backId')]
+      const facedown = facedowns[component.data('facedownId')]
+      if (side === 'hidden') {
         back.attr({ opacity: 0 })
         hidden.attr({ opacity: 1 })
         facedown.attr({ opacity: 0 })
@@ -64,7 +64,7 @@ window.client = (() => {
         facedown.node.style.display = 'none'
         component.data('side', 'hidden')
       }
-      if (side == 'front') {
+      if (side === 'front') {
         back.attr({ opacity: 0 })
         hidden.attr({ opacity: 0 })
         facedown.attr({ opacity: 0 })
@@ -73,7 +73,7 @@ window.client = (() => {
         facedown.node.style.display = 'none'
         component.data('side', 'front')
       }
-      if (side == 'back') {
+      if (side === 'back') {
         back.attr({ opacity: 1 })
         hidden.attr({ opacity: 0 })
         facedown.attr({ opacity: 0 })
@@ -82,7 +82,7 @@ window.client = (() => {
         facedown.node.style.display = 'none'
         component.data('side', 'back')
       }
-      if (side == 'facedown') {
+      if (side === 'facedown') {
         back.attr({ opacity: 0 })
         hidden.attr({ opacity: 0 })
         facedown.attr({ opacity: 1 })
@@ -94,27 +94,21 @@ window.client = (() => {
     }
   }
 
-  flipComponent = function (component) {
+  window.flipComponent = function (component) {
     const oldside = component.data('side')
-    if (oldside == 'back') setSide(component, 'front')
-    if (oldside == 'facedown') setSide(component, 'hidden')
-    if (oldside == 'front') setSide(component, 'hidden')
-    if (oldside == 'hidden') setSide(component, 'front')
+    if (oldside === 'back') setSide(component, 'front')
+    if (oldside === 'facedown') setSide(component, 'hidden')
+    if (oldside === 'front') setSide(component, 'hidden')
+    if (oldside === 'hidden') setSide(component, 'front')
     component.data('moved', true)
   }
 
-  bringToTop = function (component) {
+  window.bringToTop = function (component) {
     screens[0].before(component)
-    id = component.data('id')
-    oldLayer = layers[id]
+    const id = component.data('id')
+    const oldLayer = layers[id]
     layers[id] = Math.max(...layers) + 1
     layers = layers.map(layer => layer > oldLayer ? layer - 1 : layer)
-  }
-
-  logLayers = function () {
-    sortedIds = components.map(x => x.data('id'))
-    sortedIds.sort((a, b) => layers[a] - layers[b])
-    console.log(sortedIds)
   }
 
   const addFragment = (fragment, x, y, rotation) => {
@@ -137,7 +131,7 @@ window.client = (() => {
     const { x, y, rotation, type, clones, file, details, side, player } = description
     const template = templates[file]
     const startMatrix = template.transform().localMatrix.translate(x, y)
-    for (i = 0; i <= clones; i++) {
+    for (let i = 0; i <= clones; i++) {
       const component = template.clone()
       group.add(component)
       component.node.style.display = 'block'
@@ -152,17 +146,20 @@ window.client = (() => {
       component.data('player', player)
       component.data('twoSided', false)
       component.data('inStack', false)
-      twoSided = false
+      let twoSided = false
       component.data('type', type)
-      if (type == 'deck') component.data('deckId', description.deckId)
-      if (type == 'discard') component.data('targetDeck', description.targetDeck)
-      if (file == 'board/nametag') {
+      if (type === 'deck') component.data('deckId', description.deckId)
+      if (type === 'discard') component.data('targetDeck', description.targetDeck)
+      if (file === 'board/nametag') {
         const textbox = component.text(component.getBBox().width / 2, 760, 'Name Tag')
         textbox.attr({ 'font-size': 100, 'text-anchor': 'middle' })
       }
-      if (type == 'card') {
+      let hidden = templates['card/hidden'].clone()
+      let facedown = templates['card/facedown'].clone()
+      let back = templates['card/back'].clone()
+      if (type === 'card') {
         component.data('type', 'card')
-        colors = {
+        const colors = {
           Blue: '#68c3ffff',
           Red: '#ff9797ff',
           Green: '#8fff8eff',
@@ -170,21 +167,18 @@ window.client = (() => {
           Yellow: '#ffffa3ff',
           None: 'white'
         }
-        plot = plots[description.cardId]
-        rectElement = component.children()[1].children()[1]
+        const plot = plots[description.cardId]
+        const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: colors[plot.color] })
-        textElement = group.text(50, 1030, plot.rank)
+        const textElement = group.text(50, 1030, plot.rank)
         textElement.attr({ fontSize: 80 })
         textElement.attr({ 'text-anchor': 'middle' })
         textElement.attr({ 'font-family': 'sans-serif' })
         textElement.attr({ 'font-weight': 'bold' })
         component.add(textElement)
-        hidden = templates['card/hidden'].clone()
-        facedown = templates['card/facedown'].clone()
-        back = templates['card/back'].clone()
         twoSided = true
       }
-      if (type == 'screen') {
+      if (type === 'screen') {
         component.data('type', 'screen')
         hidden = templates['board/screen-hidden'].clone()
         facedown = templates['board/screen-facedown'].clone()
@@ -192,7 +186,7 @@ window.client = (() => {
         twoSided = true
         screens.push(component)
       }
-      if (file == 'board/ready') {
+      if (file === 'board/ready') {
         hidden = templates['board/ready-back'].clone()
         facedown = templates['board/ready-back'].clone()
         back = templates['board/ready-back'].clone()
@@ -232,7 +226,7 @@ window.client = (() => {
         back.transform('')
         back.data('details', 'Back')
 
-        if (side == 'facedown') setSide(component, 'facedown')
+        if (side === 'facedown') setSide(component, 'facedown')
       }
     }
   }
@@ -259,7 +253,6 @@ window.client = (() => {
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
       'board/ready-back'
     ]
-    colors = ['blue', 'brown', 'green', 'grey', 'orange', 'pink', 'purple', 'red', 'white', 'yellow']
     files = files.concat(backFiles)
     files.map(file => Snap.load(`assets/${file}.svg`, setupTemplate(file, descriptions, msg, files.length)))
   }
@@ -273,14 +266,13 @@ window.client = (() => {
 
   const updateServer = () => {
     const msg = { updates: [], layers: [] }
-    components.map(component => {
+    components.forEach(component => {
       if (component.data('moved')) {
-        id = component.data('id')
-        inStack = component.data('inStack')
+        const id = component.data('id')
+        const inStack = component.data('inStack')
         if (!inStack) {
-          oldLayer = layers[id]
+          const oldLayer = layers[id]
           layers[id] = Math.max(...layers) + 1
-          minLayer = Math.min(...layers)
           layers = layers.map(layer => layer > oldLayer ? layer - 1 : layer)
         }
         const bitUpdate = {
@@ -289,7 +281,7 @@ window.client = (() => {
           local: component.transform().local,
           inStack: component.data('inStack')
         }
-        if (component.data('file') == 'board/nametag') {
+        if (component.data('file') === 'board/nametag') {
           const children = component.children()
           const textbox = children[children.length - 1]
           bitUpdate.text = textbox.attr('text')
@@ -311,10 +303,10 @@ window.client = (() => {
       component.stop()
       component.animate({ transform: update.local }, moveSlow)
       if (handlers.update) handlers.update(update)
-      if (update.side == 'facedown') setSide(component, 'facedown')
-      if (update.side == 'hidden') setSide(component, 'back')
-      if (update.side == 'front') setSide(component, 'front')
-      if (component.data('file') == 'board/nametag') {
+      if (update.side === 'facedown') setSide(component, 'facedown')
+      if (update.side === 'hidden') setSide(component, 'back')
+      if (update.side === 'front') setSide(component, 'front')
+      if (component.data('file') === 'board/nametag') {
         const children = component.children()
         const textbox = children[children.length - 1]
         textbox.attr({ text: update.text })
@@ -333,9 +325,9 @@ window.client = (() => {
     if (!arrayEquals(layers, newLayers)) {
       layers = newLayers
       console.log('update layers')
-      ids = components.map((val, id) => id)
+      let ids = components.map((val, id) => id)
       ids.sort((a, b) => layers[a] - layers[b])
-      ids = ids.filter(id => components[id].data('type') != 'screen')
+      ids = ids.filter(id => components[id].data('type') !== 'screen')
       ids.map(id => screens[0].before(components[id]))
     }
   }

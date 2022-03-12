@@ -1,6 +1,6 @@
 /* global Snap */
 
-const detailDiv = document.getElementById('detailDiv')
+const detailDiv = document.getElementById('detail')
 
 Snap.plugin(function (Snap, Element, Paper, global) {
   let shiftDown = false
@@ -117,7 +117,7 @@ Snap.plugin(function (Snap, Element, Paper, global) {
       this.data('rotating', false)
       this.data('moved', true)
     } else if (flip || this.data('type') == 'screen') {
-      flipComponent(this)
+      window.flipComponent(this)
       this.data('moved', true)
     } else if (turnDown) {
       setSide(this, 'facedown')
@@ -128,7 +128,7 @@ Snap.plugin(function (Snap, Element, Paper, global) {
   const dragMove = function (dx, dy, event, x, y) {
     if (this.data('dragging')) {
       inStack = isInStack(this)
-      if (!inStack) bringToTop(this)
+      if (!inStack) window.bringToTop(this)
       this.data('inStack', inStack)
       this.data('moved', true)
       if (this.data('type') == 'bit' || this.data('type') == 'card') {
