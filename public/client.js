@@ -1,4 +1,4 @@
-/* global io, Snap, setup */
+/* global io, Snap */
 
 window.client = (() => {
   const paper = Snap('#mysvg')
@@ -349,7 +349,7 @@ window.client = (() => {
         Math.seedrandom(seed)
         console.log('seed = ' + seed)
         plots = msg.plots
-        setup(msg)
+        window.setup(msg)
         paper.panTo(-500, 1100)
       } else {
         console.log('Restart Needed')

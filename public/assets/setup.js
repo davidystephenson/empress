@@ -1,24 +1,26 @@
-let numPlayers = 3
-let timelineLength = numPlayers + 10
-let tableWidth = numPlayers < 7 ? 3500 : 5000
-let numBottomRowPlayers = Math.round(numPlayers / 2)
-let numTopRowPlayers = numPlayers - numBottomRowPlayers
-let topRowOrigins = []
-let bottomRowOrigins = []
-for (i = 0; i < numTopRowPlayers; i++) {
-  var alpha = (i + 1) / (numTopRowPlayers + 1)
-  var x = -tableWidth * alpha + tableWidth * (1 - alpha)
+/* global client, plots */
+
+const numPlayers = 3
+const timelineLength = numPlayers + 10
+const tableWidth = numPlayers < 7 ? 3500 : 5000
+const numBottomRowPlayers = Math.round(numPlayers / 2)
+const numTopRowPlayers = numPlayers - numBottomRowPlayers
+const topRowOrigins = []
+const bottomRowOrigins = []
+for (let i = 0; i < numTopRowPlayers; i++) {
+  const alpha = (i + 1) / (numTopRowPlayers + 1)
+  const x = -tableWidth * alpha + tableWidth * (1 - alpha)
   topRowOrigins.push([x, -900])
 }
-for (i = 0; i < numBottomRowPlayers; i++) {
-  var alpha = (i + 1) / (numBottomRowPlayers + 1)
-  var x = -tableWidth * alpha + tableWidth * (1 - alpha)
+for (let i = 0; i < numBottomRowPlayers; i++) {
+  const alpha = (i + 1) / (numBottomRowPlayers + 1)
+  const x = -tableWidth * alpha + tableWidth * (1 - alpha)
   bottomRowOrigins.push([x, 900])
 }
-origins = topRowOrigins.concat(bottomRowOrigins)
-deckCount = 0
+const origins = topRowOrigins.concat(bottomRowOrigins)
+let deckCount = 0
 
-shuffle = array => {
+const shuffle = array => {
   const shuffled = array
     .map(item => ({ value: item, priority: Math.random() }))
     .sort((a, b) => a.priority - b.priority)
@@ -28,23 +30,11 @@ shuffle = array => {
 
 const describeRow = function (file, x, y, type, n, length, side = 'front') {
   const descriptions = []
-  for (i = 0; i < n; i++) {
+  for (let i = 0; i < n; i++) {
     let alpha = 0
     if (n > 1) alpha = i / (n - 1)
-    let myX = (x - 0.5 * length) * (1 - alpha) + (x + 0.5 * length) * alpha
-    description = window.client.describe({ file: file, x: myX, y: y, type: type })
-    descriptions.push(description)
-  }
-  return (descriptions)
-}
-
-const describeColumn = function (file, x, y, type, n, length, side = 'front') {
-  const descriptions = []
-  for (i = 0; i < n; i++) {
-    let alpha = 0
-    if (n > 1) alpha = i / (n - 1)
-    let myY = (y - 0.5 * length) * (1 - alpha) + (y + 0.5 * length) * alpha
-    description = client.describe({ file: file, x: x, y: myY, type: type, side: side })
+    const myX = (x - 0.5 * length) * (1 - alpha) + (x + 0.5 * length) * alpha
+    const description = window.client.describe({ file: file, x: myX, y: y, type: type })
     descriptions.push(description)
   }
   return (descriptions)
@@ -53,11 +43,9 @@ const describeColumn = function (file, x, y, type, n, length, side = 'front') {
 const describePortfolio = (x, y, player) => {
   let descriptions = []
   const sgn = Math.sign(y)
-  offset = 0
-  angle = 0
-  if (sgn == -1) {
+  let angle = 0
+  if (sgn === -1) {
     angle = 180
-    offset = 1
   }
   deckCount += 1
   descriptions = descriptions.concat([
@@ -65,16 +53,15 @@ const describePortfolio = (x, y, player) => {
     client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
     client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: player }),
     client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: deckCount }),
-    client.describe({ file: 'stack/deck' , x: x + 500, y: y + sgn * 0, type: 'deck', deckId: deckCount }),
+    client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: deckCount }),
     client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ])
-  let yStack = sgn == 1 ? -20 : -20
   descriptions = descriptions.concat([
     client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 11 }),
     client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 2, side: 'facedown' })
   ])
-  for (i of Array(8).keys()) {
-    let cardId = i + 3
+  for (const i of Array(8).keys()) {
+    const cardId = i + 3
     descriptions = descriptions.concat([
       client.describe({ file: 'card/front', x: x + (i - 3.5) * 120, y: y + sgn * 400, type: 'card', cardId: cardId })
     ])
@@ -110,8 +97,8 @@ const describeCourt = (x, y) => {
 
 const annotate = function (description) {
   description.details = ''
-  if (description.type == 'card') {
-    let plot = plots[description.cardId]
+  if (description.type === 'card') {
+    const plot = plots[description.cardId]
     description.details = `
       <b>${plot.title}</b><br><br>
       ${plot.effect1}<br><br>
@@ -133,37 +120,37 @@ const annotate = function (description) {
 }
 
 const compareFunction = (a, b) => {
-  aLayer = 0
-  bLayer = 0
-  if (a.type == 'board') { aLayer = 1 }
-  if (b.type == 'board') { bLayer = 1 }
-  if (a.type == 'card') { aLayer = 2 }
-  if (b.type == 'card') { bLayer = 2 }
-  if (a.type == 'bit') { aLayer = 3 }
-  if (b.type == 'bit') { bLayer = 3 }
-  if (a.type == 'screen') { aLayer = 4 }
-  if (b.type == 'screen') { bLayer = 4 }
+  let aLayer = 0
+  let bLayer = 0
+  if (a.type === 'board') { aLayer = 1 }
+  if (b.type === 'board') { bLayer = 1 }
+  if (a.type === 'card') { aLayer = 2 }
+  if (b.type === 'card') { bLayer = 2 }
+  if (a.type === 'bit') { aLayer = 3 }
+  if (b.type === 'bit') { bLayer = 3 }
+  if (a.type === 'screen') { aLayer = 4 }
+  if (b.type === 'screen') { bLayer = 4 }
   return aLayer - bLayer
 }
 
-const setup = msg => {
-  plots = msg.plots
+window.setup = msg => {
+  const plots = msg.plots
   console.log(plots)
   let descriptions = []
-  origins.map((origin, i) => {
-    x = origin[0]
-    y = origin[1]
+  origins.forEach((origin, i) => {
+    const x = origin[0]
+    const y = origin[1]
     const portfolio = describePortfolio(x, y, i)
     descriptions = descriptions.concat(portfolio)
   })
-  deck = [...Array(51).keys()].filter(x => x == 0 || x > 11)
+  let deck = [...Array(51).keys()].filter(x => x === 0 || x > 11)
   deck = shuffle(deck)
-  auctionRow = deck.slice(0, timelineLength)
+  const auctionRow = deck.slice(0, timelineLength)
   auctionRow.sort()
   descriptions = descriptions.concat(describeBank(2000, 0))
   descriptions = descriptions.concat(describeCourt(-2000, 0))
-  for (i of Array(timelineLength).keys()) {
-    let offset = timelineLength / 2 - 0.5
+  for (const i of Array(timelineLength).keys()) {
+    const offset = timelineLength / 2 - 0.5
     descriptions = descriptions.concat([
       client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: auctionRow[i] })
     ])
