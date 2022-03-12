@@ -32,7 +32,7 @@ const describeRow = function(file,x,y,type,n,length,side='front') {
     var alpha = 0
     if(n>1) alpha = i/(n-1)
     var myX = (x-0.5*length)*(1-alpha) + (x+0.5*length)*alpha
-    description = client.describe({file:file,x:myX,y:y,type:type})
+    description = window.client.describe({file:file,x:myX,y:y,type:type})
     descriptions.push(description)
   }
   return(descriptions)
