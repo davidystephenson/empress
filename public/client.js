@@ -1,5 +1,7 @@
 /* global io, Snap */
 
+let plots = null
+
 window.client = (() => {
   const paper = Snap('#mysvg')
   const group = paper.group()
@@ -17,7 +19,6 @@ window.client = (() => {
   let layers = []
 
   let seed = null
-  let plots = null
 
   const unique = arr => {
     const s = new Set(arr)

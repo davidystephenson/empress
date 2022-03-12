@@ -2,7 +2,7 @@
 
 const detailDiv = document.getElementById('detail')
 
-Snap.plugin(function (Snap, Element, Paper, global) {
+window.Snap.plugin(function (Snap, Element, Paper, global) {
   let shiftDown = false
   let ctrlDown = false
 
