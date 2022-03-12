@@ -1,12 +1,8 @@
-/* global io, Snap */
-
-let plots = null
-
 window.client = (() => {
-  const paper = Snap('#mysvg')
+  const paper = window.Snap('#mysvg')
   const group = paper.group()
 
-  const socket = io({ transports: ['websocket'], upgrade: false })
+  const socket = window.io({ transports: ['websocket'], upgrade: false })
   const templates = {}
   const components = []
   const backs = []
@@ -16,9 +12,10 @@ window.client = (() => {
 
   let moveSlow = 10
   const screens = []
-  let layers = []
 
   let seed = null
+  window.layers = []
+  window.plots = []
 
   const unique = arr => {
     const s = new Set(arr)
@@ -51,7 +48,7 @@ window.client = (() => {
     if (event.button === 2) paper.zpd({ pan: false }, paperError)
   })
 
-  const setSide = function (component, side) {
+  window.setSide = function (component, side) {
     if (['card', 'screen'].includes(component.data('type'))) {
       const hidden = hiddens[component.data('hiddenId')]
       const back = backs[component.data('backId')]
@@ -97,19 +94,19 @@ window.client = (() => {
 
   window.flipComponent = function (component) {
     const oldside = component.data('side')
-    if (oldside === 'back') setSide(component, 'front')
-    if (oldside === 'facedown') setSide(component, 'hidden')
-    if (oldside === 'front') setSide(component, 'hidden')
-    if (oldside === 'hidden') setSide(component, 'front')
+    if (oldside === 'back') window.setSide(component, 'front')
+    if (oldside === 'facedown') window.setSide(component, 'hidden')
+    if (oldside === 'front') window.setSide(component, 'hidden')
+    if (oldside === 'hidden') window.setSide(component, 'front')
     component.data('moved', true)
   }
 
   window.bringToTop = function (component) {
     screens[0].before(component)
     const id = component.data('id')
-    const oldLayer = layers[id]
-    layers[id] = Math.max(...layers) + 1
-    layers = layers.map(layer => layer > oldLayer ? layer - 1 : layer)
+    const oldLayer = window.layers[id]
+    window.layers[id] = Math.max(...window.layers) + 1
+    window.layers = window.layers.map(layer => layer > oldLayer ? layer - 1 : layer)
   }
 
   const addFragment = (fragment, x, y, rotation) => {
@@ -168,7 +165,7 @@ window.client = (() => {
           Yellow: '#ffffa3ff',
           None: 'white'
         }
-        const plot = plots[description.cardId]
+        const plot = window.plots[description.cardId]
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: colors[plot.color] })
         const textElement = group.text(50, 1030, plot.rank)
@@ -227,7 +224,7 @@ window.client = (() => {
         back.transform('')
         back.data('details', 'Back')
 
-        if (side === 'facedown') setSide(component, 'facedown')
+        if (side === 'facedown') window.setSide(component, 'facedown')
       }
     }
   }
@@ -238,7 +235,7 @@ window.client = (() => {
     templates[file] = template
     if (Object.keys(templates).length === numTemplates) {
       descriptions.map(description => addComponent(description))
-      layers = components.map((val, id) => id)
+      window.layers = components.map((val, id) => id)
       msg.state.map(processUpdate)
       if (msg.layers.length > 0) updateLayers(msg.layers)
       screens.forEach((s, i) => i > 0 ? screens[0].after(s) : false)
@@ -255,7 +252,7 @@ window.client = (() => {
       'board/ready-back'
     ]
     files = files.concat(backFiles)
-    files.map(file => Snap.load(`assets/${file}.svg`, setupTemplate(file, descriptions, msg, files.length)))
+    files.map(file => window.Snap.load(`assets/${file}.svg`, setupTemplate(file, descriptions, msg, files.length)))
   }
 
   const describe = options => {
@@ -272,9 +269,9 @@ window.client = (() => {
         const id = component.data('id')
         const inStack = component.data('inStack')
         if (!inStack) {
-          const oldLayer = layers[id]
-          layers[id] = Math.max(...layers) + 1
-          layers = layers.map(layer => layer > oldLayer ? layer - 1 : layer)
+          const oldLayer = window.layers[id]
+          window.layers[id] = Math.max(...window.layers) + 1
+          window.layers = window.layers.map(layer => layer > oldLayer ? layer - 1 : layer)
         }
         const bitUpdate = {
           id: component.data('id'),
@@ -294,7 +291,7 @@ window.client = (() => {
         component.data('moved', false)
       }
     })
-    msg.layers = layers
+    msg.layers = window.layers
     if (msg.updates.length > 0) socket.emit('updateServer', msg)
   }
 
@@ -304,9 +301,9 @@ window.client = (() => {
       component.stop()
       component.animate({ transform: update.local }, moveSlow)
       if (handlers.update) handlers.update(update)
-      if (update.side === 'facedown') setSide(component, 'facedown')
-      if (update.side === 'hidden') setSide(component, 'back')
-      if (update.side === 'front') setSide(component, 'front')
+      if (update.side === 'facedown') window.setSide(component, 'facedown')
+      if (update.side === 'hidden') window.setSide(component, 'back')
+      if (update.side === 'front') window.setSide(component, 'front')
       if (component.data('file') === 'board/nametag') {
         const children = component.children()
         const textbox = children[children.length - 1]
@@ -323,11 +320,11 @@ window.client = (() => {
   }
 
   const updateLayers = function (newLayers) {
-    if (!arrayEquals(layers, newLayers)) {
-      layers = newLayers
+    if (!arrayEquals(window.layers, newLayers)) {
+      window.layers = newLayers
       console.log('update layers')
       let ids = components.map((val, id) => id)
-      ids.sort((a, b) => layers[a] - layers[b])
+      ids.sort((a, b) => window.layers[a] - window.layers[b])
       ids = ids.filter(id => components[id].data('type') !== 'screen')
       ids.map(id => screens[0].before(components[id]))
     }
@@ -349,7 +346,7 @@ window.client = (() => {
         seed = msg.seed
         Math.seedrandom(seed)
         console.log('seed = ' + seed)
-        plots = msg.plots
+        window.plots = msg.plots
         window.setup(msg)
         paper.panTo(-500, 1100)
       } else {

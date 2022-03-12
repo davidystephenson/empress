@@ -1,5 +1,3 @@
-/* global Snap, layers, setSide */
-
 const detailDiv = document.getElementById('detail')
 
 window.Snap.plugin(function (Snap, Element, Paper, global) {
@@ -81,13 +79,14 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     if (this.data('type') === 'discard') {
       const myDeck = getMyDeck(this)
       const myCards = getContents(this)
-      myCards.sort((a, b) => layers[b.data('id')] - layers[a.data('id')])
+      console.log(window.layers)
+      myCards.sort((a, b) => window.layers[b.data('id')] - window.layers[a.data('id')])
       myCards.forEach((card, i) => {
         x = 0.5 * (myDeck.getBBox().width - card.getBBox().width)
         y = -0.5 * (myDeck.getBBox().height - card.getBBox().height) + 50
         card.transform(myDeck.transform().string + 't' + x + ',' + y)
         window.bringToTop(card)
-        setSide(card, 'facedown')
+        window.setSide(card, 'facedown')
         card.data('inStack', true)
         card.data('moved', true)
       })
@@ -96,13 +95,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       console.log('flipDeck')
       const myDiscard = getMyDiscard(this)
       const myCards = getContents(this)
-      myCards.sort((a, b) => layers[b.data('id')] - layers[a.data('id')])
+      myCards.sort((a, b) => window.layers[b.data('id')] - window.layers[a.data('id')])
       myCards.forEach((card, i) => {
         x = 0.5 * (myDiscard.getBBox().width - card.getBBox().width)
         y = -0.5 * (myDiscard.getBBox().height - card.getBBox().height) + 50
         card.transform(myDiscard.transform().string + 't' + x + ',' + y)
         window.bringToTop(card)
-        setSide(card, 'front')
+        window.setSide(card, 'front')
         card.data('inStack', true)
         card.data('moved', true)
       })
@@ -116,7 +115,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       window.flipComponent(this)
       this.data('moved', true)
     } else if (turnDown) {
-      setSide(this, 'facedown')
+      window.setSide(this, 'facedown')
       this.data('moved', true)
     }
   }

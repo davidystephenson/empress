@@ -1,5 +1,3 @@
-/* global client, plots */
-
 const numPlayers = 3
 const timelineLength = numPlayers + 10
 const tableWidth = numPlayers < 7 ? 3500 : 5000
@@ -49,21 +47,21 @@ const describePortfolio = (x, y, player) => {
   }
   deckCount += 1
   descriptions = descriptions.concat([
-    client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: player }),
-    client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
-    client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: player }),
-    client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: deckCount }),
-    client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: deckCount }),
-    client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
+    window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: player }),
+    window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
+    window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: player }),
+    window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: deckCount }),
+    window.client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: deckCount }),
+    window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ])
   descriptions = descriptions.concat([
-    client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 11 }),
-    client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 2, side: 'facedown' })
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 11 }),
+    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 2, side: 'facedown' })
   ])
   for (const i of Array(8).keys()) {
     const cardId = i + 3
     descriptions = descriptions.concat([
-      client.describe({ file: 'card/front', x: x + (i - 3.5) * 120, y: y + sgn * 400, type: 'card', cardId: cardId })
+      window.client.describe({ file: 'card/front', x: x + (i - 3.5) * 120, y: y + sgn * 400, type: 'card', cardId: cardId })
     ])
   }
   descriptions = descriptions.concat(describeRow('gold/1', x, y - sgn * 100, 'bit', 5, 300))
@@ -74,14 +72,14 @@ const describePortfolio = (x, y, player) => {
 const describeBank = (x, y) => {
   let descriptions = []
   descriptions = descriptions.concat([
-    client.describe({ file: 'gold/1', x: x - 240, y: y - 120, type: 'bit', clones: 150 }),
-    client.describe({ file: 'gold/5', x: x - 80, y: y - 120, type: 'bit', clones: 35 }),
-    client.describe({ file: 'gold/10', x: x + 80, y: y - 120, type: 'bit', clones: 30 }),
-    client.describe({ file: 'gold/50', x: x + 240, y: y - 120, type: 'bit', clones: 15 }),
-    client.describe({ file: 'gold/1', x: x - 240, y: y + 120, type: 'bit', clones: 150 }),
-    client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
-    client.describe({ file: 'gold/10', x: x + 80, y: y + 120, type: 'bit', clones: 30 }),
-    client.describe({ file: 'gold/50', x: x + 240, y: y + 120, type: 'bit', clones: 15 })
+    window.client.describe({ file: 'gold/1', x: x - 240, y: y - 120, type: 'bit', clones: 150 }),
+    window.client.describe({ file: 'gold/5', x: x - 80, y: y - 120, type: 'bit', clones: 35 }),
+    window.client.describe({ file: 'gold/10', x: x + 80, y: y - 120, type: 'bit', clones: 30 }),
+    window.client.describe({ file: 'gold/50', x: x + 240, y: y - 120, type: 'bit', clones: 15 }),
+    window.client.describe({ file: 'gold/1', x: x - 240, y: y + 120, type: 'bit', clones: 150 }),
+    window.client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
+    window.client.describe({ file: 'gold/10', x: x + 80, y: y + 120, type: 'bit', clones: 30 }),
+    window.client.describe({ file: 'gold/50', x: x + 240, y: y + 120, type: 'bit', clones: 15 })
   ])
   return (descriptions)
 }
@@ -89,8 +87,8 @@ const describeBank = (x, y) => {
 const describeCourt = (x, y) => {
   let descriptions = []
   descriptions = descriptions.concat([
-    client.describe({ file: 'board/court', x: x - 200, y: 0, type: 'board' }),
-    client.describe({ file: 'card/front', x: x - 200, y: y, type: 'card', cardId: 1 })
+    window.client.describe({ file: 'board/court', x: x - 200, y: 0, type: 'board' }),
+    window.client.describe({ file: 'card/front', x: x - 200, y: y, type: 'card', cardId: 1 })
   ])
   return (descriptions)
 }
@@ -98,7 +96,7 @@ const describeCourt = (x, y) => {
 const annotate = function (description) {
   description.details = ''
   if (description.type === 'card') {
-    const plot = plots[description.cardId]
+    const plot = window.plots[description.cardId]
     description.details = `
       <b>${plot.title}</b><br><br>
       ${plot.effect1}<br><br>
@@ -152,10 +150,10 @@ window.setup = msg => {
   for (const i of Array(timelineLength).keys()) {
     const offset = timelineLength / 2 - 0.5
     descriptions = descriptions.concat([
-      client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: auctionRow[i] })
+      window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: auctionRow[i] })
     ])
   }
   descriptions.map(x => annotate(x))
   descriptions.sort(compareFunction)
-  client.start(descriptions, msg)
+  window.client.start(descriptions, msg)
 }
