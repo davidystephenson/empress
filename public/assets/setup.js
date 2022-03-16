@@ -3,95 +3,73 @@ const timelineLength = numPlayers + 10
 const tableWidth = numPlayers < 7 ? 3500 : 5000
 const numBottomRowPlayers = Math.round(numPlayers / 2)
 const numTopRowPlayers = numPlayers - numBottomRowPlayers
-const topRowOrigins = []
-const bottomRowOrigins = []
-for (let i = 0; i < numTopRowPlayers; i++) {
-  const alpha = (i + 1) / (numTopRowPlayers + 1)
+
+const range = n => [...Array(n).keys()]
+
+const getRowOrigins = (n, y) => range(n).map(i => {
+  const alpha = (i + 1) / (n + 1)
   const x = -tableWidth * alpha + tableWidth * (1 - alpha)
-  topRowOrigins.push([x, -900])
-}
-for (let i = 0; i < numBottomRowPlayers; i++) {
-  const alpha = (i + 1) / (numBottomRowPlayers + 1)
-  const x = -tableWidth * alpha + tableWidth * (1 - alpha)
-  bottomRowOrigins.push([x, 900])
-}
+  return [x, y]
+})
+
+const topRowOrigins = getRowOrigins(numTopRowPlayers, -900)
+const bottomRowOrigins = getRowOrigins(numBottomRowPlayers, 900)
+
 const origins = topRowOrigins.concat(bottomRowOrigins)
-let deckCount = 0
 
-const shuffle = array => {
-  const shuffled = array
-    .map(item => ({ value: item, priority: Math.random() }))
-    .sort((a, b) => a.priority - b.priority)
-    .map(x => x.value)
-  return shuffled
-}
+const shuffle = array => array
+  .map(item => ({ value: item, priority: Math.random() }))
+  .sort((a, b) => a.priority - b.priority)
+  .map(x => x.value)
 
-const describeRow = function (file, x, y, type, n, length, side = 'front') {
-  const descriptions = []
-  for (let i = 0; i < n; i++) {
-    let alpha = 0
-    if (n > 1) alpha = i / (n - 1)
-    const myX = (x - 0.5 * length) * (1 - alpha) + (x + 0.5 * length) * alpha
-    const description = window.client.describe({ file: file, x: myX, y: y, type: type })
-    descriptions.push(description)
-  }
-  return (descriptions)
-}
+const describeRow = (file, x, y, type, n, length, side = 'front') => range(n).map(i => {
+  const alpha = n > 1 ? i / (n - 1) : 0
+  const myX = (x - 0.5 * length) * (1 - alpha) + (x + 0.5 * length) * alpha
+  return window.client.describe({ file, x: myX, y, type, side })
+})
 
 const describePortfolio = (x, y, player) => {
-  let descriptions = []
   const sgn = Math.sign(y)
-  let angle = 0
-  if (sgn === -1) {
-    angle = 180
-  }
-  deckCount += 1
-  descriptions = descriptions.concat([
+  const angle = sgn === -1 ? 180 : 0
+  const boards = [
     window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: player }),
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
     window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: player }),
-    window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: deckCount }),
-    window.client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: deckCount }),
+    window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: player }),
+    window.client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: player }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
-  ])
-  descriptions = descriptions.concat([
+  ]
+  const piles = [
     window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 11 }),
     window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 2, side: 'facedown' })
-  ])
-  for (const i of Array(8).keys()) {
+  ]
+  const hand = range(8).map(i => {
     const cardId = i + 3
-    descriptions = descriptions.concat([
-      window.client.describe({ file: 'card/front', x: x + (i - 3.5) * 120, y: y + sgn * 400, type: 'card', cardId: cardId })
-    ])
-  }
-  descriptions = descriptions.concat(describeRow('gold/1', x, y - sgn * 100, 'bit', 5, 300))
-  descriptions = descriptions.concat(describeRow('gold/5', x, y + sgn * 50, 'bit', 3, 300))
-  return (descriptions)
+    return window.client.describe({ file: 'card/front', x: x + (i - 3.5) * 120, y: y + sgn * 400, type: 'card', cardId: cardId })
+  })
+  const gold = [
+    ...describeRow('gold/1', x, y - sgn * 100, 'bit', 5, 300),
+    ...describeRow('gold/5', x, y + sgn * 50, 'bit', 3, 300)
+  ]
+  const descriptions = [...boards, ...piles, ...hand, ...gold]
+  return descriptions
 }
 
-const describeBank = (x, y) => {
-  let descriptions = []
-  descriptions = descriptions.concat([
-    window.client.describe({ file: 'gold/1', x: x - 240, y: y - 120, type: 'bit', clones: 150 }),
-    window.client.describe({ file: 'gold/5', x: x - 80, y: y - 120, type: 'bit', clones: 35 }),
-    window.client.describe({ file: 'gold/10', x: x + 80, y: y - 120, type: 'bit', clones: 30 }),
-    window.client.describe({ file: 'gold/50', x: x + 240, y: y - 120, type: 'bit', clones: 15 }),
-    window.client.describe({ file: 'gold/1', x: x - 240, y: y + 120, type: 'bit', clones: 150 }),
-    window.client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
-    window.client.describe({ file: 'gold/10', x: x + 80, y: y + 120, type: 'bit', clones: 30 }),
-    window.client.describe({ file: 'gold/50', x: x + 240, y: y + 120, type: 'bit', clones: 15 })
-  ])
-  return (descriptions)
-}
+const describeBank = (x, y) => [
+  window.client.describe({ file: 'gold/1', x: x - 240, y: y - 120, type: 'bit', clones: 150 }),
+  window.client.describe({ file: 'gold/5', x: x - 80, y: y - 120, type: 'bit', clones: 35 }),
+  window.client.describe({ file: 'gold/10', x: x + 80, y: y - 120, type: 'bit', clones: 30 }),
+  window.client.describe({ file: 'gold/50', x: x + 240, y: y - 120, type: 'bit', clones: 15 }),
+  window.client.describe({ file: 'gold/1', x: x - 240, y: y + 120, type: 'bit', clones: 150 }),
+  window.client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
+  window.client.describe({ file: 'gold/10', x: x + 80, y: y + 120, type: 'bit', clones: 30 }),
+  window.client.describe({ file: 'gold/50', x: x + 240, y: y + 120, type: 'bit', clones: 15 })
+]
 
-const describeCourt = (x, y) => {
-  let descriptions = []
-  descriptions = descriptions.concat([
-    window.client.describe({ file: 'board/court', x: x - 200, y: 0, type: 'board' }),
-    window.client.describe({ file: 'card/front', x: x - 200, y: y, type: 'card', cardId: 1 })
-  ])
-  return (descriptions)
-}
+const describeCourt = (x, y) => [
+  window.client.describe({ file: 'board/court', x: x - 200, y: 0, type: 'board' }),
+  window.client.describe({ file: 'card/front', x: x - 200, y: y, type: 'card', cardId: 1 })
+]
 
 const annotate = function (description) {
   description.details = ''
@@ -117,43 +95,41 @@ const annotate = function (description) {
   }
 }
 
-const compareFunction = (a, b) => {
-  let aLayer = 0
-  let bLayer = 0
-  if (a.type === 'board') { aLayer = 1 }
-  if (b.type === 'board') { bLayer = 1 }
-  if (a.type === 'card') { aLayer = 2 }
-  if (b.type === 'card') { bLayer = 2 }
-  if (a.type === 'bit') { aLayer = 3 }
-  if (b.type === 'bit') { bLayer = 3 }
-  if (a.type === 'screen') { aLayer = 4 }
-  if (b.type === 'screen') { bLayer = 4 }
+const getLayer = element => {
+  switch (element.type) {
+    case 'board': return 1
+    case 'card': return 2
+    case 'bit': return 3
+    case 'screen': return 4
+  }
+}
+
+const compareLayers = (a, b) => {
+  const aLayer = getLayer(a)
+  const bLayer = getLayer(b)
   return aLayer - bLayer
 }
 
 window.setup = msg => {
   const plots = msg.plots
   console.log(plots)
-  let descriptions = []
-  origins.forEach((origin, i) => {
+  const portfolios = origins.map((origin, i) => {
     const x = origin[0]
     const y = origin[1]
-    const portfolio = describePortfolio(x, y, i)
-    descriptions = descriptions.concat(portfolio)
-  })
-  let deck = [...Array(51).keys()].filter(x => x === 0 || x > 11)
-  deck = shuffle(deck)
-  const auctionRow = deck.slice(0, timelineLength)
-  auctionRow.sort()
-  descriptions = descriptions.concat(describeBank(2000, 0))
-  descriptions = descriptions.concat(describeCourt(-2000, 0))
-  for (const i of Array(timelineLength).keys()) {
+    return describePortfolio(x, y, i)
+  }).flat()
+  const bank = describeBank(2000, 0)
+  const court = describeCourt(-2000, 0)
+  const deckIds = shuffle([...Array(51).keys()].filter(x => x === 0 || x > 11))
+  const timelineIds = deckIds.slice(0, timelineLength)
+  timelineIds.sort()
+  const timeline = range(timelineLength).map(i => {
     const offset = timelineLength / 2 - 0.5
-    descriptions = descriptions.concat([
-      window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: auctionRow[i] })
-    ])
-  }
+    return window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: timelineIds[i] })
+  })
+  const descriptions = [...portfolios, ...bank, ...court, ...timeline]
+  console.log(descriptions)
   descriptions.map(x => annotate(x))
-  descriptions.sort(compareFunction)
+  descriptions.sort(compareLayers)
   window.client.start(descriptions, msg)
 }

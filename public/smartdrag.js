@@ -1,9 +1,6 @@
 const detailDiv = document.getElementById('detail')
 
 window.Snap.plugin(function (Snap, Element, Paper, global) {
-  let shiftDown = false
-  let ctrlDown = false
-
   const mouseClick = event => {
     // console.log("mouseClick")
   }
@@ -14,54 +11,44 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
 
   const isFrozen = bit => {
     const readyButtons = bit.parent().children().filter(x => x.data('file') === 'board/ready')
-    let frozen = false
-    readyButtons.forEach(button => {
+    const frozen = readyButtons.some(button => {
       if (button.data('side') !== 'front') {
         const screens = bit.parent().children().filter(x => x.data('file') === 'board/screen' && x.data('player') === button.data('player'))
-        frozen = screens.some(screen => intersect(bit, screen))
+        return screens.some(screen => intersect(bit, screen))
       }
+      return false
     })
-    return (frozen)
+    return frozen
   }
 
-  const isInStack = function (a) {
-    const stacks = a.parent().children().filter(bit => ['deck', 'discard'].includes(bit.data('type')))
-    let inStack = false
-    stacks.forEach(stack => { inStack = inStack || intersect(a, stack) })
-    return inStack
-  }
+  const siblings = a => a
+    .parent()
+    .children()
 
-  const getMyDiscard = function (deck) {
-    const discards = deck.parent().children().filter(bit => bit.data('type') === 'discard')
-    return discards.filter(discard => discard.data('targetDeck') === deck.data('deckId'))[0]
-  }
+  const isInStack = a => siblings(a)
+    .filter(bit => ['deck', 'discard'].includes(bit.data('type')))
+    .some(stack => intersect(a, stack))
 
-  const getMyDeck = function (discard) {
-    const decks = discard.parent().children().filter(bit => bit.data('type') === 'deck')
-    return decks.filter(deck => deck.data('deckId') === discard.data('targetDeck'))[0]
-  }
+  const getMyDiscard = deck => siblings(deck)
+    .filter(bit => bit.data('type') === 'discard' && bit.data('targetDeck') === deck.data('deckId'))[0]
 
-  const getContents = function (stack) {
-    const cards = stack.parent().children().filter(bit => bit.data('type') === 'card')
-    const myCards = cards.filter(card => intersect(stack, card))
-    return myCards
-  }
+  const getMyDeck = discard => siblings(discard)
+    .filter(bit => bit.data('type') === 'deck' && bit.data('deckId') === discard.data('targetDeck'))[0]
 
-  const getDetails = function (bit) {
-    let text = ''
-    if (!bit.data('twoSided') || ['front', 'hidden'].includes(bit.data('side'))) {
-      text = bit.data('details')
-    } else {
-      text = 'Hidden'
-    }
-    return (text)
-  }
+  const getContents = stack => siblings(stack)
+    .filter(bit => bit.data('type') === 'card' && intersect(stack, bit))
+
+  const getDetails = bit => (bit.data('twoSided') && !['back', 'hidden'].includes(bit.data('side')))
+    ? 'Hidden'
+    : bit.data('details')
 
   const dragStart = function (x, y, event) {
+    const shiftDown = event.shiftKey
+    const ctrlDown = event.ctrlKey
     const move = event.button === 0 && !isFrozen(this) && !shiftDown && !ctrlDown && ['card', 'bit'].includes(this.data('type'))
-    let flip = event.button === 0 && shiftDown && this.data('twoSided')
-    flip = flip || (event.button === 1 && this.data('twoSided'))
-    flip = flip || this.data('type') === 'screen'
+    const flip = (event.button === 0 && shiftDown && this.data('twoSided')) ||
+      (event.button === 1 && this.data('twoSided')) ||
+      this.data('type') === 'screen'
     const turnDown = event.button === 0 && ctrlDown && this.data('twoSided')
     const inStack = isInStack(this)
     this.data('inStack', inStack)
@@ -139,16 +126,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
 
   const dragEnd = function () {
     this.data('dragging', false)
-  }
-
-  this.onkeydown = event => {
-    if (event.key === 'Shift') shiftDown = true
-    if (event.key === 'Control') ctrlDown = true
-  }
-
-  this.onkeyup = event => {
-    if (event.key === 'Shift') shiftDown = false
-    if (event.key === 'Control') ctrlDown = false
   }
 
   Element.prototype.smartdrag = function () {
