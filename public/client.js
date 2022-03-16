@@ -319,6 +319,31 @@ window.client = (() => {
       a.every((val, index) => val === b[index])
   }
 
+  /*
+  const updateLayers = function (newLayers) {
+    if (!arrayEquals(window.layers, newLayers)) {
+      window.layers = newLayers
+      console.log('update layers')
+      const ids = components.map((val, id) => id)
+      const sortedIds = ids.sort((a, b) => window.layers[a] - window.layers[b])
+      const filteredIds = sortedIds.filter(id => components[id].data('type') !== 'screen')
+      filteredIds.forEach(id => screens[0].before(components[id]))
+    }
+  }
+
+  const updateLayers = function (newLayers) {
+    if (!arrayEquals(window.layers, newLayers)) {
+      window.layers = newLayers
+      console.log('update layers')
+       ids = components
+        .map((val, id) => id)
+        .sort((a, b) => window.layers[a] - window.layers[b])
+        .filter(id => components[id].data('type') !== 'screen')
+        .forEach(id => screens[0].before(components[id]))
+    }
+  }
+  */
+
   const updateLayers = function (newLayers) {
     if (!arrayEquals(window.layers, newLayers)) {
       window.layers = newLayers

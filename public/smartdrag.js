@@ -38,9 +38,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   const getContents = stack => siblings(stack)
     .filter(bit => bit.data('type') === 'card' && intersect(stack, bit))
 
-  const getDetails = bit => (bit.data('twoSided') && !['back', 'hidden'].includes(bit.data('side')))
-    ? 'Hidden'
-    : bit.data('details')
+  const getDetails = bit => {
+    console.log('bit.data(side)', bit.data('side'))
+    console.log('bit.data(twoSided)', bit.data('twoSided'))
+    return (bit.data('twoSided') && ['back', 'hidden', 'facedown'].includes(bit.data('side')))
+      ? 'Hidden'
+      : bit.data('details')
+  }
 
   const dragStart = function (x, y, event) {
     const shiftDown = event.shiftKey
