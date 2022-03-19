@@ -40,12 +40,12 @@ const describePortfolio = (x, y, player) => {
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 11 }),
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 6 }),
     window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 2, side: 'facedown' })
   ]
-  const hand = range(8).map(i => {
+  const hand = range(3).map(i => {
     const cardId = i + 3
-    return window.client.describe({ file: 'card/front', x: x + (i - 3.5) * 120, y: y + sgn * 400, type: 'card', cardId: cardId })
+    return window.client.describe({ file: 'card/front', x: x + (i - 1) * 250, y: y + sgn * 400, type: 'card', cardId: cardId })
   })
   const gold = [
     ...describeRow('gold/1', x, y - sgn * 100, 'bit', 5, 300),
