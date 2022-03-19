@@ -63,7 +63,8 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/1', x: x - 240, y: y + 120, type: 'bit', clones: 150 }),
   window.client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
   window.client.describe({ file: 'gold/10', x: x + 80, y: y + 120, type: 'bit', clones: 30 }),
-  window.client.describe({ file: 'gold/50', x: x + 240, y: y + 120, type: 'bit', clones: 15 })
+  window.client.describe({ file: 'gold/50', x: x + 240, y: y + 120, type: 'bit', clones: 15 }),
+  window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 51, clones: 15 })
 ]
 
 const describeCourt = (x, y) => [
@@ -75,6 +76,7 @@ const annotate = function (description) {
   description.details = ''
   if (description.type === 'card') {
     const plot = window.plots[description.cardId]
+    description.time = plot.time
     description.details = `
       <b>${plot.title}</b><br><br>
       ${plot.effect1}<br><br>
@@ -121,7 +123,7 @@ window.setup = msg => {
   }).flat()
   const bank = describeBank(2000, 0)
   const court = describeCourt(-2000, 0)
-  const deckIds = shuffle([...Array(51).keys()].filter(x => x === 0 || x > 11))
+  const deckIds = shuffle([...Array(50).keys()].filter(x => x === 0 || x > 11))
   const timelineIds = deckIds.slice(0, timelineLength)
   timelineIds.sort()
   const timeline = range(timelineLength).map(i => {

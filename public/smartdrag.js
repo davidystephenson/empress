@@ -2,7 +2,7 @@ const detailDiv = document.getElementById('detail')
 
 window.Snap.plugin(function (Snap, Element, Paper, global) {
   const mouseClick = event => {
-    // console.log("mouseClick")
+    console.log('test')
   }
 
   const intersect = function (a, b) {

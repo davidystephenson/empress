@@ -175,6 +175,25 @@ window.client = (() => {
         textElement.attr({ 'font-weight': 'bold' })
         component.add(textElement)
         twoSided = true
+
+        if (description.time >= 1) {
+          const hourglass = templates['card/hourglass'].clone()
+          component.append(hourglass)
+          hourglass.node.style.display = 'block'
+          hourglass.transform('t0,10')
+        }
+        if (description.time >= 2) {
+          const hourglass = templates['card/hourglass'].clone()
+          component.append(hourglass)
+          hourglass.node.style.display = 'block'
+          hourglass.transform('t35,10')
+        }
+        if (description.time >= 3) {
+          const hourglass = templates['card/hourglass'].clone()
+          component.append(hourglass)
+          hourglass.node.style.display = 'block'
+          hourglass.transform('t70,10')
+        }
       }
       if (type === 'screen') {
         component.data('type', 'screen')
@@ -240,6 +259,7 @@ window.client = (() => {
       if (msg.layers.length > 0) updateLayers(msg.layers)
       screens.forEach((s, i) => i > 0 ? screens[0].after(s) : false)
       setInterval(updateServer, 300)
+      console.log('templates', templates)
     }
   }
 
@@ -247,7 +267,7 @@ window.client = (() => {
     console.log(msg)
     let files = unique(descriptions.map(item => item.file))
     const backFiles = [
-      'card/back', 'card/hidden', 'card/facedown',
+      'card/back', 'card/hidden', 'card/facedown', 'card/hourglass',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
       'board/ready-back'
     ]
@@ -318,31 +338,6 @@ window.client = (() => {
       a.length === b.length &&
       a.every((val, index) => val === b[index])
   }
-
-  /*
-  const updateLayers = function (newLayers) {
-    if (!arrayEquals(window.layers, newLayers)) {
-      window.layers = newLayers
-      console.log('update layers')
-      const ids = components.map((val, id) => id)
-      const sortedIds = ids.sort((a, b) => window.layers[a] - window.layers[b])
-      const filteredIds = sortedIds.filter(id => components[id].data('type') !== 'screen')
-      filteredIds.forEach(id => screens[0].before(components[id]))
-    }
-  }
-
-  const updateLayers = function (newLayers) {
-    if (!arrayEquals(window.layers, newLayers)) {
-      window.layers = newLayers
-      console.log('update layers')
-       ids = components
-        .map((val, id) => id)
-        .sort((a, b) => window.layers[a] - window.layers[b])
-        .filter(id => components[id].data('type') !== 'screen')
-        .forEach(id => screens[0].before(components[id]))
-    }
-  }
-  */
 
   const updateLayers = function (newLayers) {
     if (!arrayEquals(window.layers, newLayers)) {

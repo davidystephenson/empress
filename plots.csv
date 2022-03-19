@@ -50,4 +50,4 @@ id,rank,color,title,effect1,effect2,time,power,link1,link2
 48,47,Red,Organize a mutiny,Use the highest rank plot other than this,"If it is red, draw 5",5,50,"https://en.wikipedia.org/wiki/George_Douglas,_1st_Earl_of_Dumbarton",
 49,48,Yellow,Invest a Bishop,Take 30 gold for every other plot rank 30 or above,Revive 9,9,30,https://en.wikipedia.org/wiki/Investiture_Controversy#Henry_IV_and_Pope_Gregory_VII,https://en.wikipedia.org/wiki/Padroado
 50,49,Green,Fashion a crown,Pay 10 gold,Draw 10,10,100,https://www.rct.uk/collection/themes/trails/the-crown-jewels/in-detail-st-edwards-crown,
-51,50,Purple,Declare independence,Take 10 times as much gold as you have,Use the highest rank plot other than this,0,101,https://en.wikipedia.org/wiki/Gustav_I_of_Sweden,
+51,50,Purple,Privelege,Take 10 times as much gold as you have,Use the highest rank plot other than this,0,101,https://en.wikipedia.org/wiki/Gustav_I_of_Sweden,
