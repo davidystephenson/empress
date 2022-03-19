@@ -68,7 +68,7 @@ const describeBank = (x, y) => [
 
 const describeCourt = (x, y) => [
   window.client.describe({ file: 'board/court', x: x - 200, y: 0, type: 'board' }),
-  window.client.describe({ file: 'card/front', x: x - 200, y: y, type: 'card', cardId: 1 })
+  window.client.describe({ file: 'card/front', x: x - 200, y: y - 150, type: 'card', cardId: 1 })
 ]
 
 const annotate = function (description) {
