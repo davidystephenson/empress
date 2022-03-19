@@ -101,6 +101,7 @@ const getLayer = element => {
     case 'card': return 2
     case 'bit': return 3
     case 'screen': return 4
+    default: return 0
   }
 }
 
