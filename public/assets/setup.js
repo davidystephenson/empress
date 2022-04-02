@@ -1,5 +1,5 @@
-const numPlayers = 3
-const timelineLength = numPlayers + 10
+const numPlayers = 10
+const timelineLength = numPlayers + 5
 const tableWidth = numPlayers < 7 ? 3500 : 5000
 const numBottomRowPlayers = Math.round(numPlayers / 2)
 const numTopRowPlayers = numPlayers - numBottomRowPlayers
@@ -40,12 +40,13 @@ const describePortfolio = (x, y, player) => {
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 6 }),
-    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 2, side: 'facedown' })
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 2 }),
+    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 8, side: 'facedown' })
   ]
-  const hand = range(3).map(i => {
+  const hand = range(5).map(i => {
     const cardId = i + 3
-    return window.client.describe({ file: 'card/front', x: x + (i - 1) * 250, y: y + sgn * 400, type: 'card', cardId: cardId })
+    const space = 200
+    return window.client.describe({ file: 'card/front', x: x + (i - 2) * space, y: y + sgn * 400, type: 'card', cardId: cardId })
   })
   const gold = [
     ...describeRow('gold/1', x, y - sgn * 100, 'bit', 5, 300),
@@ -69,7 +70,10 @@ const describeBank = (x, y) => [
 
 const describeCourt = (x, y) => [
   window.client.describe({ file: 'board/court', x: x - 200, y: 0, type: 'board' }),
-  window.client.describe({ file: 'card/front', x: x - 200, y: y - 150, type: 'card', cardId: 1 })
+  window.client.describe({ file: 'card/front', x: x - 200, y: y - 150, type: 'card', cardId: 1 }),
+  window.client.describe({ file: 'card/front', x: x - 400, y: y + 150, type: 'card', cardId: 2 }),
+  window.client.describe({ file: 'card/front', x: x - 200, y: y + 150, type: 'card', cardId: 3 }),
+  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 4 })
 ]
 
 const annotate = function (description) {

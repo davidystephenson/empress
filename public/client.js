@@ -144,7 +144,7 @@ window.client = (() => {
       component.data('player', player)
       component.data('twoSided', false)
       component.data('inStack', false)
-      let twoSided = false
+      const twoSided = ['card', 'screen'].includes(type) || file === 'board/ready'
       component.data('type', type)
       if (type === 'deck') component.data('deckId', description.deckId)
       if (type === 'discard') component.data('targetDeck', description.targetDeck)
@@ -174,8 +174,6 @@ window.client = (() => {
         textElement.attr({ 'font-family': 'sans-serif' })
         textElement.attr({ 'font-weight': 'bold' })
         component.add(textElement)
-        twoSided = true
-
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
@@ -200,14 +198,12 @@ window.client = (() => {
         hidden = templates['board/screen-hidden'].clone()
         facedown = templates['board/screen-facedown'].clone()
         back = templates['board/screen-back'].clone()
-        twoSided = true
         screens.push(component)
       }
       if (file === 'board/ready') {
         hidden = templates['board/ready-back'].clone()
         facedown = templates['board/ready-back'].clone()
         back = templates['board/ready-back'].clone()
-        twoSided = true
       }
       if (twoSided) {
         component.data('twoSided', true)
@@ -265,13 +261,12 @@ window.client = (() => {
 
   const start = (descriptions, msg) => {
     console.log(msg)
-    let files = unique(descriptions.map(item => item.file))
     const backFiles = [
       'card/back', 'card/hidden', 'card/facedown', 'card/hourglass',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
       'board/ready-back'
     ]
-    files = files.concat(backFiles)
+    const files = unique(descriptions.map(item => item.file)).concat(backFiles)
     files.map(file => window.Snap.load(`assets/${file}.svg`, setupTemplate(file, descriptions, msg, files.length)))
   }
 
@@ -312,6 +307,7 @@ window.client = (() => {
       }
     })
     msg.layers = window.layers
+    msg.seed = seed
     if (msg.updates.length > 0) socket.emit('updateServer', msg)
   }
 
@@ -343,10 +339,11 @@ window.client = (() => {
     if (!arrayEquals(window.layers, newLayers)) {
       window.layers = newLayers
       console.log('update layers')
-      let ids = components.map((val, id) => id)
-      ids.sort((a, b) => window.layers[a] - window.layers[b])
-      ids = ids.filter(id => components[id].data('type') !== 'screen')
-      ids.map(id => screens[0].before(components[id]))
+      components
+        .map((val, id) => id)
+        .sort((a, b) => window.layers[a] - window.layers[b])
+        .filter(id => components[id].data('type') !== 'screen')
+        .forEach(id => screens[0].before(components[id]))
     }
   }
 
@@ -354,6 +351,7 @@ window.client = (() => {
     console.log('sessionid =', socket.id)
 
     socket.on('updateClient', msg => {
+      console.log('updateClient')
       if (msg.seed === seed) {
         updateLayers(msg.layers)
         msg.updates.map(processUpdate)

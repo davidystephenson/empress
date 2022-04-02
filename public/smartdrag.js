@@ -41,7 +41,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   const getDetails = bit => {
     console.log('bit.data(side)', bit.data('side'))
     console.log('bit.data(twoSided)', bit.data('twoSided'))
-    return (bit.data('twoSided') && ['back', 'hidden', 'facedown'].includes(bit.data('side')))
+    return (bit.data('twoSided') && ['back', 'facedown'].includes(bit.data('side')))
       ? 'Hidden'
       : bit.data('details')
   }
