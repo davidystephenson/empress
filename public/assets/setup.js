@@ -1,12 +1,12 @@
 const numPlayers = 10
+
 const timelineLength = numPlayers + 5
 const tableWidth = numPlayers < 7 ? 3500 : 5000
 const numBottomRowPlayers = Math.round(numPlayers / 2)
 const numTopRowPlayers = numPlayers - numBottomRowPlayers
+const range = window.range
 
-const range = n => [...Array(n).keys()]
-
-const getRowOrigins = (n, y) => range(n).map(i => {
+const getRowOrigins = (n, y) => window.range(n).map(i => {
   const alpha = (i + 1) / (n + 1)
   const x = -tableWidth * alpha + tableWidth * (1 - alpha)
   return [x, y]
@@ -69,11 +69,9 @@ const describeBank = (x, y) => [
 ]
 
 const describeCourt = (x, y) => [
-  window.client.describe({ file: 'board/court', x: x - 200, y: 0, type: 'board' }),
-  window.client.describe({ file: 'card/front', x: x - 200, y: y - 150, type: 'card', cardId: 1 }),
-  window.client.describe({ file: 'card/front', x: x - 400, y: y + 150, type: 'card', cardId: 2 }),
-  window.client.describe({ file: 'card/front', x: x - 200, y: y + 150, type: 'card', cardId: 3 }),
-  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 4 })
+  window.client.describe({ file: 'board/court', x: x, y: 0, type: 'board' }),
+  window.client.describe({ file: 'card/front', x: x, y: y - 150, type: 'card', cardId: 2 }),
+  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 1 })
 ]
 
 const annotate = function (description) {
@@ -119,14 +117,13 @@ const compareLayers = (a, b) => {
 
 window.setup = msg => {
   const plots = msg.plots
-  console.log(plots)
   const portfolios = origins.map((origin, i) => {
     const x = origin[0]
     const y = origin[1]
     return describePortfolio(x, y, i)
   }).flat()
   const bank = describeBank(2000, 0)
-  const court = describeCourt(-2000, 0)
+  const court = describeCourt(-2200, 0)
   const deckIds = shuffle([...Array(50).keys()].filter(x => x === 0 || x > 11))
   const timelineIds = deckIds.slice(0, timelineLength)
   timelineIds.sort()
@@ -135,7 +132,6 @@ window.setup = msg => {
     return window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: timelineIds[i] })
   })
   const descriptions = [...portfolios, ...bank, ...court, ...timeline]
-  console.log(descriptions)
   descriptions.map(x => annotate(x))
   descriptions.sort(compareLayers)
   window.client.start(descriptions, msg)

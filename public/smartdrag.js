@@ -2,7 +2,7 @@ const detailDiv = document.getElementById('detail')
 
 window.Snap.plugin(function (Snap, Element, Paper, global) {
   const mouseClick = event => {
-    console.log('test')
+    // console.log('test')
   }
 
   const intersect = function (a, b) {
@@ -39,8 +39,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     .filter(bit => bit.data('type') === 'card' && intersect(stack, bit))
 
   const getDetails = bit => {
-    console.log('bit.data(side)', bit.data('side'))
-    console.log('bit.data(twoSided)', bit.data('twoSided'))
     return (bit.data('twoSided') && ['back', 'facedown'].includes(bit.data('side')))
       ? 'Hidden'
       : bit.data('details')

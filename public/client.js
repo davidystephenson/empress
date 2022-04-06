@@ -1,4 +1,7 @@
+window.range = n => [...Array(n).keys()]
+
 window.client = (() => {
+  const range = window.range()
   const paper = window.Snap('#mysvg')
   const group = paper.group()
 
@@ -27,7 +30,7 @@ window.client = (() => {
 
   // Setup Zoom-Pan-Drag
   const paperError = (error, paper) => {
-    console.log(error, paper)
+    if (error) console.error(error, paper)
   }
   paper.zpd({ zoom: true, pan: false, drag: false }, paperError)
 
@@ -152,9 +155,23 @@ window.client = (() => {
         const textbox = component.text(component.getBBox().width / 2, 760, 'Name Tag')
         textbox.attr({ 'font-size': 100, 'text-anchor': 'middle' })
       }
-      let hidden = templates['card/hidden'].clone()
-      let facedown = templates['card/facedown'].clone()
-      let back = templates['card/back'].clone()
+
+      function getTemplateString (name) {
+        if (file === 'board/ready') {
+          return 'board/ready-back'
+        } else if (type === 'screen') {
+          return `board/screen-${name}`
+        } else {
+          return `card/${name}`
+        }
+      }
+      function getTemplate (name) {
+        const string = getTemplateString(name)
+        return templates[string].clone()
+      }
+      const hidden = getTemplate('hidden')
+      const facedown = getTemplate('facedown')
+      const back = getTemplate('back')
       if (type === 'card') {
         component.data('type', 'card')
         const colors = {
@@ -195,15 +212,7 @@ window.client = (() => {
       }
       if (type === 'screen') {
         component.data('type', 'screen')
-        hidden = templates['board/screen-hidden'].clone()
-        facedown = templates['board/screen-facedown'].clone()
-        back = templates['board/screen-back'].clone()
         screens.push(component)
-      }
-      if (file === 'board/ready') {
-        hidden = templates['board/ready-back'].clone()
-        facedown = templates['board/ready-back'].clone()
-        back = templates['board/ready-back'].clone()
       }
       if (twoSided) {
         component.data('twoSided', true)
@@ -255,12 +264,10 @@ window.client = (() => {
       if (msg.layers.length > 0) updateLayers(msg.layers)
       screens.forEach((s, i) => i > 0 ? screens[0].after(s) : false)
       setInterval(updateServer, 300)
-      console.log('templates', templates)
     }
   }
 
   const start = (descriptions, msg) => {
-    console.log(msg)
     const backFiles = [
       'card/back', 'card/hidden', 'card/facedown', 'card/hourglass',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
