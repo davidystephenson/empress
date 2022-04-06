@@ -24,7 +24,8 @@ const csvtojson = require('csvtojson')
 app.use(express.static(path.join(__dirname, 'public')))
 
 const state = []
-const layers = []
+let events = {}
+let layers = []
 const seed = Math.random().toString()
 console.log('seed = ' + seed)
 
@@ -40,15 +41,25 @@ io.on('connection', async socket => {
     if (msg.seed === seed) {
       msg.updates.forEach(update => {
         state[update.id] = update
+        events[update.id] = { socket, update }
+        layers = msg.layers
       })
-      msg.seed = seed
-      const otherIds = Object.keys(io.sockets.connected).filter(socketId => socketId !== socket.id)
-      otherIds.forEach(socketId => io.sockets.connected[socketId].emit('updateClient', msg))
     }
   })
 })
+
+async function updateClients () {
+  Object.values(events).forEach(event => {
+    const msg = { seed, layers }
+    msg.updates = [event.update]
+    event.socket.broadcast.emit('updateClient', msg)
+  })
+  events = {}
+}
 
 server.listen(3000, () => {
   const port = server.address().port
   console.log(`listening on port: ${port}`)
 })
+
+setInterval(updateClients, 100)
