@@ -1,7 +1,7 @@
 window.range = n => [...Array(n).keys()]
 
 window.client = (() => {
-  const range = window.range()
+  const range = window.range
   const paper = window.Snap('#mysvg')
   const group = paper.group()
 
@@ -36,10 +36,10 @@ window.client = (() => {
 
   paper.zoomTo(0.2, 200, null, function (err) {
     if (err) console.error(err)
-    else console.log('zoom complete')
+    else console.warn('zoom complete')
     paper.panTo(800, 500, 200, null, function (err) {
       if (err) console.error(err)
-      else console.log('pan complete')
+      else console.warn('pan complete')
     })
   })
 
@@ -132,7 +132,7 @@ window.client = (() => {
     const { x, y, rotation, type, clones, file, details, side, player } = description
     const template = templates[file]
     const startMatrix = template.transform().localMatrix.translate(x, y)
-    for (let i = 0; i <= clones; i++) {
+    range(clones + 1).forEach(i => {
       const component = template.clone()
       group.add(component)
       component.node.style.display = 'block'
@@ -250,7 +250,7 @@ window.client = (() => {
 
         if (side === 'facedown') window.setSide(component, 'facedown')
       }
-    }
+    })
   }
 
   const setupTemplate = (file, descriptions, msg, numTemplates) => fragment => {
@@ -345,7 +345,6 @@ window.client = (() => {
   const updateLayers = function (newLayers) {
     if (!arrayEquals(window.layers, newLayers)) {
       window.layers = newLayers
-      console.log('update layers')
       components
         .map((val, id) => id)
         .sort((a, b) => window.layers[a] - window.layers[b])
@@ -355,10 +354,9 @@ window.client = (() => {
   }
 
   socket.on('connect', () => {
-    console.log('sessionid =', socket.id)
+    console.warn('sessionid =', socket.id)
 
     socket.on('updateClient', msg => {
-      console.log('updateClient')
       if (msg.seed === seed) {
         updateLayers(msg.layers)
         msg.updates.map(processUpdate)
@@ -370,12 +368,12 @@ window.client = (() => {
       if (!seed) {
         seed = msg.seed
         Math.seedrandom(seed)
-        console.log('seed = ' + seed)
+        console.warn('seed = ' + seed)
         window.plots = msg.plots
         window.setup(msg)
         paper.panTo(-500, 1100)
       } else {
-        console.log('Restart Needed')
+        console.warn('Restart Needed')
       }
     })
   })

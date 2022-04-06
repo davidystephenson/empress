@@ -116,7 +116,6 @@ const compareLayers = (a, b) => {
 }
 
 window.setup = msg => {
-  const plots = msg.plots
   const portfolios = origins.map((origin, i) => {
     const x = origin[0]
     const y = origin[1]

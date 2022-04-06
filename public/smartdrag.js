@@ -2,7 +2,7 @@ const detailDiv = document.getElementById('detail')
 
 window.Snap.plugin(function (Snap, Element, Paper, global) {
   const mouseClick = event => {
-    // console.log('test')
+    //
   }
 
   const intersect = function (a, b) {
@@ -62,13 +62,12 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       const name = window.prompt('Please enter your name')
       const children = this.children()
       const textbox = children[children.length - 1]
-      console.log(textbox.attr({ text: name }))
+      textbox.attr({ text: name })
       this.data('moved', true)
     }
     if (this.data('type') === 'discard') {
       const myDeck = getMyDeck(this)
       const myCards = getContents(this)
-      console.log(window.layers)
       myCards.sort((a, b) => window.layers[b.data('id')] - window.layers[a.data('id')])
       myCards.forEach((card, i) => {
         x = 0.5 * (myDeck.getBBox().width - card.getBBox().width)
@@ -81,7 +80,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       })
     }
     if (this.data('type') === 'deck') {
-      console.log('flipDeck')
       const myDiscard = getMyDiscard(this)
       const myCards = getContents(this)
       myCards.sort((a, b) => window.layers[b.data('id')] - window.layers[a.data('id')])
