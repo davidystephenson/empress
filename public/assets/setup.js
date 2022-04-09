@@ -1,4 +1,4 @@
-const numPlayers = 10
+const numPlayers = 4
 
 const timelineLength = numPlayers + 5
 const tableWidth = numPlayers < 7 ? 3500 : 5000
@@ -40,11 +40,11 @@ const describePortfolio = (x, y, player) => {
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 2 }),
-    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 8, side: 'facedown' })
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 7 }),
+    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 1, side: 'facedown' })
   ]
   const hand = range(5).map(i => {
-    const cardId = i + 3
+    const cardId = i + 2
     const space = 200
     return window.client.describe({ file: 'card/front', x: x + (i - 2) * space, y: y + sgn * 400, type: 'card', cardId: cardId })
   })
@@ -65,13 +65,13 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
   window.client.describe({ file: 'gold/10', x: x + 80, y: y + 120, type: 'bit', clones: 30 }),
   window.client.describe({ file: 'gold/50', x: x + 240, y: y + 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 51, clones: 15 })
+  window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 0, clones: 15 })
 ]
 
 const describeCourt = (x, y) => [
   window.client.describe({ file: 'board/court', x: x, y: 0, type: 'board' }),
-  window.client.describe({ file: 'card/front', x: x, y: y - 150, type: 'card', cardId: 2 }),
-  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 1 })
+  window.client.describe({ file: 'card/front', x: x, y: y - 150, type: 'card', cardId: 9 }),
+  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 8 })
 ]
 
 const annotate = function (description) {
@@ -123,7 +123,7 @@ window.setup = msg => {
   }).flat()
   const bank = describeBank(2000, 0)
   const court = describeCourt(-2200, 0)
-  const deckIds = shuffle([...Array(50).keys()].filter(x => x === 0 || x > 11))
+  const deckIds = shuffle([...Array(50).keys()].filter(x => x > 9))
   const timelineIds = deckIds.slice(0, timelineLength)
   timelineIds.sort()
   const timeline = range(timelineLength).map(i => {

@@ -1,61 +1,53 @@
 id,rank,color,title,effect1,effect2,time,power,link1,link2
-0,?,None,Foolish Jest,"If you deal this card during setup, return it to the box and do not replace it",Start the game with 1 less plot in the timeline,None,None,https://en.wikipedia.org/wiki/The_Fool_(Tarot_card),https://en.wikipedia.org/wiki/Joker_(playing_card)
-1,0,None,Receive prophesy,"Look at the top plot in your deck, then put it back",Put 1 plot from your hand face down on your deck,3,10,https://en.wikipedia.org/wiki/Joan_of_Arc,
-2,1,Red,Conscript a hostage,Take 1 gold,Use the lowest rank plot in the dungeon,2,10,https://en.wikipedia.org/wiki/Impressment#Basis,
-3,2,Green,Revolutionize court fashion,"If you have 3 or less plots in hand, draw 1","If the highest rank plot is green, use the leftmost plot in the timeline",0,10,https://www.nationalgeographic.com/history/magazine/2016/09-10/daily-life-france-fashion-marie-antoinette/,https://www.apollo-magazine.com/marie-antoinette-versailles-theatre-restored/
-4,3,Yellow,Found a charity,"If you have 3 or less gold, take 3 gold",Take 1 gold for each lower rank plot,3,0,https://en.wikipedia.org/wiki/K%C3%B6sem_Sultan#Charities,https://en.wikipedia.org/wiki/Sultanate_of_Women
-5,4,Green,Disguise as a peasant,"If there is no lower rank plot, use the top plot in your discard","Otherwise, revive 1",1,10,https://en.wikipedia.org/wiki/Escape_of_Charles_II,https://en.wikipedia.org/wiki/Royal_Oak
-6,5,Red,Hire a mercenary,Pay 1 gold,Use the lowest rank plot other than this,0,0,https://en.wikipedia.org/wiki/English_political_intrigue_during_the_Dutch_Revolt#Queen_Elizabeth_I,https://en.wikipedia.org/wiki/John_Casimir_of_the_Palatinate-Simmern
-7,6,Yellow,Declare bankruptcy,Take 1 gold for yellow plot in your deck,Pay your entire deck,0,0,https://en.wikipedia.org/wiki/Stop_of_the_Exchequer,
-8,7,Red,Streetfight,"If there is a red plot on top of your discard, use it",Take gold equal to the time of the top plot in your discard,1,0,https://en.wikipedia.org/wiki/War_of_the_Bands,https://www.academia.edu/43529861/Urban_warfare_in_15th_century_Castile
-9,8,Green,Give fealty,Pay the highest rank plot's time in gold,Draw that many,0,10,https://en.wikipedia.org/wiki/Danegeld,https://en.wikipedia.org/wiki/Cnut
-10,9,Yellow,Steal from the rich and give to the poor,Take twice the highest rank plot's time in gold,Pay 1 gold,2,0,https://en.wikipedia.org/wiki/Robin_Hood#Historicity,
-11,10,Red,Rob the wretched,Use the lowest rank plot in the dungeon,Take its rank in gold,0,0,"https://en.wikisource.org/wiki/Dictionary_of_National_Biography,_1885-1900/Bell%C3%AAme,_Robert_of",
-12,11,Green,Impersonate a foreign Countess,Take the highest time plot in the dungeon's time in gold,Draw 1,2,10,https://en.wikipedia.org/wiki/The_Count_of_Monte_Cristo,https://en.wikipedia.org/wiki/Pierre_Picaud
-13,12,Yellow,Appoint a Bailiff,"If there is a yellow plot on top of your discard, use it",Take 1 gold for each yellow plot in the dungeon,1,10,https://en.wikipedia.org/wiki/Bailiff#Delegation,
-14,13,Red,Challenge to a duel,Use the lowest rank green plot twice,"If it has a lower rank, take its rank in gold",0,0,https://fr.wikipedia.org/wiki/Vicomte_de_Valmont,https://www.youtube.com/watch?v=kBTWoDYy3nI
-15,14,Green,Appoint a Chancellor,"If there is a green plot on top of your discard, draw 1",Revive 1,1,20,https://storicamente.org/dempsey-matilda-of-tuscany,https://en.wikipedia.org/wiki/Matilda_of_Tuscany
-16,15,Yellow,Smuggle contraband,Put the top plot in your discard face down on top of your deck,"If there is no red plot, take 4 gold",0,0,https://www.washingtonpost.com/opinions/tales-of-miscreant-smugglers-in-america/2015/08/20/0ad4e174-4049-11e5-8d45-d815146f81fa_story.html,
-17,16,Red,Jailbreak,Use the highest rank green plot in the dungeon,Use the highest rank yellow plot in the dungeon,1,20,https://en.wikipedia.org/wiki/Giacomo_Casanova#Imprisonment_and_escape,
-18,17,Green,Secretly author plays,Use the lowest rank green plot other than this,"If there is no other green plot, revive 2",1,20,https://en.wikipedia.org/wiki/Shakespeare_authorship_question,
-19,18,Yellow,Dig a silver mine,"If the top plot in your discard is green or red, pay it",Take 3 gold for each plot rank 3 or lower,3,30,https://en.wikipedia.org/wiki/Silver#History,
-20,19,Red,Kidnap the Judge,Use the lowest rank green plot in the dungeon,"If there is a red plot on top of your discard, take 1 gold",1,30,https://en.wikipedia.org/wiki/Coterel_gang#Kidnapping_of_Richard_Willoughby,
-21,20,Green,Reclaim your rights,"If there is a green plot on top of your discard, use it",Revive 2,0,20,https://en.wikipedia.org/wiki/Caroline_of_Brunswick,
-22,21,Yellow,Hold a market fair,"If the leftmost and second leftmost plot in the timeline are different colors, draw 2","If the leftmost and rightmost plot in the timeline are different colors, take 2 gold",1,20,https://en.wikipedia.org/wiki/Champagne_fairs,
-23,22,Red,Buccaneer a treasure ship,Use the lowest rank yellow plot,"If there is no yellow plot, use the lowest rank plot in the dungeon",0,10,https://en.wikipedia.org/wiki/Bartholomew_Roberts,
-24,23,Green,Found a secret order,Flip your deck and put it on your discard,"If you have 3 or less plots in hand, revive 1 for each plot in the dungeon",2,30,https://en.wikipedia.org/wiki/Illuminati#Origins,
-25,24,Yellow,Steal the diamond,"If your deck or discard is empty, take 7 gold","Otherwise, pay your entire hand",1,0,https://en.wikipedia.org/wiki/Affair_of_the_Diamond_Necklace,
-26,25,Red,Appoint a Sheriff,"If you have 5 or less gold, use the highest rank plot in the dungeon",Take 1 gold for each lower rank plot in the dungeon,1,20,https://en.wikipedia.org/wiki/Philip_Marc,
-27,26,Green,Bribe the Judge,Pay 1 gold,Revive 1 for each green plot in the dungeon,1,40,"https://en.wikipedia.org/wiki/William_de_Thorpe#:~:text=Sir%20William%20de%20Thorpe%20(died,allegedly%20even%20urinated%20on%20him",
-28,27,Yellow,Embezzle funds,"If there is a yellow plot on top of your discard, take 5 gold",Revive 1 for each yellow plot in the dungeon,1,50,https://en.wikipedia.org/wiki/Nicolas_Fouquet,
-29,28,Red,Torture the spymaster,Use the highest rank plot in the dungeon,Revive as many as it has time,2,20,https://en.wikipedia.org/wiki/Isabella_of_France,https://en.wikipedia.org/wiki/Hugh_Despenser_the_Younger
-30,29,Green,Excommunicate the Cardinal,"If the top plot of your discard is red or yellow, pay it","If 1 of the 2 leftmost plots in the timeline are green, but not both, revive 4",0,50,https://en.wikipedia.org/wiki/Day_of_the_Dupes,
-31,30,Yellow,Charter an adventuring company,"If there is no red plot, draw 3","If there is a green plot, take 3 gold",3,30,https://en.wikipedia.org/wiki/Company_of_Merchant_Adventurers_of_London,https://en.wikipedia.org/wiki/Company_of_Merchant_Adventurers_to_New_Lands
-32,31,Red,Dub a Dame in shining armor,Use the top plot of your discard,Revive 1,1,50,https://en.wikipedia.org/wiki/Order_of_the_Hatchet,
-33,32,Green,Fashion a crown,Pay 5 gold,Draw 5,3,50,https://www.rct.uk/collection/themes/trails/the-crown-jewels/in-detail-st-edwards-crown,
-34,33,Yellow,Control the guilds,"If there is a yellow plot on top of your discard, use it",Take 1 gold for each plot rank 5 or above,3,30,https://en.wikipedia.org/wiki/History_of_Freemasonry#Origin_of_the_term_%22Freemason%22,
-35,34,Red,Start a riot,"If the top plot of your discard is green or yellow, pay it",Use the lowest rank green plot,0,60,https://en.wikipedia.org/wiki/Harelle,
-36,35,Green,Become the Queen of Thieves ,Revive 3,Take 1 gold for each plot in the dungeon,2,40,https://es.wikipedia.org/wiki/Rinconete_y_Cortadillo,
-37,36,Yellow,Collect rents,Take 1 gold for each plot rank 5 or lower,Draw 3,3,30,https://www.econlib.org/library/Smith/smWN.html?chapter_num=8#book-reader,https://en.wikipedia.org/wiki/Thomas_Spence
-38,37,Red,Organize a mutiny,Use the highest rank plot other than this,"If it is red, draw 3",2,70,"https://en.wikipedia.org/wiki/George_Douglas,_1st_Earl_of_Dumbarton",
-39,38,Green,Marry the Duke,"If you have 5 or less gold, use the leftmost plot in the timeline twice","Otherwise, draw 3",3,80,"https://en.wikipedia.org/wiki/Sarah_Lennox,_Duchess_of_Richmond",https://en.wikipedia.org/wiki/Lennox_sisters
-40,39,Yellow,Confiscate estates,Take 2 gold for each plot in the dungeon,Pay 1 from your deck,0,50,https://en.wikipedia.org/wiki/Amercement#Early_Norman_rule,
-41,40,Red,Plunder the treasury,Use the highest rank yellow plot,Take 2 gold for each yellow plot,2,50,"https://en.wikipedia.org/wiki/Francisco_G%C3%B3mez_de_Sandoval,_1st_Duke_of_Lerma",https://en.wikipedia.org/wiki/The_Great_Favourite
-42,41,Green,Move the capital,Flip your discard and put it on your deck,Draw 5,3,50,https://en.wikipedia.org/wiki/Saint_Petersburg,
-43,42,Yellow,Issue bonds,Take the highest rank plot's rank in gold,"If there is a red plot, pay 40 gold",2,40,https://en.wikipedia.org/wiki/Gregor_MacGregor,
-44,43,Red,Declare martial law,Use the highest rank green plot,Use the leftmost green plot in the timeline,0,90,https://en.wikipedia.org/wiki/The_Protectorate,https://en.wikipedia.org/wiki/Oliver_Cromwell
-45,44,Green,Choose the next Pope,Pay 30 gold,Revive 10,3,50,https://en.wikipedia.org/wiki/Pope_Joan,https://en.wikipedia.org/wiki/Marozia
-46,45,Yellow,Blackmail her Majesty,Take the highest rank plot in the dungeon's rank in gold,Take the top plot in your discard's rank in gold,2,50,https://en.wikipedia.org/wiki/Libelle_(literary_genre),https://en.wikipedia.org/wiki/Let_them_eat_cake
-47,46,Red,Storm the Palace ,Use the highest rank green plot,"If there is 1 and only 1 green plot, draw 10",0,40,https://en.wikipedia.org/wiki/Women%27s_March_on_Versailles,
-48,47,Green,Enclose peasant land,Pay 1 gold,Draw your entire deck,1,10,https://en.wikipedia.org/wiki/Statute_of_Merton,https://camdencivilrightsproject.com/2015/11/14/discourse-on-the-origin-of-inequality-among-mankind/
-49,48,Yellow,Invest a Bishop,Take 30 gold for each plot rank 30 or above,Revive until you have 10 or more plots in hand,0,50,https://en.wikipedia.org/wiki/Investiture_Controversy#Henry_IV_and_Pope_Gregory_VII,https://en.wikipedia.org/wiki/Padroado
-50,49,Red,Declare independence,Take 10 times as much gold as you have,Use the highest rank plot other than this,0,100,https://en.wikipedia.org/wiki/Gustav_I_of_Sweden,
-51,50,Yellow,Privilege,Take 1 gold,,3,0,https://en.wikipedia.org/wiki/John_Ball_(priest)#Biography,https://en.wikipedia.org/wiki/Peasants%27_Revolt
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,https://en.wikipedia.org/wiki/Pierre_Picaud
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,
-,,,,,,,,,https://www.youtube.com/watch?v=02Vo_Q0nt-k
+0,1,Yellow,Privilege,Draw 1,Take 1 gold,3,10,https://en.wikipedia.org/wiki/John_Ball_(priest)#Biography,https://en.wikipedia.org/wiki/Peasants%27_Revolt
+1,2,Red,Conscript a hostage,Use the lowest rank dungeon plot,Take it's time in gold,2,10,https://en.wikipedia.org/wiki/Impressment#Basis,
+2,3,Green,Revolutionize court fashion,"If you have 5 or less hand plots, draw 1","If the left timeline plot is green, use it",0,10,https://www.nationalgeographic.com/history/magazine/2016/09-10/daily-life-france-fashion-marie-antoinette/,https://www.apollo-magazine.com/marie-antoinette-versailles-theatre-restored/
+3,4,Yellow,Found a charity,"If you have 5 or less gold, take 5 gold",Take 1 gold for each lower rank played plot,3,10,https://en.wikipedia.org/wiki/K%C3%B6sem_Sultan#Charities,https://en.wikipedia.org/wiki/Sultanate_of_Women
+4,5,Red,Hire a mercenary,Pay 1 gold,Use the lowest rank played plot other than this,0,10,https://en.wikipedia.org/wiki/English_political_intrigue_during_the_Dutch_Revolt#Queen_Elizabeth_I,https://en.wikipedia.org/wiki/John_Casimir_of_the_Palatinate-Simmern
+5,6,Green,Disguise as a peasant,"If there is no lower rank played plot, use your top discard plot","Otherwise, revive 1",1,10,https://en.wikipedia.org/wiki/Escape_of_Charles_II,https://en.wikipedia.org/wiki/Royal_Oak
+6,7,Yellow,Give your daughter in marriage,"If the left 2 timeline plots are the same color, use them in order","Otherwise, take their total time in gold",2,0,https://en.wikipedia.org/wiki/St._Bartholomew%27s_Day_massacre,https://en.wikipedia.org/wiki/Margaret_of_Valois
+7,8,Red,Smite the Chamberlain,"If the left timeline plot is yellow, use it","Otherwise, use the highest rank plot in the dungeon",2,0,https://www.businessinsider.com/medieval-french-finance-ministers-executed-2013-4?international=true&r=US&IR=T,https://en.wikipedia.org/wiki/Enguerrand_de_Marigny
+8,9,Green,Advocate reform,"If you have 5 or less gold, draw 1","If you have 5 or less plots in hand, take 1 gold",0,0,https://en.wikipedia.org/wiki/Christine_de_Pizan,https://www.brooklynmuseum.org/eascfa/dinner_party/place_settings/christine_de_pisan
+9,10,None,Receive prophesy,"Look at the top plot in your deck, then put it back",Put 1 plot from your hand face down on your deck,2,20,https://en.wikipedia.org/wiki/Joan_of_Arc,
+10,11,Green,Give fealty,Pay the left timeline plot's time in gold,Draw that many,0,20,https://en.wikipedia.org/wiki/Danegeld,https://en.wikipedia.org/wiki/Cnut
+11,12,Yellow,Smuggle contraband,Put your top discard plot face down on your deck,Take 1 gold for each plot in the timeline,0,20,https://www.washingtonpost.com/opinions/tales-of-miscreant-smugglers-in-america/2015/08/20/0ad4e174-4049-11e5-8d45-d815146f81fa_story.html,
+12,13,Red,Rob the wretched,Use the lowest rank dungeon plot,Take its rank in gold,0,20,"https://en.wikisource.org/wiki/Dictionary_of_National_Biography,_1885-1900/Bell%C3%AAme,_Robert_of",
+13,14,Green,Impersonate a foreign Countess,Take the highest time dungeon plot's time in gold,"If the left timeline plot is a different color, draw 2",2,20,https://en.wikipedia.org/wiki/The_Count_of_Monte_Cristo,https://en.wikipedia.org/wiki/Pierre_Picaud
+14,15,Yellow,Steal from the rich and give to the poor,Take 1 gold for every yellow timeline plot,"If there is a lower rank played plot, pay 1 gold",2,20,https://en.wikipedia.org/wiki/Robin_Hood#Historicity,
+15,16,Red,Kidnap the Judge,Use the lowest rank green dungeon plot,"If your top discard plot is red, take 1 gold",1,30,https://en.wikipedia.org/wiki/Coterel_gang#Kidnapping_of_Richard_Willoughby,
+16,17,Green,Appoint a Chancellor,"If your top discard plot is green, draw 1","If the left timeline plot is green, revive 1",1,30,https://storicamente.org/dempsey-matilda-of-tuscany,https://en.wikipedia.org/wiki/Matilda_of_Tuscany
+17,18,Yellow,Appoint a Bailiff,"If your top discard plot is yellow, use it",Take 1 gold for each unique yellow dungeon plot,1,30,https://en.wikipedia.org/wiki/Bailiff#Delegation,
+18,19,Red,Jailbreak,Use the highest rank green dungeon plot,Use the highest rank yellow dungeon plot,1,30,https://en.wikipedia.org/wiki/Giacomo_Casanova#Imprisonment_and_escape,
+19,20,Green,Secretly author plays,Draw 1 for each green plot in the timeline,Take the highest played time in gold,1,30,https://en.wikipedia.org/wiki/Shakespeare_authorship_question,
+20,21,Yellow,Learn ancient alchemy,"If your top discard plot is green or red, pay it",Take 1 gold for each played plot rank 10 or lower,3,30,http://scihi.org/mary-the-jewess-origins-chemistry/,https://web.nli.org.il/sites/nli/english/library/reading_corner/pages/maria_the_jewess.aspx
+21,22,Red,Challenge to a duel,Use the lowest rank red timeline plot,"If there is a higher rank red timeline plot, take the lower rank in gold",0,30,https://fr.wikipedia.org/wiki/Vicomte_de_Valmont,https://www.youtube.com/watch?v=kBTWoDYy3nI
+22,23,Green,Reclaim your rights,"If your top discard plot is green, use it",Revive 1 for each green timeline plot,0,30,https://en.wikipedia.org/wiki/Caroline_of_Brunswick,
+23,24,Yellow,Hold a market fair,"If the left and second left timeline plots are different colors, draw 2","If the left and right timeline plots are different colors, take 2 gold",1,30,https://en.wikipedia.org/wiki/Champagne_fairs,
+24,25,Red,Buccaneer a treasure ship,Use the lowest rank yellow played plot,"If there is no yellow played plot, use the lowest rank yellow dungeon plot",0,30,https://en.wikipedia.org/wiki/Thomas_Stukley,
+25,26,Green,Mask the Crown Princess,"If you have 5 or more discard plots, imprison your top discard plot",Revive your entire discard,2,30,https://en.wikipedia.org/wiki/Man_in_the_Iron_Mask,
+26,27,Yellow,Steal the diamond,"If your deck or discard is empty, take 7 gold","Otherwise, pay your entire hand",1,30,https://en.wikipedia.org/wiki/Affair_of_the_Diamond_Necklace,
+27,28,Red,Appoint a Sheriff,"If you have 10 or less gold, use the highest rank dungeon plot",Take 1 gold for each unique lower rank dungeon plot,1,30,https://en.wikipedia.org/wiki/Philip_Marc,
+28,29,Green,Bribe the Judge,"If the left timeline plot is yellow, pay 1 gold",Revive 1 for each unique green dungeon plot,1,40,https://en.wikipedia.org/wiki/William_de_Thorpe,
+29,30,Yellow,Embezzle funds,"If your top discard plot is yellow, take 5 gold",Revive 1 for each unique yellow dungeon plot,1,40,https://en.wikipedia.org/wiki/Nicolas_Fouquet,
+30,31,Red,Torture the spymaster,Use the highest rank dungeon plot,Revive as many as it has time,2,40,https://en.wikipedia.org/wiki/Isabella_of_France,https://en.wikipedia.org/wiki/Hugh_Despenser_the_Younger
+31,32,Green,Excommunicate the Cardinal,"If your top discard plot is red or yellow, imprison it","If 1 of the 2 left timeline plots are green, but not both, revive 4",0,40,https://en.wikipedia.org/wiki/Day_of_the_Dupes,
+32,33,Yellow,Declare bankruptcy,Take 1 gold for each yellow plot in your deck,Pay your entire deck,0,40,https://en.wikipedia.org/wiki/Stop_of_the_Exchequer,
+33,34,Red,Dub a Dame in shining armor,Use your top discard plot,Revive 1 for each red plot in the timeline,1,50,https://en.wikipedia.org/wiki/Order_of_the_Hatchet,
+34,35,Green,Promise a title,"If you have 5 or more plots in your deck, pay your deck plot",Draw your entire deck,3,50,"https://en.wikipedia.org/wiki/Henry_Stafford,_2nd_Duke_of_Buckingham",https://en.wikipedia.org/wiki/Richard_III_(play)
+35,36,Yellow,Control the guilds,"If your top discard plot is yellow, use it",Take 5 gold for each same color plot at the left of the timeline,3,50,https://en.wikipedia.org/wiki/History_of_Freemasonry#Origin_of_the_term_%22Freemason%22,
+36,37,Red,Start a riot,"If your top discard plot is green or yellow, pay it",Use the lowest rank plot in the timeline next to a green plot,0,50,https://en.wikipedia.org/wiki/Harelle,
+37,38,Green,Become the Queen of Thieves ,Use the highest ranked green plot in the timeline,Revive 1 for each unique plot in the dungeon,2,50,https://es.wikipedia.org/wiki/Rinconete_y_Cortadillo,
+38,39,Yellow,Collect rents,Take 1 gold for each played plot rank 10 or lower,Draw 1 for each unique plot in the dungeon,3,50,https://www.econlib.org/library/Smith/smWN.html?chapter_num=8#book-reader,https://en.wikipedia.org/wiki/Thomas_Spence
+39,40,Red,Organize a mutiny,Use the highest rank played plot other than this,"If it is red, draw 3",2,50,"https://en.wikipedia.org/wiki/George_Douglas,_1st_Earl_of_Dumbarton",https://en.wikipedia.org/wiki/Lennox_sisters
+40,41,Green,Court the Duchess,"If you have 5 or more plots in your hand, pay your top deck plot",Use the left timeline plot twice,3,50,"https://en.wikipedia.org/wiki/Sarah_Lennox,_Duchess_of_Richmond",
+41,42,Yellow,Confiscate estates,"If you have 5 or more plots in your hand, imprison your top discard plot",Take 2 gold for each unique plot in the dungeon,2,50,https://en.wikipedia.org/wiki/Amercement#Early_Norman_rule,
+42,43,Red,Plunder the treasury,Use the highest rank yellow plot,Take 2 gold for each yellow plot in the timeline,2,50,"https://en.wikipedia.org/wiki/Francisco_G%C3%B3mez_de_Sandoval,_1st_Duke_of_Lerma",https://en.wikipedia.org/wiki/The_Great_Favourite
+43,44,Green,Move the capital,"If your top discard plot is red or yellow, pay it",Draw 5,3,50,https://en.wikipedia.org/wiki/Saint_Petersburg,
+44,45,Yellow,Issue bonds,Take the left timeline plot's rank in gold,"If there is a red played plot, pay 10 gold",2,50,https://en.wikipedia.org/wiki/Gregor_MacGregor,
+45,46,Red,Declare martial law,"If the highest rank played plot is green, use it","Otherwise, use the left timeline plot",0,50,https://en.wikipedia.org/wiki/The_Protectorate,https://en.wikipedia.org/wiki/Oliver_Cromwell
+46,47,Green,Choose the next Pope,Pay 30 gold,Revive 10,3,50,https://en.wikipedia.org/wiki/Pope_Joan,https://en.wikipedia.org/wiki/Marozia
+47,48,Yellow,Blackmail her Majesty,Take the highest rank dungeon plot's rank in gold,Take your top discard plot's rank in gold,2,60,https://en.wikipedia.org/wiki/Libelle_(literary_genre),https://en.wikipedia.org/wiki/Let_them_eat_cake
+48,49,Red,Streetfight,Use your top discard plot,Take 10 times it's time in gold,1,70,https://en.wikipedia.org/wiki/War_of_the_Bands,
+49,50,Green,Enclose peasant land,"If the left timeline plot is green, pay 1 gold",Draw your entire deck,1,80,https://en.wikipedia.org/wiki/Statute_of_Merton,https://camdencivilrightsproject.com/2015/11/14/discourse-on-the-origin-of-inequality-among-mankind/
+50,51,Yellow,Invest a Bishop,Take 30 gold for each played plot rank 30 or above,Revive until you have 10 or more plots in hand,0,90,https://en.wikipedia.org/wiki/Investiture_Controversy#Henry_IV_and_Pope_Gregory_VII,https://en.wikipedia.org/wiki/Padroado
+51,52,Red,Declare independence,Take 10 times as much gold as you have,Use the highest rank played plot other than this,0,99,https://en.wikipedia.org/wiki/Gustav_I_of_Sweden,
