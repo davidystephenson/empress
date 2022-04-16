@@ -50,7 +50,7 @@ async function updateClients () {
       .filter(event => event.socket !== socket)
       .map(event => event.update)
     const msg = { seed, layers, updates }
-    socket.emit('updateClient', msg)
+    if (updates.length > 0) socket.emit('updateClient', msg)
   })
   events = {}
 }
