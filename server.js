@@ -48,10 +48,15 @@ io.on('connection', async socket => {
 })
 
 async function updateClients () {
-  Object.values(events).forEach(event => {
-    const msg = { seed, layers }
-    msg.updates = [event.update]
-    event.socket.broadcast.emit('updateClient', msg)
+  const values = Object.values(events)
+  if (values.length === 0) return
+  const sockets = await io.fetchSockets()
+  sockets.forEach(socket => {
+    const updates = values
+      .filter(event => event.socket !== socket)
+      .map(event => event.update)
+    const msg = { seed, layers, updates }
+    socket.emit('updateClient', msg)
   })
   events = {}
 }
