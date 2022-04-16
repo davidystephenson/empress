@@ -1,26 +1,20 @@
 const path = require('path')
 const express = require('express')
-const app = express()
-
-// SECURE
-/*
-const fs = require("fs")
-const https = require('https')
-options = {
-  key: fs.readFileSync('sis-key.pem'),
-  cert: fs.readFileSync('sis-cert.pem')
-}
-const server = https.createServer(options,app)
-const io = require('socket.io')(server,options)
-*/
-
-// INSECURE
+const config = require('./config.json')
+const fs = require('fs')
 const http = require('http')
+const https = require('https')
 const socketIo = require('socket.io')
-const server = http.Server(app)
-const io = socketIo(server)
-
 const csvtojson = require('csvtojson')
+const app = express()
+const options = {}
+if (config.secure) {
+  options.key = fs.readFileSync('sis-key.pem')
+  options.cert = fs.readFileSync('sis-cert.pem')
+}
+const server = config.secure ? https.createServer(options, app) : http.Server(app)
+const io = config.secure ? socketIo(server, options) : socketIo(server)
+
 app.use(express.static(path.join(__dirname, 'public')))
 const state = []
 let events = {}
