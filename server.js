@@ -22,7 +22,6 @@ const io = socketIo(server)
 
 const csvtojson = require('csvtojson')
 app.use(express.static(path.join(__dirname, 'public')))
-
 const state = []
 let events = {}
 let layers = []
