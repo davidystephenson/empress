@@ -40,13 +40,13 @@ const describePortfolio = (x, y, player) => {
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 7 }),
-    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 1, side: 'facedown' })
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 9 }), // Discard
+    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 1, side: 'facedown' }) // Deck
   ]
-  const hand = range(5).map(i => {
+  const hand = range(7).map(i => {
     const cardId = i + 2
-    const space = 200
-    return window.client.describe({ file: 'card/front', x: x + (i - 2) * space, y: y + sgn * 400, type: 'card', cardId: cardId })
+    const space = 160
+    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: cardId })
   })
   const gold = [
     ...describeRow('gold/1', x, y - sgn * 100, 'bit', 5, 300),
@@ -70,8 +70,8 @@ const describeBank = (x, y) => [
 
 const describeCourt = (x, y) => [
   window.client.describe({ file: 'board/court', x: x, y: 0, type: 'board' }),
-  window.client.describe({ file: 'card/front', x: x, y: y - 150, type: 'card', cardId: 9 }),
-  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 8 })
+  window.client.describe({ file: 'card/front', x: x, y: y - 150, type: 'card', cardId: 11 }), // Court
+  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 10 }) // Dungeon
 ]
 
 const annotate = function (description) {
@@ -81,8 +81,9 @@ const annotate = function (description) {
     description.time = plot.time
     description.details = `
       <b>${plot.title}</b><br><br>
-      ${plot.effect1}<br><br>
-      ${plot.effect2}<br><br>
+      ${plot.beginning}<br><br>
+      ${plot.middle}<br><br>
+      ${plot.end}<br><br>
       Time: ${plot.time}<br><br>
       Power: ${plot.power}<br><br>
       <a href="${plot.link1}" target="_blank">${plot.link1}</a><br><br>

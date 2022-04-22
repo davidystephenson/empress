@@ -155,7 +155,6 @@ window.client = (() => {
         const textbox = component.text(component.getBBox().width / 2, 760, 'Name Tag')
         textbox.attr({ 'font-size': 100, 'text-anchor': 'middle' })
       }
-
       function getTemplateString (name) {
         if (file === 'board/ready') {
           return 'board/ready-back'
@@ -185,29 +184,36 @@ window.client = (() => {
         const plot = window.plots[description.cardId]
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: colors[plot.color] })
-        const textElement = group.text(50, 1030, plot.rank)
-        textElement.attr({ fontSize: 80 })
-        textElement.attr({ 'text-anchor': 'middle' })
-        textElement.attr({ 'font-family': 'sans-serif' })
-        textElement.attr({ 'font-weight': 'bold' })
-        component.add(textElement)
+        const rankTextElement = group.text(50, 980, plot.rank)
+        rankTextElement.attr({ fontSize: 80 })
+        rankTextElement.attr({ textAnchor: 'middle' })
+        rankTextElement.attr({ fontFamily: 'sans-serif' })
+        rankTextElement.attr({ fontWeight: 'bold' })
+        component.add(rankTextElement)
+        const powerTextElement = group.text(50, 1085, plot.power)
+        powerTextElement.attr({ fontSize: 60 })
+        powerTextElement.attr({ textAnchor: 'middle' })
+        powerTextElement.attr({ fontFamily: 'sans-serif' })
+        powerTextElement.attr({ fontWeight: 'bold' })
+        powerTextElement.attr({ fill: 'blue' })
+        component.add(powerTextElement)
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
           hourglass.node.style.display = 'block'
-          hourglass.transform('t0,10')
+          hourglass.transform('t0,-50')
         }
         if (description.time >= 2) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
           hourglass.node.style.display = 'block'
-          hourglass.transform('t35,10')
+          hourglass.transform('t35,-50')
         }
         if (description.time >= 3) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
           hourglass.node.style.display = 'block'
-          hourglass.transform('t70,10')
+          hourglass.transform('t70,-50')
         }
       }
       if (type === 'screen') {
@@ -247,7 +253,6 @@ window.client = (() => {
         back.attr({ opacity: 0 })
         back.transform('')
         back.data('details', 'Back')
-
         if (side === 'facedown') window.setSide(component, 'facedown')
       }
     })
