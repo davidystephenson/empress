@@ -125,7 +125,7 @@ window.setup = msg => {
   }).flat()
   const bank = describeBank(2000, 0)
   const court = describeCourt(-2200, 0)
-  const deckIds = shuffle([...Array(50).keys()].filter(x => x > 9))
+  const deckIds = shuffle([...Array(50).keys()].filter(x => x > 11))
   const timelineIds = deckIds.slice(0, timelineLength)
   timelineIds.sort()
   const timeline = range(timelineLength).map(i => {
