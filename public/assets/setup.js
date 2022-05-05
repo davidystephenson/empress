@@ -1,4 +1,4 @@
-const numPlayers = 4
+const numPlayers = 5
 
 const timelineLength = numPlayers + 5
 const tableWidth = numPlayers < 7 ? 3500 : 5000
