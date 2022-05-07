@@ -51,7 +51,7 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:snap-grids="false"
-     inkscape:snap-global="true"
+     inkscape:snap-global="false"
      inkscape:snap-page="true"
      borderlayer="true"
      showborder="true"
@@ -82,7 +82,8 @@
          transform="matrix(1.7904799,0,0,1.1122383,987.19986,-333.31297)"
          style="fill:#b3b3b3" />
       <g
-         id="g851">
+         id="g851"
+         transform="translate(-3.3412529,-3.3412264)">
         <g
            id="g847"
            transform="matrix(1.1,0,0,1.1,-205.68354,-114.79671)"
@@ -112,6 +113,28 @@
              ry="0" />
         </g>
       </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:66.6667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5"
+         x="-310.91821"
+         y="-1237.7206"
+         id="text3823"><tspan
+           sodipodi:role="line"
+           id="tspan3821"
+           style="font-size:66.6667px;stroke-width:0.5"
+           x="-310.91821"
+           y="-1237.7206">Court</tspan></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:66.6667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5"
+         x="-313.68515"
+         y="-1094.167"
+         id="text3823-0"><tspan
+           sodipodi:role="line"
+           id="tspan3821-7"
+           style="font-size:66.6667px;fill:#ffffff;fill-opacity:1;stroke-width:0.5"
+           x="-313.68515"
+           y="-1094.167">Dungeon</tspan></text>
     </g>
   </g>
 </svg>
