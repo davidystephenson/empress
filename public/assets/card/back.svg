@@ -74,18 +74,18 @@
          height="287.76584"
          width="187.76584"
          id="rect4175"
-         style="opacity:1;fill:#bfbfbf;fill-opacity:1;stroke:#000000;stroke-width:12.23416424;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#e5e5e5;fill-opacity:1;stroke:#000000;stroke-width:12.23416424;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-weight:normal;font-size:53.5714px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.33929"
-         x="888.50989"
+         x="879.8385"
          y="-30.525436"
          id="text2762"
          transform="rotate(90)"><tspan
            sodipodi:role="line"
            id="tspan2760"
-           style="font-size:53.5714px;stroke-width:1.33929"
-           x="888.50989"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:53.5714px;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';stroke-width:1.33929"
+           x="879.8385"
            y="-30.525436">SCHEME</tspan></text>
     </g>
   </g>
