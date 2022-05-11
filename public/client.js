@@ -331,7 +331,7 @@ window.client = (() => {
       component.stop()
       component.animate({ transform: update.local }, moveSlow)
       // screens[0].before(component)
-      bringToTop(component)
+      window.bringToTop(component)
       if (handlers.update) handlers.update(update)
       if (update.side === 'facedown') window.setSide(component, 'facedown')
       if (update.side === 'hidden') window.setSide(component, 'back')
