@@ -105,11 +105,13 @@ window.client = (() => {
   }
 
   window.bringToTop = function (component) {
-    screens[0].before(component)
-    const id = component.data('id')
-    const oldLayer = window.layers[id]
-    window.layers[id] = Math.max(...window.layers) + 1
-    window.layers = window.layers.map(layer => layer > oldLayer ? layer - 1 : layer)
+    if (component.data('type') !== 'screen') {
+      screens[0].before(component)
+      const id = component.data('id')
+      const oldLayer = window.layers[id]
+      window.layers[id] = Math.max(...window.layers) + 1
+      window.layers = window.layers.map(layer => layer > oldLayer ? layer - 1 : layer)
+    }
   }
 
   const addFragment = (fragment, x, y, rotation) => {
@@ -328,7 +330,8 @@ window.client = (() => {
       const component = components[update.id]
       component.stop()
       component.animate({ transform: update.local }, moveSlow)
-      screens[0].before(component)
+      // screens[0].before(component)
+      bringToTop(component)
       if (handlers.update) handlers.update(update)
       if (update.side === 'facedown') window.setSide(component, 'facedown')
       if (update.side === 'hidden') window.setSide(component, 'back')
