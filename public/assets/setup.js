@@ -81,7 +81,7 @@ const annotate = function (description) {
     description.time = plot.time
     description.details = `
       <b>${plot.title}</b><br><br>
-      Rank: ${plot.rank}<br><br>
+      Power: ${plot.rank}<br><br>
       ${plot.beginning}<br><br>
       ${plot.end}<br><br>
       Time: ${plot.time}<br><br>
