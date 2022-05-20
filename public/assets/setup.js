@@ -81,10 +81,11 @@ const annotate = function (description) {
     description.time = plot.time
     description.details = `
       <b>${plot.title}</b><br><br>
+      Time: ${plot.time}<br><br>
       ${plot.beginning}<br><br>
       ${plot.end}<br><br>
       Power: ${plot.power}<br><br>
-      Time: ${plot.time}<br><br>
+      Color: ${plot.color}<br><br>
       <a href="${plot.link1}" target="_blank">${plot.link1}</a><br><br>
       <a href="${plot.link2}" target="_blank">${plot.link2}</a><br><br>
       `
