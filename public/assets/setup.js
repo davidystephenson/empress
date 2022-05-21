@@ -1,21 +1,10 @@
-const numPlayers = 3
-
-const timelineLength = numPlayers + 5
-const tableWidth = numPlayers < 7 ? 3500 : 5000
-const numBottomRowPlayers = Math.round(numPlayers / 2)
-const numTopRowPlayers = numPlayers - numBottomRowPlayers
 const range = window.range
 
-const getRowOrigins = (n, y) => window.range(n).map(i => {
+const getRowOrigins = (n, y, tableWidth) => window.range(n).map(i => {
   const alpha = (i + 1) / (n + 1)
   const x = -tableWidth * alpha + tableWidth * (1 - alpha)
   return [x, y]
 })
-
-const topRowOrigins = getRowOrigins(numTopRowPlayers, -900)
-const bottomRowOrigins = getRowOrigins(numBottomRowPlayers, 900)
-
-const origins = topRowOrigins.concat(bottomRowOrigins)
 
 const shuffle = array => array
   .map(item => ({ value: item, priority: Math.random() }))
@@ -117,6 +106,13 @@ const compareLayers = (a, b) => {
 }
 
 window.setup = msg => {
+  const numPlayers = msg.config.numPlayers
+  const tableWidth = numPlayers < 7 ? 3500 : 5000
+  const numBottomRowPlayers = Math.round(numPlayers / 2)
+  const numTopRowPlayers = numPlayers - numBottomRowPlayers
+  const topRowOrigins = getRowOrigins(numTopRowPlayers, -900, tableWidth)
+  const bottomRowOrigins = getRowOrigins(numBottomRowPlayers, 900, tableWidth)
+  const origins = topRowOrigins.concat(bottomRowOrigins)
   const portfolios = origins.map((origin, i) => {
     const x = origin[0]
     const y = origin[1]
@@ -125,6 +121,7 @@ window.setup = msg => {
   const bank = describeBank(2000, 0)
   const court = describeCourt(-2200, 0)
   const deckIds = shuffle([...Array(50).keys()].filter(x => x > 9))
+  const timelineLength = numPlayers + 5
   const timelineIds = deckIds.slice(0, timelineLength)
   timelineIds.sort()
   const timeline = range(timelineLength).map(i => {

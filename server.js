@@ -29,7 +29,7 @@ app.get('/', (request, response) =>
 io.on('connection', async socket => {
   const plots = await csvtojson().fromFile('plots.csv')
   console.log('socket.id =', socket.id)
-  socket.emit('setup', { seed, state, layers, plots })
+  socket.emit('setup', { seed, state, layers, plots, config })
   socket.on('updateServer', msg => {
     if (msg.seed === seed) {
       msg.updates.forEach(update => {
