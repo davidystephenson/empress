@@ -54,7 +54,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     const turnDown = event.button === 0 && ctrlDown && this.data('twoSided')
     const inStack = isInStack(this)
     this.data('inStack', inStack)
-    detailDiv.innerHTML = getDetails(this)
     if (this.data('type') === 'card' & !inStack) {
       window.bringToTop(this)
     }
@@ -107,6 +106,12 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     }
   }
 
+  const mouseover = function () {
+    if (this.data('type') === 'card' && this.data('side') === 'front') {
+      detailDiv.innerHTML = getDetails(this)
+    }
+  }
+
   const dragMove = function (dx, dy, event, x, y) {
     if (this.data('dragging')) {
       const inStack = isInStack(this)
@@ -131,6 +136,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   Element.prototype.smartdrag = function () {
     this.drag(dragMove, dragStart, dragEnd)
     this.mousedown(mouseClick)
+    this.mouseover(mouseover)
     return this
   }
 })
