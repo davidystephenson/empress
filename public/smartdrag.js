@@ -107,7 +107,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   const mouseover = function () {
-    if (this.data('type') === 'card' && this.data('side') === 'front') {
+    if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
       detailDiv.innerHTML = getDetails(this)
     }
   }
