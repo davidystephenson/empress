@@ -28,14 +28,16 @@ const describePortfolio = (x, y, player) => {
     window.client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: player }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
+  const discardId = [...Array(window.plots.length).keys()].filter(i => window.plots[i].position === 'discard')[0]
+  const deckId = [...Array(window.plots.length).keys()].filter(i => window.plots[i].position === 'deck')[0]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: 7 }), // Discard
-    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: 1, side: 'facedown' }) // Deck
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: discardId }),
+    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: deckId, side: 'facedown' })
   ]
-  const hand = range(5).map(i => {
-    const cardId = i + 2
+  const handIds = [...Array(window.plots.length).keys()].filter(i => window.plots[i].position === 'hand')
+  const hand = handIds.map((handId, i) => {
     const space = 160
-    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: cardId })
+    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: handId })
   })
   const gold = [
     ...describeRow('gold/1', x, y - sgn * 100, 'bit', 5, 300),
@@ -57,11 +59,15 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 0, clones: 15 })
 ]
 
-const describeCourt = (x, y) => [
-  window.client.describe({ file: 'board/court', x: x, y: 0, type: 'board' }),
-  window.client.describe({ file: 'card/front', x: x, y: y - 150, type: 'card', cardId: 9 }), // Court
-  window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: 8 }) // Dungeon
-]
+const describeCourt = (x, y) => {
+  const courtId = [...Array(window.plots.length).keys()].filter(i => window.plots[i].position === 'court')[0]
+  const dungeonId = [...Array(window.plots.length).keys()].filter(i => window.plots[i].position === 'dungeon')[0]
+  return [
+    window.client.describe({ file: 'board/court', x: x, y: 0, type: 'board' }),
+    window.client.describe({ file: 'card/front', x: x, y: y - 150, type: 'card', cardId: courtId }),
+    window.client.describe({ file: 'card/front', x: x, y: y + 150, type: 'card', cardId: dungeonId })
+  ]
+}
 
 const annotate = function (description) {
   description.details = ''
@@ -120,7 +126,7 @@ window.setup = msg => {
   }).flat()
   const bank = describeBank(2000, 0)
   const court = describeCourt(-2200, 0)
-  const deckIds = shuffle([...Array(50).keys()].filter(x => x > 9))
+  const deckIds = shuffle([...Array(window.plots.length).keys()].filter(i => window.plots[i].position === 'timeline'))
   const timelineLength = numPlayers + 5
   const timelineIds = deckIds.slice(0, timelineLength)
   timelineIds.sort()
