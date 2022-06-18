@@ -128,8 +128,10 @@ window.setup = msg => {
   const court = describeCourt(-2200, 0)
   const deckIds = shuffle([...Array(window.plots.length).keys()].filter(i => window.plots[i].position === 'timeline'))
   const timelineLength = numPlayers + 5
-  const timelineIds = deckIds.slice(0, timelineLength)
-  timelineIds.sort()
+  const timelineIds = deckIds.slice(0, timelineLength).map(x => Number(x))
+  console.log(timelineIds)
+  timelineIds.sort((a, b) => a - b)
+  console.log(timelineIds)
   const timeline = range(timelineLength).map(i => {
     const offset = timelineLength / 2 - 0.5
     return window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: timelineIds[i] })
