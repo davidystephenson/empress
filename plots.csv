@@ -51,9 +51,3 @@ timeline,Green,49,Invest a Bishop,Revive 1 for each scheme in play with 30 or mo
 timeline,Green,50,Collect debtors,Pay 1 gold for each dungeon scheme,"If the highest dungeon power is 30 or less, draw that many",3,https://simple.wikipedia.org/wiki/Serfdom#Becoming_a_serf,https://en.wikipedia.org/wiki/Serfdom#Initiation
 timeline,Yellow,51,Blackmail her Majesty,Take twice the highest dungeon power in gold,Take your top discard scheme's power in gold,3,https://en.wikipedia.org/wiki/Libelle_(literary_genre),https://en.wikipedia.org/wiki/Let_them_eat_cake
 timeline,Yellow,52,Declare independence,Take 10 times as much gold as you have,Draw 1 for each scheme in your hand,0,https://en.wikipedia.org/wiki/Nanny_of_the_Maroons,https://en.wikipedia.org/wiki/First_Maroon_War
-Total,,1378,,,,94,,
-Mean,,26.50,,,,1.81,,
-Median,,26.50,,,,2.00,,
-Deviation,,15.15,,,,1.21,,
-Minimum,,1,,,,0,,
-Maximum,,52,,,,3,,
