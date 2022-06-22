@@ -55,9 +55,9 @@ async function updateClients () {
   events = {}
 }
 
-server.listen(3000, () => {
-  const port = server.address().port
-  console.log(`listening on port: ${port}`)
+const PORT = process.env.PORT || 3000
+server.listen(PORT, () => {
+  console.log(`listening on port: ${PORT}`)
 })
 
 setInterval(updateClients, 100)
