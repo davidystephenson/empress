@@ -1,6 +1,16 @@
 const path = require('path')
 const express = require('express')
-const config = require('./config.json')
+
+let config
+try {
+  config = require('./config.json')
+} catch (error) {
+  config = {
+    secure: false,
+    numPlayers: 3
+  }
+}
+
 const fs = require('fs')
 const http = require('http')
 const https = require('https')
