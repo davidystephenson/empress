@@ -41,10 +41,8 @@ const describePortfolio = (x, y, player) => {
   })
   const gold = [
     ...describeRow('gold/1', x, y - sgn * 120, 'bit', 5, 450),
-    ...describeRow('gold/5', x, y - sgn * 10, 'bit', 5, 450),
-    ...describeRow('gold/50', x + 200, y + sgn * 100, 'bit', 2, 130),
-    ...describeRow('gold/50', x - 200, y + sgn * 100, 'bit', 2, 130),
-    ...describeRow('gold/25', x, y + sgn * 100, 'bit', 1, 0)
+    ...describeRow('gold/5', x, y - sgn * 10, 'bit', 4, 400),
+    ...describeRow('gold/25', x, y + sgn * 100, 'bit', 3, 300)
   ]
   const descriptions = [...boards, ...piles, ...hand, ...gold]
   return descriptions
