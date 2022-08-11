@@ -40,9 +40,10 @@ const describePortfolio = (x, y, player) => {
     return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: handId })
   })
   const gold = [
-    ...describeRow('gold/1', x, y - sgn * 120, 'bit', 5, 450),
-    ...describeRow('gold/5', x, y - sgn * 10, 'bit', 4, 400),
-    ...describeRow('gold/25', x, y + sgn * 100, 'bit', 3, 300)
+    ...describeRow('gold/1', x, y - sgn * 120, 'bit', 10, 500),
+    ...describeRow('gold/5', x - 170, y - sgn * 10, 'bit', 6, 200),
+    ...describeRow('gold/10', x + 170, y - sgn * 10, 'bit', 6, 200),
+    ...describeRow('gold/25', x, y + sgn * 100, 'bit', 5, 400)
   ]
   const descriptions = [...boards, ...piles, ...hand, ...gold]
   return descriptions
@@ -51,12 +52,12 @@ const describePortfolio = (x, y, player) => {
 const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/1', x: x - 240, y: y - 120, type: 'bit', clones: 150 }),
   window.client.describe({ file: 'gold/5', x: x - 80, y: y - 120, type: 'bit', clones: 35 }),
-  window.client.describe({ file: 'gold/25', x: x + 100, y: y - 120, type: 'bit', clones: 30 }),
-  window.client.describe({ file: 'gold/50', x: x + 300, y: y - 120, type: 'bit', clones: 15 }),
+  window.client.describe({ file: 'gold/10', x: x + 100, y: y - 120, type: 'bit', clones: 30 }),
+  window.client.describe({ file: 'gold/25', x: x + 300, y: y - 120, type: 'bit', clones: 15 }),
   window.client.describe({ file: 'gold/1', x: x - 240, y: y + 120, type: 'bit', clones: 150 }),
   window.client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
-  window.client.describe({ file: 'gold/25', x: x + 100, y: y + 120, type: 'bit', clones: 30 }),
-  window.client.describe({ file: 'gold/50', x: x + 300, y: y + 120, type: 'bit', clones: 15 }),
+  window.client.describe({ file: 'gold/10', x: x + 100, y: y + 120, type: 'bit', clones: 30 }),
+  window.client.describe({ file: 'gold/25', x: x + 300, y: y + 120, type: 'bit', clones: 15 }),
   window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 1, clones: 15 })
 ]
 
