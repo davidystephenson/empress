@@ -40,10 +40,10 @@ const describePortfolio = (x, y, player) => {
     return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: handId })
   })
   const gold = [
-    ...describeRow('gold/1', x, y - sgn * 120, 'bit', 10, 500),
-    ...describeRow('gold/5', x - 170, y - sgn * 10, 'bit', 5, 200),
-    ...describeRow('gold/10', x + 170, y - sgn * 10, 'bit', 4, 200),
-    ...describeRow('gold/25', x, y + sgn * 100, 'bit', 1, 0)
+    // ...describeRow('gold/1', x, y - sgn * 120, 'bit', 3, 200),
+    ...describeRow('gold/5', x - 170, y - sgn * 10, 'bit', 4, 200),
+    ...describeRow('gold/10', x + 170, y - sgn * 10, 'bit', 3, 200)
+    // ...describeRow('gold/25', x, y + sgn * 100, 'bit', 1, 0)
   ]
   const descriptions = [...boards, ...piles, ...hand, ...gold]
   return descriptions
@@ -78,10 +78,10 @@ const annotate = function (description) {
     description.time = plot.time
     description.details = `
       <b>${plot.title}</b><br><br>
+      Power: ${plot.power}<br><br>
       Time: ${plot.time}<br><br>
       ${plot.beginning}<br><br>
       ${plot.end}<br><br>
-      Power: ${plot.power}<br><br>
       Color: ${plot.color}<br><br>
       <a href="${plot.link1}" target="_blank">${plot.link1}</a><br><br>
       <a href="${plot.link2}" target="_blank">${plot.link2}</a><br><br>
