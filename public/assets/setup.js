@@ -110,8 +110,8 @@ const deal = {}
 
 const setupCards = (numPlayers) => {
   deal.timelineLength = numPlayers + 5
-  deal.deckIds = shuffle([...Array(window.plots.length).keys()])
-  deal.portfolioIds = range(7).map(i => deal.deckIds[i])
+  deal.deckIds = shuffle([...Array(window.plots.length).keys()].filter(i => i > 1))
+  deal.portfolioIds = range(6).map(i => deal.deckIds[i]).concat(0)
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = range(5).map(i => deal.portfolioIds[i])
   deal.discardId = deal.portfolioIds[5]
@@ -122,16 +122,13 @@ const setupCards = (numPlayers) => {
   deal.courtId = deal.globalIds[0]
   deal.dungeonId = deal.globalIds[1]
   deal.timelineIds = range(deal.timelineLength).map(i => deal.globalIds[2 + i])
-  /*
-  console.log('startingCardIds', deal.portfolioIds)
+
   console.log('handIds', deal.handIds)
   console.log('discardId', deal.discardId)
   console.log('deckId', deal.deckId)
-  console.log('globalCardIds', deal.globalIds)
   console.log('courtId', deal.courtId)
   console.log('dungeonId', deal.dungeonId)
   console.log('timelineIds', deal.timelineIds)
-  */
 }
 
 window.setup = msg => {
