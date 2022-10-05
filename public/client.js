@@ -186,7 +186,7 @@ window.client = (() => {
         const plot = window.plots[description.cardId]
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: colors[plot.color] })
-        const powerTextElement = group.text(50, 980, plot.power)
+        const powerTextElement = group.text(50, 1040, plot.power)
         powerTextElement.attr({ fontSize: 80 })
         powerTextElement.attr({ textAnchor: 'middle' })
         powerTextElement.attr({ fontFamily: 'sans-serif' })
@@ -196,19 +196,19 @@ window.client = (() => {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
           hourglass.node.style.display = 'block'
-          hourglass.transform('t0,-50')
+          hourglass.transform('t0,-120')
         }
         if (description.time >= 2) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
           hourglass.node.style.display = 'block'
-          hourglass.transform('t35,-50')
+          hourglass.transform('t35,-120')
         }
         if (description.time >= 3) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
           hourglass.node.style.display = 'block'
-          hourglass.transform('t70,-50')
+          hourglass.transform('t70,-120')
         }
       }
       if (type === 'screen') {
