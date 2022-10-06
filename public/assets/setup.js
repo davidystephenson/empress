@@ -17,15 +17,15 @@ const describeRow = (file, x, y, type, n, length, side = 'front') => range(n).ma
   return window.client.describe({ file, x: myX, y, type, side })
 })
 
-const describePortfolio = (x, y, portfolioIds, player) => {
+const describePortfolio = (x, y, playerIndex) => {
   const sgn = Math.sign(y)
   const angle = sgn === -1 ? 180 : 0
   const boards = [
-    window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: player }),
+    window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: playerIndex }),
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
-    window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: player }),
-    window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: player }),
-    window.client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: player }),
+    window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: playerIndex }),
+    window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: playerIndex }),
+    window.client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: playerIndex }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
@@ -108,24 +108,28 @@ const compareLayers = (a, b) => {
 
 const deal = {}
 
-const setupCards = (numPlayers) => {
+const setupCards = (msg, numPlayers) => {
   deal.timelineLength = numPlayers + 5
-  deal.deckIds = shuffle([...Array(window.plots.length).keys()].filter(i => i > 1))
-  deal.portfolioIds = range(6).map(i => deal.deckIds[i]).concat(0)
+  deal.empressLength = deal.timelineLength + 8
+  deal.empressIds = shuffle([...Array(window.plots.length).keys()].filter(i => i > 1))
+  deal.empressIds = deal.empressIds.slice(0, deal.empressLength)
+  deal.empressIds.sort((a, b) => a - b)
+  deal.courtId = deal.empressIds.shift()
+  deal.dungeonId = deal.empressIds.shift()
+  console.log('msg.plots', msg.plots)
+  const green = deal.empressIds.filter(i => msg.plots[i].color === 'Green')
+  const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red')
+  const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow')
+  deal.portfolioIds = [0, green[0], green[1], red[0], red[1], yellow[0], yellow[1]]
   deal.portfolioIds.sort((a, b) => a - b)
-  deal.handIds = range(5).map(i => deal.portfolioIds[i])
-  deal.discardId = deal.portfolioIds[5]
-  deal.deckId = deal.portfolioIds[6]
-  deal.timelineLength = numPlayers + 5
-  deal.globalIds = range(deal.timelineLength + 2).map(i => deal.deckIds[7 + i])
-  deal.globalIds.sort((a, b) => a - b)
-  deal.courtId = deal.globalIds[0]
-  deal.dungeonId = deal.globalIds[1]
-  deal.timelineIds = range(deal.timelineLength).map(i => deal.globalIds[2 + i])
-
+  deal.handIds = deal.portfolioIds.slice(0, 5)
+  deal.deckId = deal.portfolioIds[5]
+  deal.discardId = deal.portfolioIds[6]
+  deal.empressIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
+  deal.timelineIds = deal.empressIds
   console.log('handIds', deal.handIds)
-  console.log('discardId', deal.discardId)
   console.log('deckId', deal.deckId)
+  console.log('discardId', deal.discardId)
   console.log('courtId', deal.courtId)
   console.log('dungeonId', deal.dungeonId)
   console.log('timelineIds', deal.timelineIds)
@@ -133,7 +137,7 @@ const setupCards = (numPlayers) => {
 
 window.setup = msg => {
   const numPlayers = msg.config.numPlayers
-  setupCards(numPlayers)
+  setupCards(msg, numPlayers)
   const tableWidth = numPlayers < 7 ? 3500 : 5000
   const numBottomRowPlayers = Math.round(numPlayers / 2)
   const numTopRowPlayers = numPlayers - numBottomRowPlayers

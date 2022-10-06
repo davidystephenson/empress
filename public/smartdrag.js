@@ -29,9 +29,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     .filter(bit => ['deck', 'discard'].includes(bit.data('type')))
     .some(stack => intersect(a, stack))
 
-  const getMyDiscard = deck => siblings(deck)
-    .filter(bit => bit.data('type') === 'discard' && bit.data('targetDeck') === deck.data('deckId'))[0]
-
   const getMyDeck = discard => siblings(discard)
     .filter(bit => bit.data('type') === 'deck' && bit.data('deckId') === discard.data('targetDeck'))[0]
 
@@ -66,6 +63,8 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     }
     if (this.data('type') === 'discard') {
       const myDeck = getMyDeck(this)
+      console.log("myDeck.data('deckId')", myDeck.data('deckId'))
+      console.log("this.data('targetDeck')", this.data('targetDeck'))
       const myCards = getContents(this)
       myCards.sort((a, b) => window.layers[b.data('id')] - window.layers[a.data('id')])
       myCards.forEach((card, i) => {
@@ -74,20 +73,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
         card.transform(myDeck.transform().string + 't' + x + ',' + y)
         window.bringToTop(card)
         window.setSide(card, 'facedown')
-        card.data('inStack', true)
-        card.data('moved', true)
-      })
-    }
-    if (this.data('type') === 'deck') {
-      const myDiscard = getMyDiscard(this)
-      const myCards = getContents(this)
-      myCards.sort((a, b) => window.layers[b.data('id')] - window.layers[a.data('id')])
-      myCards.forEach((card, i) => {
-        x = 0.5 * (myDiscard.getBBox().width - card.getBBox().width)
-        y = -0.5 * (myDiscard.getBBox().height - card.getBBox().height) + 50
-        card.transform(myDiscard.transform().string + 't' + x + ',' + y)
-        window.bringToTop(card)
-        window.setSide(card, 'front')
         card.data('inStack', true)
         card.data('moved', true)
       })
