@@ -25,11 +25,11 @@ const describePortfolio = (x, y, playerIndex) => {
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
     window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: playerIndex }),
     window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: playerIndex }),
-    window.client.describe({ file: 'stack/deck', x: x + 500, y: y + sgn * 0, type: 'deck', deckId: playerIndex }),
+    window.client.describe({ file: 'stack/deck', x: x + 500, y: y - 20, type: 'deck', deckId: playerIndex }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 20, type: 'card', cardId: deal.discardId }),
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 35, type: 'card', cardId: deal.discardId }),
     window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: deal.deckId, side: 'facedown' })
   ]
   const hand = deal.handIds.map((handId, i) => {
@@ -112,15 +112,18 @@ const setupCards = (msg, numPlayers) => {
   deal.timelineLength = numPlayers + 5
   deal.empressLength = deal.timelineLength + 8
   deal.empressIds = shuffle([...Array(window.plots.length).keys()].filter(i => i > 1))
+  console.log('shuffle', deal.empressIds)
   deal.empressIds = deal.empressIds.slice(0, deal.empressLength)
   deal.empressIds.sort((a, b) => a - b)
+  console.log('empressIds', deal.empressIds)
   deal.courtId = deal.empressIds.shift()
   deal.dungeonId = deal.empressIds.shift()
   console.log('msg.plots', msg.plots)
   const green = deal.empressIds.filter(i => msg.plots[i].color === 'Green')
+  console.log('green', green)
   const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red')
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow')
-  deal.portfolioIds = [0, green[0], green[1], red[0], red[1], yellow[0], yellow[1]]
+  deal.portfolioIds = [0, green[0], green[1], red[0], red[1], red[2], yellow[0]]
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice(0, 5)
   deal.deckId = deal.portfolioIds[5]
