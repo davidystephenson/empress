@@ -37,8 +37,8 @@ const describePortfolio = (x, y, playerIndex) => {
     return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: handId })
   })
   const gold = [
-    ...describeRow('gold/5', x - 170, y - sgn * 10, 'bit', 4, 200),
-    ...describeRow('gold/10', x + 170, y - sgn * 10, 'bit', 3, 200)
+    ...describeRow('gold/5', x - 170, y - sgn * 10, 'bit', 2, 200),
+    ...describeRow('gold/10', x + 170, y - sgn * 10, 'bit', 4, 200)
   ]
   const descriptions = [...boards, ...piles, ...hand, ...gold]
   return descriptions
