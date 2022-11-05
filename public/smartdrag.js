@@ -69,10 +69,10 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       myCards.sort((a, b) => window.layers[b.data('id')] - window.layers[a.data('id')])
       myCards.forEach((card, i) => {
         x = 0.5 * (myDeck.getBBox().width - card.getBBox().width)
-        y = -0.5 * (myDeck.getBBox().height - card.getBBox().height) - 40
+        y = -0.5 * (myDeck.getBBox().height - card.getBBox().height) - 5
         card.transform(myDeck.transform().string + 't' + x + ',' + y)
         window.bringToTop(card)
-        window.setSide(card, 'facedown')
+        window.setSide(card, 'front')
         card.data('inStack', true)
         card.data('moved', true)
       })

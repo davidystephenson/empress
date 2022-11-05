@@ -24,13 +24,13 @@ const describePortfolio = (x, y, playerIndex) => {
     window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: playerIndex }),
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
     window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: playerIndex }),
-    window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: playerIndex }),
-    window.client.describe({ file: 'stack/deck', x: x + 500, y: y - 20, type: 'deck', deckId: playerIndex }),
+    window.client.describe({ file: 'stack/discard', x: x + 500, y: y + 0, type: 'discard', targetDeck: playerIndex }),
+    window.client.describe({ file: 'stack/deck', x: x - 500, y: y - 10, type: 'deck', deckId: playerIndex }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 35, type: 'card', cardId: deal.discardId }),
-    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: deal.deckId, side: 'facedown' })
+    window.client.describe({ file: 'card/front', x: x + 500, y: y - 35, type: 'card', cardId: deal.discardId, side: 'facedown' }),
+    window.client.describe({ file: 'card/front', x: x - 500, y: y - 35, type: 'card', cardId: deal.deckId })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
