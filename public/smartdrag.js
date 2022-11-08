@@ -28,12 +28,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   const isInStack = a => siblings(a)
     .filter(bit => ['deck', 'discard'].includes(bit.data('type')))
     .some(stack => intersect(a, stack))
-
+  /*
   const getMyDeck = discard => siblings(discard)
     .filter(bit => bit.data('type') === 'deck' && bit.data('deckId') === discard.data('targetDeck'))[0]
 
   const getContents = stack => siblings(stack)
     .filter(bit => bit.data('type') === 'card' && intersect(stack, bit))
+  */
 
   const getDetails = bit => {
     return (bit.data('twoSided') && ['back', 'facedown'].includes(bit.data('side')))
@@ -61,6 +62,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       textbox.attr({ text: name })
       this.data('moved', true)
     }
+    /*
     if (this.data('type') === 'discard') {
       const myDeck = getMyDeck(this)
       console.log("myDeck.data('deckId')", myDeck.data('deckId'))
@@ -77,6 +79,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
         card.data('moved', true)
       })
     }
+    */
     if (move) {
       this.data('ot', this.transform().local)
       this.data('dragging', true)

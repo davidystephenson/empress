@@ -29,8 +29,8 @@ const describePortfolio = (x, y, playerIndex) => {
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x + 500, y: y - 35, type: 'card', cardId: deal.discardId, side: 'facedown' }),
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 35, type: 'card', cardId: deal.deckId })
+    // window.client.describe({ file: 'card/front', x: x + 500, y: y - 35, type: 'card', cardId: deal.discardId, side: 'facedown' }),
+    // window.client.describe({ file: 'card/front', x: x - 500, y: y - 35, type: 'card', cardId: deal.deckId })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
@@ -125,7 +125,7 @@ const setupCards = (msg, numPlayers) => {
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow')
   deal.portfolioIds = [0, green[0], green[1], red[0], red[1], red[2], yellow[0]]
   deal.portfolioIds.sort((a, b) => a - b)
-  deal.handIds = deal.portfolioIds.slice(0, 5)
+  deal.handIds = deal.portfolioIds.slice()
   deal.deckId = deal.portfolioIds[5]
   deal.discardId = deal.portfolioIds[6]
   deal.empressIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
