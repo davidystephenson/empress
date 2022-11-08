@@ -2,20 +2,20 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="2.3333333in"
    height="3.1101789in"
    viewBox="0 0 209.99999 279.91611"
    id="svg2"
    version="1.1"
-   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="deck.svg">
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="deck.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.5089288"
-     inkscape:cx="50.021359"
-     inkscape:cy="146.52025"
+     inkscape:zoom="0.6272322"
+     inkscape:cx="19.928824"
+     inkscape:cy="560.39852"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
      showgrid="true"
@@ -36,8 +36,8 @@
      showguides="false"
      inkscape:window-width="1920"
      inkscape:window-height="1030"
-     inkscape:window-x="1920"
-     inkscape:window-y="26"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="0"
      objecttolerance="10000"
      inkscape:snap-bbox="true"
@@ -59,7 +59,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -78,6 +77,22 @@
          width="281.64874"
          id="rect4175"
          style="opacity:1;fill:#02b619;fill-opacity:0.2;stroke:#02b619;stroke-width:18.3512001;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-weight:normal;font-size:53.5714px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.33929"
+         x="21.987459"
+         y="1165.1614"
+         id="text2564"><tspan
+           sodipodi:role="line"
+           id="tspan2562"
+           style="stroke-width:1.33929"
+           x="21.987459"
+           y="1165.1614">DECK</tspan><tspan
+           sodipodi:role="line"
+           style="stroke-width:1.33929"
+           x="21.987459"
+           y="1232.1256"
+           id="tspan2566" /></text>
     </g>
   </g>
 </svg>

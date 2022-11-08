@@ -24,21 +24,21 @@ const describePortfolio = (x, y, playerIndex) => {
     window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: playerIndex }),
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
     window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: playerIndex }),
-    window.client.describe({ file: 'stack/discard', x: x - 500, y: y + sgn * 0, type: 'discard', targetDeck: playerIndex }),
-    window.client.describe({ file: 'stack/deck', x: x + 500, y: y - 20, type: 'deck', deckId: playerIndex }),
+    window.client.describe({ file: 'stack/discard', x: x + 500, y: y + 0, type: 'discard', targetDeck: playerIndex }),
+    window.client.describe({ file: 'stack/deck', x: x - 500, y: y - 10, type: 'deck', deckId: playerIndex }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
   ]
   const piles = [
-    window.client.describe({ file: 'card/front', x: x - 500, y: y - 35, type: 'card', cardId: deal.discardId }),
-    window.client.describe({ file: 'card/front', x: x + 500, y: y - 20, type: 'card', cardId: deal.deckId, side: 'facedown' })
+    // window.client.describe({ file: 'card/front', x: x + 500, y: y - 35, type: 'card', cardId: deal.discardId, side: 'facedown' }),
+    // window.client.describe({ file: 'card/front', x: x - 500, y: y - 35, type: 'card', cardId: deal.deckId })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
     return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: handId })
   })
   const gold = [
-    ...describeRow('gold/5', x - 220, y - sgn * 10, 'bit', 2, 100),
-    ...describeRow('gold/10', x + 120, y - sgn * 10, 'bit', 4, 300)
+    ...describeRow('gold/5', x - 170, y - sgn * 10, 'bit', 2, 200),
+    ...describeRow('gold/10', x + 170, y - sgn * 10, 'bit', 4, 200)
   ]
   const descriptions = [...boards, ...piles, ...hand, ...gold]
   return descriptions
@@ -125,7 +125,7 @@ const setupCards = (msg, numPlayers) => {
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow')
   deal.portfolioIds = [0, green[0], green[1], red[0], red[1], red[2], yellow[0]]
   deal.portfolioIds.sort((a, b) => a - b)
-  deal.handIds = deal.portfolioIds.slice(0, 5)
+  deal.handIds = deal.portfolioIds.slice()
   deal.deckId = deal.portfolioIds[5]
   deal.discardId = deal.portfolioIds[6]
   deal.empressIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
