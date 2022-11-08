@@ -1,15 +1,11 @@
-# fly.toml file generated for longlivetheempress on 2022-10-19T18:14:33+02:00
+# fly.toml file generated for empress on 2022-11-01T20:43:17+01:00
 
-app = "longlivetheempress"
+app = "empress"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
-[build]
-  builder = "heroku/buildpacks:20"
-
 [env]
-  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
