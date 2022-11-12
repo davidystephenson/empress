@@ -48,8 +48,10 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:bbox-nodes="true"
-     inkscape:snap-global="false"
-     inkscape:pagecheckerboard="0" />
+     inkscape:snap-global="true"
+     inkscape:pagecheckerboard="0"
+     inkscape:snap-page="true"
+     inkscape:bbox-paths="true" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -76,6 +78,13 @@
          width="281.64874"
          id="rect4175"
          style="opacity:1;fill:none;fill-opacity:1;stroke:#001bff;stroke-width:18.35124588;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="1143.2158"
+         x="-42.093246"
+         height="106.43839"
+         width="282.52029"
+         id="rect4175-1"
+         style="fill:#0000b8;fill-opacity:0.244755;stroke:#001bff;stroke-width:17.4797;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <g
          aria-label="DISCARD"
          id="text8263"
