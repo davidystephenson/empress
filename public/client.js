@@ -186,12 +186,12 @@ window.client = (() => {
         const plot = window.plots[description.cardId]
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: colors[plot.color] })
-        const powerTextElement = group.text(50, 1040, plot.power)
-        powerTextElement.attr({ fontSize: 80 })
-        powerTextElement.attr({ textAnchor: 'middle' })
-        powerTextElement.attr({ fontFamily: 'sans-serif' })
-        powerTextElement.attr({ fontWeight: 'bold' })
-        component.add(powerTextElement)
+        const rankTextElement = group.text(50, 1040, plot.rank)
+        rankTextElement.attr({ fontSize: 80 })
+        rankTextElement.attr({ textAnchor: 'middle' })
+        rankTextElement.attr({ fontFamily: 'sans-serif' })
+        rankTextElement.attr({ fontWeight: 'bold' })
+        component.add(rankTextElement)
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)

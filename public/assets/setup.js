@@ -37,8 +37,8 @@ const describePortfolio = (x, y, playerIndex) => {
     return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: handId })
   })
   const gold = [
-    ...describeRow('gold/5', x - 170, y - sgn * 10, 'bit', 2, 200),
-    ...describeRow('gold/10', x + 170, y - sgn * 10, 'bit', 4, 200)
+    ...describeRow('gold/5', x - 220, y - sgn * 10, 'bit', 2, 100),
+    ...describeRow('gold/10', x + 130, y - sgn * 10, 'bit', 4, 300)
   ]
   const descriptions = [...boards, ...piles, ...hand, ...gold]
   return descriptions
@@ -71,7 +71,7 @@ const annotate = function (description) {
     description.time = plot.time
     description.details = `
       <b>${plot.title}</b><br><br>
-      Power: ${plot.power}<br><br>
+      Rank: ${plot.rank}<br><br>
       Time: ${plot.time}<br><br>
       ${plot.beginning}<br><br>
       ${plot.end}<br><br>
