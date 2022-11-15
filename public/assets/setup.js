@@ -123,7 +123,7 @@ const setupCards = (msg, numPlayers) => {
   console.log('green', green)
   const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red')
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow')
-  deal.portfolioIds = [0, green[0], green[1], red[0], red[1], red[2], yellow[0]]
+  deal.portfolioIds = [0, green[0], green[1], red[0], red[1], green[2], yellow[0]]
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()
   deal.deckId = deal.portfolioIds[5]
