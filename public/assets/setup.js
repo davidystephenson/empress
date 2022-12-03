@@ -53,7 +53,7 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/5', x: x - 80, y: y + 120, type: 'bit', clones: 35 }),
   window.client.describe({ file: 'gold/10', x: x + 100, y: y + 120, type: 'bit', clones: 30 }),
   window.client.describe({ file: 'gold/25', x: x + 300, y: y + 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 1, clones: 15 })
+  window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 1, clones: 50 })
 ]
 
 const describeCourt = (x, y) => {
