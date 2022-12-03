@@ -1,12 +1,11 @@
-# fly.toml file generated for longliveempress on 2022-11-16T21:00:31+01:00
+# fly.toml file generated for longlivetheempress on 2022-11-23T15:02:17+01:00
 
-app = "longliveempress"
+app = "longlivetheempress"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
-  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []
