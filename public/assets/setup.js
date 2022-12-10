@@ -68,6 +68,8 @@ const annotate = function (description) {
   description.details = ''
   if (description.type === 'card') {
     const plot = window.plots[description.cardId]
+    // console.log('description', description)
+    // console.log('plot', plot)
     description.time = plot.time
     description.details = `
       <b>${plot.title}</b><br><br>
@@ -110,11 +112,19 @@ const compareLayers = (a, b) => {
 const deal = {}
 
 const setupCards = (msg, numPlayers) => {
-  deal.timelineLength = numPlayers + 5
-  deal.empressLength = deal.timelineLength + 8
-  deal.empressIds = shuffle([...Array(window.plots.length).keys()].filter(i => i > 1))
-  console.log('shuffle', deal.empressIds)
-  deal.empressIds = deal.empressIds.slice(0, deal.empressLength)
+  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i > 1))
+  console.log('shuffle', shuffledIds)
+  deal.empressIds = []
+  range(shuffledIds.length).every(step => {
+    const id = shuffledIds.pop()
+    deal.empressIds.push(id)
+    const greenCount = deal.empressIds.filter(i => window.plots[i].color === 'Green').length
+    const redCount = deal.empressIds.filter(i => window.plots[i].color === 'Red').length
+    const yellowCount = deal.empressIds.filter(i => window.plots[i].color === 'Yellow').length
+    return !(greenCount >= 3 && redCount >= 2 && yellowCount >= 1 && deal.empressIds.length >= numPlayers + 13)
+  })
+  deal.empressLength = deal.empressIds.length
+  deal.timelineLength = deal.empressLength - 8
   deal.empressIds.sort((a, b) => a - b)
   console.log('empressIds', deal.empressIds)
   deal.courtId = deal.empressIds.shift()
@@ -124,7 +134,8 @@ const setupCards = (msg, numPlayers) => {
   console.log('green', green)
   const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red')
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow')
-  deal.portfolioIds = [0, green[0], green[1], red[0], red[1], green[2], yellow[0]]
+  deal.portfolioIds = [0, green[0], green[1], green[2], red[0], red[1], yellow[0]]
+  console.log('deal.portfolioIds', deal.portfolioIds)
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()
   deal.deckId = deal.portfolioIds[5]
@@ -160,6 +171,7 @@ window.setup = msg => {
     return window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: deal.timelineIds[i] })
   })
   const descriptions = [...portfolios, ...bank, ...court, ...timeline]
+  console.log('timeline', timeline)
   descriptions.map(x => annotate(x))
   descriptions.sort(compareLayers)
   window.client.start(descriptions, msg)
