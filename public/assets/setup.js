@@ -112,36 +112,28 @@ const compareLayers = (a, b) => {
 const deal = {}
 
 const setupCards = (msg, numPlayers) => {
+  console.log('msg.plots', msg.plots)
   const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i > 1))
   console.log('shuffle', shuffledIds)
-  deal.empressIds = []
-  range(shuffledIds.length).every(step => {
-    const id = shuffledIds.pop()
-    deal.empressIds.push(id)
-    const greenCount = deal.empressIds.filter(i => window.plots[i].color === 'Green').length
-    const redCount = deal.empressIds.filter(i => window.plots[i].color === 'Red').length
-    const yellowCount = deal.empressIds.filter(i => window.plots[i].color === 'Yellow').length
-    return !(greenCount >= 3 && redCount >= 2 && yellowCount >= 1 && deal.empressIds.length >= numPlayers + 13)
-  })
-  deal.empressLength = deal.empressIds.length
-  deal.timelineLength = deal.empressLength - 8
-  deal.empressIds.sort((a, b) => a - b)
+  deal.empressIds = shuffledIds.slice(0, numPlayers + 13)
   console.log('empressIds', deal.empressIds)
+  deal.empressIds.sort((a, b) => a - b)
   deal.courtId = deal.empressIds.shift()
   deal.dungeonId = deal.empressIds.shift()
-  console.log('msg.plots', msg.plots)
-  const green = deal.empressIds.filter(i => msg.plots[i].color === 'Green')
+  deal.timelineLength = numPlayers + 5
+  const green = deal.empressIds.filter(i => msg.plots[i].color === 'Green').sort((a, b) => a - b)
+  const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red').sort((a, b) => a - b)
+  const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow').sort((a, b) => a - b)
   console.log('green', green)
-  const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red')
-  const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow')
-  deal.portfolioIds = [0, green[0], green[1], green[2], red[0], red[1], yellow[0]]
-  console.log('deal.portfolioIds', deal.portfolioIds)
+  console.log('red', red)
+  console.log('yellow', yellow)
+  deal.portfolioIds = [0, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 1)].flat()
+  deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()
   deal.deckId = deal.portfolioIds[5]
   deal.discardId = deal.portfolioIds[6]
-  deal.empressIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
-  deal.timelineIds = deal.empressIds
+  deal.timelineIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
   console.log('handIds', deal.handIds)
   console.log('deckId', deal.deckId)
   console.log('discardId', deal.discardId)
