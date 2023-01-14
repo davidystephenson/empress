@@ -115,7 +115,7 @@ const deal = {}
 
 const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
-  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 5))
+  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 5 && i !== 1))
   console.log('shuffle', shuffledIds)
   deal.empressIds = shuffledIds.slice(0, numPlayers + 13)
   console.log('empressIds', deal.empressIds)
