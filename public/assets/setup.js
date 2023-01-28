@@ -34,7 +34,7 @@ const describePortfolio = (x, y, playerIndex) => {
   })
   const gold = [
     ...describeRow('gold/5', x - 220, y - sgn * 10, 'bit', 2, 100),
-    ...describeRow('gold/10', x + 130, y - sgn * 10, 'bit', 5, 300)
+    ...describeRow('gold/10', x + 130, y - sgn * 10, 'bit', 3, 300)
   ]
   const descriptions = [...boards, ...hand, ...gold]
   return descriptions
@@ -111,7 +111,7 @@ const deal = {}
 
 const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
-  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 10 && i !== 1))
+  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 7 && i !== 1))
   console.log('shuffle', shuffledIds)
   deal.empressIds = shuffledIds.slice(0, numPlayers + 13)
   console.log('empressIds', deal.empressIds)
@@ -125,8 +125,8 @@ const setupCards = (msg, numPlayers) => {
   console.log('green', green)
   console.log('red', red)
   console.log('yellow', yellow)
-  deal.portfolioIds = [10, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
-  // deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
+  deal.portfolioIds = [7, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 1)].flat()
+  deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()
   deal.timelineIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
