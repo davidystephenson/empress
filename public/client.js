@@ -186,7 +186,8 @@ window.client = (() => {
         const plot = window.plots[description.cardId]
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: colors[plot.color] })
-        const rankTextElement = group.text(50, 1040, plot.rank)
+        const rankX = plot.rank === '1' ? 20 : 50
+        const rankTextElement = group.text(rankX, 1040, plot.rank)
         rankTextElement.attr({ fontSize: 80 })
         rankTextElement.attr({ textAnchor: 'middle' })
         rankTextElement.attr({ fontFamily: 'sans-serif' })
@@ -268,12 +269,12 @@ window.client = (() => {
   }
 
   const start = (descriptions, msg) => {
-    const backFiles = [
+    const extraFiles = [
       'card/back', 'card/hidden', 'card/facedown', 'card/hourglass',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
-      'board/ready-back'
+      'board/ready-back', 'card/ho'
     ]
-    const files = unique(descriptions.map(item => item.file)).concat(backFiles)
+    const files = unique(descriptions.map(item => item.file)).concat(extraFiles)
     files.map(file => window.Snap.load(`assets/${file}.svg`, setupTemplate(file, descriptions, msg, files.length)))
   }
 

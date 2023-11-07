@@ -21,7 +21,6 @@ const describePortfolio = (x, y, playerIndex) => {
   const sgn = Math.sign(y)
   const angle = sgn === -1 ? 180 : 0
   const boards = [
-    window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 900, type: 'screen', player: playerIndex }),
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 750, type: 'board' }),
     window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 150, type: 'screen', rotation: angle, player: playerIndex }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' }),
@@ -31,11 +30,15 @@ const describePortfolio = (x, y, playerIndex) => {
     const space = 160
     return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 150, type: 'card', cardId: handId })
   })
+  const reserve = deal.reserveIds.map((reserveId, i) => {
+    const space = 160
+    return window.client.describe({ file: 'card/front', x: x + (i + 2) * space, y: y + sgn * 500, type: 'card', cardId: reserveId })
+  })
   const gold = [
     ...describeRow('gold/5', x - 220, y - sgn * 150, 'bit', 4, 100),
     ...describeRow('gold/10', x + 130, y - sgn * 150, 'bit', 3, 300)
   ]
-  const descriptions = [...boards, ...hand, ...gold]
+  const descriptions = [...boards, ...hand, ...reserve, ...gold]
   return descriptions
 }
 
@@ -74,7 +77,7 @@ const annotate = function (description) {
       Rank: ${plot.rank}<br><br>
       ${plot.beginning}<br><br>
       ${plot.end}<br><br>
-      ${plot.threat && plot.threat !== '' ? `<strong>Threat</strong>: ${plot.threat}<br><br>` : ''}
+      ${plot.bonus && plot.bonus !== '' ? `<strong>Bonus</strong>: ${plot.bonus}<br><br>` : ''}
       Color: ${plot.color}<br><br>
       <a href="${plot.link1}" target="_blank">${plot.link1}</a><br><br>
       <a href="${plot.link2}" target="_blank">${plot.link2}</a><br><br>
@@ -112,7 +115,7 @@ const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
   const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 7 && i !== 1))
   console.log('shuffle', shuffledIds)
-  deal.empressIds = shuffledIds.slice(0, numPlayers + 13)
+  deal.empressIds = shuffledIds.slice(0, numPlayers + 14)
   console.log('empressIds', deal.empressIds)
   deal.empressIds.sort((a, b) => a - b)
   deal.courtId = deal.empressIds.shift()
@@ -128,6 +131,8 @@ const setupCards = (msg, numPlayers) => {
   deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()
+  deal.reserveIds = deal.handIds.slice(-2).reverse()
+  deal.handIds = deal.handIds.slice(0, -2)
   deal.timelineIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
   console.log('handIds', deal.handIds)
   console.log('courtId', deal.courtId)
