@@ -21,20 +21,19 @@ const describePortfolio = (x, y, playerIndex) => {
   const sgn = Math.sign(y)
   const angle = sgn === -1 ? 180 : 0
   const boards = [
-    window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 820, type: 'screen', player: playerIndex }),
-    window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 680, type: 'board' }),
-    window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 400, type: 'screen', rotation: angle, player: playerIndex }),
-    window.client.describe({ file: 'stack/discard', x: x + 500, y: y + 0, type: 'discard', targetDeck: playerIndex }),
-    window.client.describe({ file: 'stack/deck', x: x - 500, y: y - 10, type: 'deck', deckId: playerIndex }),
-    window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' })
+    window.client.describe({ file: 'board/ready', x: x, y: y + sgn * 900, type: 'screen', player: playerIndex }),
+    window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 750, type: 'board' }),
+    window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 150, type: 'screen', rotation: angle, player: playerIndex }),
+    window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' }),
+    window.client.describe({ file: 'board/reserve', x: x, y: y + sgn * 500, type: 'board' })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
-    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 400, type: 'card', cardId: handId })
+    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 150, type: 'card', cardId: handId })
   })
   const gold = [
-    ...describeRow('gold/5', x - 220, y - sgn * 10, 'bit', 2, 100),
-    ...describeRow('gold/10', x + 130, y - sgn * 10, 'bit', 3, 300)
+    ...describeRow('gold/5', x - 220, y - sgn * 150, 'bit', 4, 100),
+    ...describeRow('gold/10', x + 130, y - sgn * 150, 'bit', 3, 300)
   ]
   const descriptions = [...boards, ...hand, ...gold]
   return descriptions
