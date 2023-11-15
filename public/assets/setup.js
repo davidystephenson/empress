@@ -28,11 +28,11 @@ const describePortfolio = (x, y, playerIndex) => {
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
-    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 150, type: 'card', cardId: handId })
+    return window.client.describe({ file: 'card/front', x: x + (i - 2) * space, y: y + sgn * 150, type: 'card', cardId: handId })
   })
   const reserve = deal.reserveIds.map((reserveId, i) => {
     const space = 160
-    return window.client.describe({ file: 'card/front', x: x + (i + 2) * space, y: y + sgn * 500, type: 'card', cardId: reserveId })
+    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 500, type: 'card', cardId: reserveId })
   })
   const gold = [
     ...describeRow('gold/5', x - 220, y - sgn * 150, 'bit', 4, 100),
@@ -79,8 +79,24 @@ const annotate = function (description) {
       ${plot.end}<br><br>
       ${plot.bonus && plot.bonus !== '' ? `<strong>Bonus</strong>: ${plot.bonus}<br><br>` : ''}
       Color: ${plot.color}<br><br>
-      <a href="${plot.link1}" target="_blank">${plot.link1}</a><br><br>
-      <a href="${plot.link2}" target="_blank">${plot.link2}</a><br><br>
+      <table>
+        <tr>
+          <td style="vertical-align: middle;">
+            <img src="${plot.icon1}" style="height: 16px" />
+          </td>
+          <td style="vertical-align: middle;">
+            <a href="${plot.link1}" target="_blank">${plot.label1}</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="vertical-align: middle;">
+            <img src="${plot.icon2}" style="height: 16px" />
+          </td>
+          <td style="vertical-align: middle;">
+            <a href="${plot.link2}" target="_blank">${plot.label2}</a>
+          </td>
+        </tr>
+      </table>
       `
   }
   switch (description.file) {
@@ -113,7 +129,7 @@ const deal = {}
 
 const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
-  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 7 && i !== 1))
+  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 5 && i !== 1))
   console.log('shuffle', shuffledIds)
   deal.empressIds = shuffledIds.slice(0, numPlayers + 14)
   console.log('empressIds', deal.empressIds)
@@ -127,11 +143,11 @@ const setupCards = (msg, numPlayers) => {
   console.log('green', green)
   console.log('red', red)
   console.log('yellow', yellow)
-  deal.portfolioIds = [7, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 1)].flat()
-  deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
+  deal.portfolioIds = [5, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
+  // deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()
-  deal.reserveIds = deal.handIds.slice(-2).reverse()
+  deal.reserveIds = deal.handIds.slice(-2)
   deal.handIds = deal.handIds.slice(0, -2)
   deal.timelineIds = deal.empressIds.filter(i => !deal.portfolioIds.includes(i))
   console.log('handIds', deal.handIds)

@@ -186,13 +186,28 @@ window.client = (() => {
         const plot = window.plots[description.cardId]
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: colors[plot.color] })
-        const rankX = plot.rank === '1' ? 20 : 50
-        const rankTextElement = group.text(rankX, 1040, plot.rank)
+        const rank1 = plot.rank === '1'
+        const rankX = rank1 ? 25 : 50
+        const rankY = rank1 ? 1050 : 1040
+        const rankTextElement = group.text(rankX, rankY, plot.rank)
         rankTextElement.attr({ fontSize: 80 })
         rankTextElement.attr({ textAnchor: 'middle' })
         rankTextElement.attr({ fontFamily: 'sans-serif' })
         rankTextElement.attr({ fontWeight: 'bold' })
         component.add(rankTextElement)
+        if (rank1) {
+          const pawn = templates['card/pawn'].clone()
+          component.append(pawn)
+          pawn.node.style.display = 'block'
+          pawn.transform('t15,940')
+        }
+        const buyBonus = plot.rank === '14' || plot.rank === '15'
+        if (buyBonus) {
+          const gold = templates['card/gold'].clone()
+          component.append(gold)
+          gold.node.style.display = 'block'
+          gold.transform('t50,105')
+        }
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
@@ -270,12 +285,15 @@ window.client = (() => {
 
   const start = (descriptions, msg) => {
     const extraFiles = [
-      'card/back', 'card/hidden', 'card/facedown', 'card/hourglass',
+      'card/back', 'card/hidden', 'card/facedown', 'card/hourglass', 'card/gold',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
-      'board/ready-back', 'card/ho'
+      'board/ready-back', 'card/pawn'
     ]
     const files = unique(descriptions.map(item => item.file)).concat(extraFiles)
-    files.map(file => window.Snap.load(`assets/${file}.svg`, setupTemplate(file, descriptions, msg, files.length)))
+    files.forEach(file => {
+      const template = setupTemplate(file, descriptions, msg, files.length)
+      window.Snap.load(`assets/${file}.svg`, template)
+    })
   }
 
   const describe = options => {

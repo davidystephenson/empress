@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.39903846"
-     inkscape:cx="736.77109"
-     inkscape:cy="613.97591"
+     inkscape:cx="740.53012"
+     inkscape:cy="616.48193"
      inkscape:document-units="in"
      inkscape:current-layer="g821"
      showgrid="true"
@@ -86,7 +86,7 @@
         <g
            id="g818"
            transform="matrix(1,0,0,0.80044669,-2.8800291,180.90131)"
-           style="stroke-width:1.11773">
+           style="stroke-width:1.11773;stroke:#0000ff">
           <rect
              ry="0"
              y="-1153.5879"
@@ -94,7 +94,7 @@
              height="722.30042"
              width="193.36134"
              id="rect4183-8-5-9-3-6-3-7-5-6-1-7-1-1-5-3-9-7"
-             style="opacity:1;fill:none;fill-opacity:1;stroke:#000511;stroke-width:6.43807;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             style="opacity:1;fill:none;fill-opacity:1;stroke:#0000ff;stroke-width:6.43807;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
              transform="rotate(90)" />
         </g>
         <rect

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="1.5555555in"
-   height="2.3333333in"
-   viewBox="0 0 139.99999 209.99999"
+   width="0.41666731in"
+   height="0.4166666in"
+   viewBox="0 0 37.500057 37.499993"
    id="svg2"
    version="1.1"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="back.svg"
+   sodipodi:docname="gold.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,9 +23,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.81228895"
-     inkscape:cx="-456.11848"
-     inkscape:cy="-30.777225"
+     inkscape:zoom="18.845265"
+     inkscape:cx="22.49902"
+     inkscape:cy="22.49902"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
      showgrid="true"
@@ -45,10 +45,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:bbox-nodes="true"
+     inkscape:bbox-nodes="false"
      inkscape:document-rotation="0"
+     inkscape:snap-bbox-midpoints="true"
      inkscape:pagecheckerboard="0"
-     inkscape:snap-global="false"
      inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata7">
@@ -65,29 +65,15 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(20.000001,-897.36217)">
+     transform="translate(17.344858,-944.75467)">
     <g
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
-      <rect
-         y="858.47925"
-         x="-43.882931"
-         height="287.76584"
-         width="187.76584"
-         id="rect4175"
-         style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:12.2342;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.5714px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.33929"
-         x="880.46368"
-         y="-30.499266"
-         id="text2762-3"
-         transform="rotate(90)"><tspan
-           sodipodi:role="line"
-           id="tspan2760-6"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.57140075px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;stroke-width:1.33929"
-           x="880.46368"
-           y="-30.499266">SCHEME</tspan></text>
+      <path
+         style="opacity:1;fill:#c0b840;fill-opacity:1;stroke:#000000;stroke-width:10.0713;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -24.014963,968.1252 c -7.679867,-1.67908 -13.983614,-7.4439 -16.418384,-15.0147 -0.371626,-1.15557 -0.594769,-2.86828 -0.697668,-5.35494 -0.12915,-3.1209 -0.06467,-3.99652 0.440556,-5.98285 1.962494,-7.71563 7.904546,-13.79289 15.547773,-15.9016 2.565007,-0.70764 8.726627,-0.72271 11.277214,-0.0275 5.9040899,1.60913 10.940624,5.67524 13.78983019,11.13278 6.34478101,12.15322 -0.22233109,27.09228 -13.55621619,30.83809 -3.006193,0.84451 -7.3476,0.97442 -10.383105,0.31075 z"
+         id="path824"
+         inkscape:connector-curvature="0" />
     </g>
   </g>
 </svg>
