@@ -1,4 +1,12 @@
 window.range = n => [...Array(n).keys()]
+window.colors = {
+  Blue: '#68c3ffff',
+  Red: '#ff9797ff',
+  Green: '#8fff8eff',
+  Purple: '#da97ffff',
+  Yellow: '#ffffa3ff',
+  None: 'white'
+}
 
 window.client = (() => {
   const range = window.range
@@ -176,17 +184,9 @@ window.client = (() => {
       const back = getTemplate('back')
       if (type === 'card') {
         component.data('type', 'card')
-        const colors = {
-          Blue: '#68c3ffff',
-          Red: '#ff9797ff',
-          Green: '#8fff8eff',
-          Purple: '#da97ffff',
-          Yellow: '#ffffa3ff',
-          None: 'white'
-        }
         const plot = window.plots[description.cardId]
         const rectElement = component.children()[1].children()[1]
-        rectElement.attr({ fill: colors[plot.color] })
+        rectElement.attr({ fill: window.colors[plot.color] })
         const rank1 = plot.rank === '1'
         const rankX = rank1 ? 25 : 50
         const rankY = rank1 ? 1050 : 1040
@@ -439,41 +439,54 @@ window.annotateScheme = function (scheme) {
   `
 }
 
-document.addEventListener('mousemove', e => { saveCursorPosition(e.clientX, e.clientY) })
+function renderSchemeOverlay (eventName) {
+  if (window.overDetails == null) {
+    return
+  }
+  if (window.overDetails === window.schemeOverlayDetails) {
+    return
+  }
+  if (window.schemeOverlay != null) {
+    document.body.removeChild(window.schemeOverlay)
+  }
+  window.schemeOverlay = document.createElement('div')
+  window.schemeOverlay.innerHTML = window.overDetails
+  window.schemeOverlayDetails = window.overDetails
+  window.schemeOverlay.style.position = 'absolute'
+  window.schemeOverlay.style.left = `${cursor.x * 100}vw`
+  const bottom = 100 - cursor.y * 100
+  window.schemeOverlay.style.bottom = `${bottom}vh`
+  window.schemeOverlay.style.zIndex = 1000
+  window.schemeOverlay.style.padding = '10px'
+  window.schemeOverlay.style.border = '1px solid black'
+  window.schemeOverlay.style.borderRadius = '5px'
+  window.schemeOverlay.style.fontSize = '20px'
+  window.schemeOverlay.style.transform = 'translateX(-50%)'
+  window.schemeOverlay.style.width = '350px'
+  const background = window.colors[window.overColor]
+  window.schemeOverlay.style.backgroundColor = background
+  document.body.appendChild(window.schemeOverlay)
+}
+
+document.addEventListener('mousemove', e => {
+  saveCursorPosition(e.clientX, e.clientY)
+  if (!window.spaceDown) {
+    return
+  }
+  renderSchemeOverlay('mousemove')
+})
 document.addEventListener('keydown', e => {
+  window.spaceDown = true
   if (e.code === 'Space') {
-    if (window.details == null) {
-      window.details = document.createElement('div')
-      window.details.innerHTML = window.overDetails
-      window.details.style.position = 'absolute'
-      window.details.style.left = `${cursor.x * 100}vw`
-      const bottom = 100 - cursor.y * 100
-      window.details.style.bottom = `${bottom}vh`
-      window.details.style.zIndex = 1000
-      window.details.style.padding = '10px'
-      window.details.style.border = '1px solid black'
-      window.details.style.borderRadius = '5px'
-      window.details.style.fontSize = '20px'
-      window.details.style.transform = 'translateX(-50%)'
-      window.details.style.width = '350px'
-      const colors = {
-        Blue: '#68c3ffff',
-        Red: '#ff9797ff',
-        Green: '#8fff8eff',
-        Purple: '#da97ffff',
-        Yellow: '#ffffa3ff',
-        None: 'white'
-      }
-      const background = colors[window.overColor]
-      window.details.style.backgroundColor = background
-      document.body.appendChild(window.details)
-    }
+    renderSchemeOverlay('keydown')
   }
 })
 document.addEventListener('keyup', e => {
+  window.spaceDown = false
   console.log('keyup', e)
-  if (e.code === 'Space') {
-    document.body.removeChild(window.details)
-    window.details = null
+  if (e.code === 'Space' && window.schemeOverlay != null) {
+    document.body.removeChild(window.schemeOverlay)
+    window.schemeOverlay = null
+    window.schemeOverlayDetails = null
   }
 })

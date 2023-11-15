@@ -103,13 +103,15 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       detailDiv.innerHTML = details
       window.overDetails = details
       const color = getColor(this)
+      const background = window.colors[color]
+      detailDiv.style.backgroundColor = background
       window.overColor = color
     }
   }
 
   function handleMouseout () {
     if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
-      window.overScheme = null
+      window.overDetails = null
     }
   }
 
