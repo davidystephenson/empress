@@ -71,41 +71,7 @@ const annotate = function (description) {
     // console.log('description', description)
     // console.log('plot', plot)
     description.time = plot.time
-    description.details = `
-      <b>${plot.title}</b><br><br>
-      Time: ${plot.time}<br><br>
-      Rank: ${plot.rank}<br><br>
-      ${plot.beginning}<br><br>
-      ${plot.end}<br><br>
-      ${plot.bonus && plot.bonus !== '' ? `<strong>Bonus</strong>: ${plot.bonus}<br><br>` : ''}
-      Color: ${plot.color}<br><br>
-      <table>
-        <tr>
-          <td style="vertical-align: middle;">
-            <img src="${plot.icon1}" style="height: 16px" />
-          </td>
-          <td style="vertical-align: middle;">
-            <a href="${plot.link1}" target="_blank">${plot.label1}</a>
-          </td>
-        </tr>
-        <tr>
-          <td style="vertical-align: middle;">
-            <img src="${plot.icon2}" style="height: 16px" />
-          </td>
-          <td style="vertical-align: middle;">
-            <a href="${plot.link2}" target="_blank">${plot.label2}</a>
-          </td>
-        </tr>
-      </table>
-      `
-  }
-  switch (description.file) {
-    case 'stack/discard':
-      description.details = 'Discard'
-      break
-    case 'stack/deck':
-      description.details = 'Deck'
-      break
+    description.details = window.annotateScheme(plot)
   }
 }
 

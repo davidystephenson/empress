@@ -409,7 +409,36 @@ const saveCursorPosition = function (x, y) {
   cursor.y = (y / window.innerHeight).toFixed(2)
 }
 
-document.addEventListener('mousemove', e => { saveCursorPosition(e.clientX, e.clientY) })
+window.annotateScheme = function (scheme) {
+  return `<b>${scheme.title}</b><br><br>
+    Color: ${scheme.color}<br><br>
+    Time: ${scheme.time}<br><br>
+    Rank: ${scheme.rank}<br><br>
+    ${scheme.beginning}<br><br>
+    ${scheme.end}<br><br>
+    ${scheme.bonus && scheme.bonus !== '' ? `<strong>Bonus</strong>: ${scheme.bonus}<br><br>` : ''}
+    <table>
+      <tr>
+        <td style="vertical-align: middle;">
+          <img src="${scheme.icon1}" style="height: 16px" />
+        </td>
+        <td style="vertical-align: middle;">
+          <a href="${scheme.link1}" target="_blank">${scheme.label1}</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="vertical-align: middle;">
+          <img src="${scheme.icon2}" style="height: 16px" />
+        </td>
+        <td style="vertical-align: middle;">
+          <a href="${scheme.link2}" target="_blank">${scheme.label2}</a>
+        </td>
+      </tr>
+    </table>
+  `
+}
+
+// document.addEventListener('mousemove', e = { saveCursorPosition(e.clientX, e.clientY) })
 document.addEventListener('keydown', e => {
   console.log('keydown', e)
   if (e.code === 'Space') {
@@ -417,10 +446,11 @@ document.addEventListener('keydown', e => {
     if (window.details == null) {
       console.log('details', window.overScheme)
       window.details = document.createElement('div')
-      window.details.textContent = 'hello'
+      window.details.innerHTML = window.overScheme
       window.details.style.position = 'absolute'
       window.details.style.left = `${cursor.x * 100}vw`
-      window.details.style.bottom = `${cursor.y * 100}vh`
+      const bottom = 100 - cursor.y * 100
+      window.details.style.bottom = `${bottom}vh`
       window.details.style.zIndex = 1000
       window.details.style.backgroundColor = 'white'
       window.details.style.padding = '10px'
