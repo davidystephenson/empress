@@ -438,7 +438,7 @@ window.annotateScheme = function (scheme) {
   `
 }
 
-// document.addEventListener('mousemove', e = { saveCursorPosition(e.clientX, e.clientY) })
+document.addEventListener('mousemove', e => { saveCursorPosition(e.clientX, e.clientY) })
 document.addEventListener('keydown', e => {
   console.log('keydown', e)
   if (e.code === 'Space') {
@@ -456,8 +456,8 @@ document.addEventListener('keydown', e => {
       window.details.style.padding = '10px'
       window.details.style.border = '1px solid black'
       window.details.style.borderRadius = '5px'
-      window.details.style.boxShadow = '5px 5px 5px black'
       window.details.style.fontSize = '20px'
+      window.details.style.transform = 'translateX(-50%)'
       document.body.appendChild(window.details)
     }
   }
