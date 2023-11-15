@@ -41,6 +41,12 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       : bit.data('details')
   }
 
+  const getColor = bit => {
+    return (bit.data('twoSided') && ['back', 'facedown'].includes(bit.data('side')))
+      ? 'Hidden'
+      : bit.data('color')
+  }
+
   const dragStart = function (x, y, event) {
     const shiftDown = event.shiftKey
     const ctrlDown = event.ctrlKey
@@ -91,12 +97,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     }
   }
 
-  window.overScheme = null
   const mouseover = function () {
     if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
       const details = getDetails(this)
       detailDiv.innerHTML = details
-      window.overScheme = details
+      window.overDetails = details
+      const color = getColor(this)
+      window.overColor = color
     }
   }
 

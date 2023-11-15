@@ -71,6 +71,7 @@ const annotate = function (description) {
     // console.log('description', description)
     // console.log('plot', plot)
     description.time = plot.time
+    description.color = plot.color
     description.details = window.annotateScheme(plot)
   }
 }
@@ -95,7 +96,7 @@ const deal = {}
 
 const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
-  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 5 && i !== 1))
+  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 6 && i !== 1))
   console.log('shuffle', shuffledIds)
   deal.empressIds = shuffledIds.slice(0, numPlayers + 14)
   console.log('empressIds', deal.empressIds)
@@ -109,7 +110,7 @@ const setupCards = (msg, numPlayers) => {
   console.log('green', green)
   console.log('red', red)
   console.log('yellow', yellow)
-  deal.portfolioIds = [5, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
+  deal.portfolioIds = [6, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
   // deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()

@@ -131,7 +131,7 @@ window.client = (() => {
   }
 
   const addComponent = (description) => {
-    const { x, y, rotation, type, clones, file, details, side, player } = description
+    const { x, y, rotation, type, clones, file, details, side, player, color } = description
     const template = templates[file]
     const startMatrix = template.transform().localMatrix.translate(x, y)
     range(clones + 1).forEach(i => {
@@ -146,6 +146,7 @@ window.client = (() => {
       component.data('file', file)
       component.data('type', type)
       component.data('details', details)
+      component.data('color', color)
       component.data('player', player)
       component.data('twoSided', false)
       component.data('inStack', false)
@@ -440,24 +441,31 @@ window.annotateScheme = function (scheme) {
 
 document.addEventListener('mousemove', e => { saveCursorPosition(e.clientX, e.clientY) })
 document.addEventListener('keydown', e => {
-  console.log('keydown', e)
   if (e.code === 'Space') {
-    console.log('space cursor', cursor)
     if (window.details == null) {
-      console.log('details', window.overScheme)
       window.details = document.createElement('div')
-      window.details.innerHTML = window.overScheme
+      window.details.innerHTML = window.overDetails
       window.details.style.position = 'absolute'
       window.details.style.left = `${cursor.x * 100}vw`
       const bottom = 100 - cursor.y * 100
       window.details.style.bottom = `${bottom}vh`
       window.details.style.zIndex = 1000
-      window.details.style.backgroundColor = 'white'
       window.details.style.padding = '10px'
       window.details.style.border = '1px solid black'
       window.details.style.borderRadius = '5px'
       window.details.style.fontSize = '20px'
       window.details.style.transform = 'translateX(-50%)'
+      window.details.style.width = '350px'
+      const colors = {
+        Blue: '#68c3ffff',
+        Red: '#ff9797ff',
+        Green: '#8fff8eff',
+        Purple: '#da97ffff',
+        Yellow: '#ffffa3ff',
+        None: 'white'
+      }
+      const background = colors[window.overColor]
+      window.details.style.backgroundColor = background
       document.body.appendChild(window.details)
     }
   }
