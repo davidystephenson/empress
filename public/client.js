@@ -401,3 +401,41 @@ window.client = (() => {
 
   return { describe, start, bits: components, on }
 })()
+
+const cursor = { x: 0, y: 0 }
+
+const saveCursorPosition = function (x, y) {
+  cursor.x = (x / window.innerWidth).toFixed(2)
+  cursor.y = (y / window.innerHeight).toFixed(2)
+}
+
+document.addEventListener('mousemove', e => { saveCursorPosition(e.clientX, e.clientY) })
+document.addEventListener('keydown', e => {
+  console.log('keydown', e)
+  if (e.code === 'Space') {
+    console.log('space cursor', cursor)
+    if (window.details == null) {
+      console.log('details', window.overScheme)
+      window.details = document.createElement('div')
+      window.details.textContent = 'hello'
+      window.details.style.position = 'absolute'
+      window.details.style.left = `${cursor.x * 100}vw`
+      window.details.style.bottom = `${cursor.y * 100}vh`
+      window.details.style.zIndex = 1000
+      window.details.style.backgroundColor = 'white'
+      window.details.style.padding = '10px'
+      window.details.style.border = '1px solid black'
+      window.details.style.borderRadius = '5px'
+      window.details.style.boxShadow = '5px 5px 5px black'
+      window.details.style.fontSize = '20px'
+      document.body.appendChild(window.details)
+    }
+  }
+})
+document.addEventListener('keyup', e => {
+  console.log('keyup', e)
+  if (e.code === 'Space') {
+    document.body.removeChild(window.details)
+    window.details = null
+  }
+})

@@ -91,9 +91,18 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     }
   }
 
+  window.overScheme = null
   const mouseover = function () {
     if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
-      detailDiv.innerHTML = getDetails(this)
+      const details = getDetails(this)
+      detailDiv.innerHTML = details
+      window.overScheme = details
+    }
+  }
+
+  function handleMouseout () {
+    if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
+      window.overScheme = null
     }
   }
 
@@ -122,6 +131,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     this.drag(dragMove, dragStart, dragEnd)
     this.mousedown(mouseClick)
     this.mouseover(mouseover)
+    this.mouseout(handleMouseout)
     return this
   }
 })
