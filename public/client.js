@@ -476,17 +476,18 @@ document.addEventListener('mousemove', e => {
   renderSchemeOverlay('mousemove')
 })
 document.addEventListener('keydown', e => {
-  window.spaceDown = true
   if (e.code === 'Space') {
+    window.spaceDown = true
     renderSchemeOverlay('keydown')
   }
 })
 document.addEventListener('keyup', e => {
-  window.spaceDown = false
-  console.log('keyup', e)
-  if (e.code === 'Space' && window.schemeOverlay != null) {
-    document.body.removeChild(window.schemeOverlay)
-    window.schemeOverlay = null
-    window.schemeOverlayDetails = null
+  if (e.code === 'Space') {
+    window.spaceDown = false
+    if (window.schemeOverlay != null) {
+      document.body.removeChild(window.schemeOverlay)
+      window.schemeOverlay = null
+      window.schemeOverlayDetails = null
+    }
   }
 })
