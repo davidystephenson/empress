@@ -448,20 +448,7 @@ function renderSchemeOverlay (eventName) {
   window.schemeOverlay.innerHTML = window.overDetails
   window.schemeOverlayDetails = window.overDetails
   window.schemeOverlay.style.position = 'absolute'
-  const overRight = cursor.x + 175 > window.innerWidth
-  if (overRight) {
-    window.schemeOverlay.style.right = '0px'
-  } else {
-    const left = cursor.x - 175
-    window.schemeOverlay.style.left = `${left}px`
-  }
-  const overTop = cursor.y - 175 < 0
-  if (overTop) {
-    window.schemeOverlay.style.top = '0px'
-  } else {
-    const bottom = window.innerHeight - cursor.y
-    window.schemeOverlay.style.bottom = `${bottom}px`
-  }
+
   window.schemeOverlay.style.zIndex = 1000
   window.schemeOverlay.style.padding = '10px'
   window.schemeOverlay.style.border = '1px solid black'
@@ -471,6 +458,20 @@ function renderSchemeOverlay (eventName) {
   const background = window.colors[window.overColor]
   window.schemeOverlay.style.backgroundColor = background
   document.body.appendChild(window.schemeOverlay)
+  const overRight = cursor.x + 175 > window.innerWidth
+  if (overRight) {
+    window.schemeOverlay.style.right = '0px'
+  } else {
+    const left = cursor.x - 175
+    window.schemeOverlay.style.left = `${left}px`
+  }
+  const overTop = cursor.y - window.schemeOverlay.clientHeight < 0
+  if (overTop) {
+    window.schemeOverlay.style.top = '0px'
+  } else {
+    const bottom = window.innerHeight - cursor.y
+    window.schemeOverlay.style.bottom = `${bottom}px`
+  }
 }
 
 document.addEventListener('mousemove', e => {
