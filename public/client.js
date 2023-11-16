@@ -403,13 +403,6 @@ window.client = (() => {
   return { describe, start, bits: components, on }
 })()
 
-const cursor = { x: 0, y: 0 }
-
-const saveCursorPosition = function (x, y) {
-  cursor.x = (x / window.innerWidth).toFixed(2)
-  cursor.y = (y / window.innerHeight).toFixed(2)
-}
-
 window.annotateScheme = function (scheme) {
   return `<b>${scheme.title}</b><br><br>
     Color: ${scheme.color}<br><br>
@@ -439,6 +432,8 @@ window.annotateScheme = function (scheme) {
   `
 }
 
+const cursor = { x: 0, y: 0 }
+
 function renderSchemeOverlay (eventName) {
   if (window.overDetails == null) {
     return
@@ -453,9 +448,11 @@ function renderSchemeOverlay (eventName) {
   window.schemeOverlay.innerHTML = window.overDetails
   window.schemeOverlayDetails = window.overDetails
   window.schemeOverlay.style.position = 'absolute'
-  window.schemeOverlay.style.left = `${cursor.x * 100}vw`
-  const bottom = 100 - cursor.y * 100
-  window.schemeOverlay.style.bottom = `${bottom}vh`
+  console.log('cursor', cursor)
+  window.schemeOverlay.style.left = `${cursor.x}px`
+  const bottom = window.innerHeight - cursor.y
+  console.log('bottom', bottom)
+  window.schemeOverlay.style.bottom = `${bottom}px`
   window.schemeOverlay.style.zIndex = 1000
   window.schemeOverlay.style.padding = '10px'
   window.schemeOverlay.style.border = '1px solid black'
@@ -468,8 +465,15 @@ function renderSchemeOverlay (eventName) {
   document.body.appendChild(window.schemeOverlay)
 }
 
+const saveCursorPosition = function (x, y) {
+  cursor.x = (x / window.innerWidth).toFixed(2)
+  cursor.y = (y / window.innerHeight).toFixed(2)
+}
+
 document.addEventListener('mousemove', e => {
-  saveCursorPosition(e.clientX, e.clientY)
+  cursor.x = e.clientX
+  cursor.y = e.clientY
+  // saveCursorPosition(e.clientX, e.clientY)
   if (!window.spaceDown) {
     return
   }
