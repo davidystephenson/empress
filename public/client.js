@@ -448,26 +448,29 @@ function renderSchemeOverlay (eventName) {
   window.schemeOverlay.innerHTML = window.overDetails
   window.schemeOverlayDetails = window.overDetails
   window.schemeOverlay.style.position = 'absolute'
-  console.log('cursor', cursor)
-  window.schemeOverlay.style.left = `${cursor.x}px`
-  const bottom = window.innerHeight - cursor.y
-  console.log('bottom', bottom)
-  window.schemeOverlay.style.bottom = `${bottom}px`
+  const overRight = cursor.x + 175 > window.innerWidth
+  if (overRight) {
+    window.schemeOverlay.style.right = '0px'
+  } else {
+    const left = cursor.x - 175
+    window.schemeOverlay.style.left = `${left}px`
+  }
+  const overTop = cursor.y - 175 < 0
+  if (overTop) {
+    window.schemeOverlay.style.top = '0px'
+  } else {
+    const bottom = window.innerHeight - cursor.y
+    window.schemeOverlay.style.bottom = `${bottom}px`
+  }
   window.schemeOverlay.style.zIndex = 1000
   window.schemeOverlay.style.padding = '10px'
   window.schemeOverlay.style.border = '1px solid black'
   window.schemeOverlay.style.borderRadius = '5px'
   window.schemeOverlay.style.fontSize = '20px'
-  window.schemeOverlay.style.transform = 'translateX(-50%)'
   window.schemeOverlay.style.width = '350px'
   const background = window.colors[window.overColor]
   window.schemeOverlay.style.backgroundColor = background
   document.body.appendChild(window.schemeOverlay)
-}
-
-const saveCursorPosition = function (x, y) {
-  cursor.x = (x / window.innerWidth).toFixed(2)
-  cursor.y = (y / window.innerHeight).toFixed(2)
 }
 
 document.addEventListener('mousemove', e => {
