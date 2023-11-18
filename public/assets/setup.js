@@ -24,7 +24,7 @@ const describePortfolio = (x, y, playerIndex) => {
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 750, type: 'board' }),
     window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 150, type: 'screen', rotation: angle, player: playerIndex }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' }),
-    window.client.describe({ file: 'board/reserve', x: x, y: y + sgn * 500, type: 'board' })
+    window.client.describe({ file: sgn === 1 ? 'board/reserve' : 'board/reserve-top', x: x, y: y + sgn * 500, type: 'board' })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
@@ -53,7 +53,8 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 }),
   window.client.describe({ file: 'gold/50', x: x + 440, y: y - 120, type: 'bit', clones: 15 }),
   window.client.describe({ file: 'gold/50', x: x + 440, y: y + 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'card/front', x: x + 600, y: y, type: 'card', cardId: 1, clones: 50 })
+  window.client.describe({ file: 'card/front', x: x + 600, y: y + 120, type: 'card', cardId: 1, clones: 50 }),
+  window.client.describe({ file: 'card/front', x: x + 600, y: y - 120, type: 'card', cardId: 1, clones: 50 })
 ]
 
 const describeCourt = (x, y) => {

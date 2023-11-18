@@ -48,15 +48,22 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   const dragStart = function (x, y, event) {
+    const controlDown = event.ctrlKey
     const shiftDown = event.shiftKey
-    const ctrlDown = event.ctrlKey
-    const move = event.button === 0 && !isFrozen(this) && !shiftDown && !ctrlDown && ['card', 'bit'].includes(this.data('type'))
-    const flip = (event.button === 0 && shiftDown && this.data('twoSided')) ||
+    const groupSelect = event.button === 0 && shiftDown && !controlDown
+    const move = event.button === 0 && !isFrozen(this) && !controlDown && ['card', 'bit'].includes(this.data('type'))
+    const flip = (event.button === 0 && controlDown && this.data('twoSided')) ||
       (event.button === 1 && this.data('twoSided')) ||
       this.data('type') === 'screen'
-    const turnDown = event.button === 0 && ctrlDown && this.data('twoSided')
     const inStack = isInStack(this)
+    const cardOrBit = this.data('type') === 'card' || this.data('type') === 'bit'
     this.data('inStack', inStack)
+    if (groupSelect && cardOrBit) {
+      window.selected.push(this)
+      this.data('ot', this.transform().local)
+      window.setSelected(this, true)
+      console.log('dragStart', window.selected)
+    }
     if (this.data('type') === 'card' & !inStack) {
       window.bringToTop(this)
     }
@@ -88,11 +95,9 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       this.data('dragging', true)
       this.data('rotating', false)
       this.data('moved', true)
+      window.groupMoved = 0
     } else if (flip || this.data('type') === 'screen') {
       window.flipComponent(this)
-      this.data('moved', true)
-    } else if (turnDown) {
-      window.setSide(this, 'facedown')
       this.data('moved', true)
     }
   }
@@ -122,18 +127,37 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       this.data('inStack', inStack)
       this.data('moved', true)
       if (this.data('type') === 'bit' || this.data('type') === 'card') {
+        window.groupMoved += Math.abs(dx) + Math.abs(dy)
+        console.log('dragMove')
         const snapInvMatrix = this.transform().diffMatrix.invert()
         snapInvMatrix.e = 0
         snapInvMatrix.f = 0
         const tdx = snapInvMatrix.x(dx, dy)
         const tdy = snapInvMatrix.y(dx, dy)
         this.transform(`t${tdx},${tdy}${this.data('ot')}`)
+        window.selected.forEach(element => {
+          const snapInvMatrix = element.transform().diffMatrix.invert()
+          snapInvMatrix.e = 0
+          snapInvMatrix.f = 0
+          const tdx = snapInvMatrix.x(dx, dy)
+          const tdy = snapInvMatrix.y(dx, dy)
+          element.transform(`t${tdx},${tdy}${element.data('ot')}`)
+          element.data('moved', true)
+        })
       }
     }
   }
 
-  const dragEnd = function () {
+  const dragEnd = function (event) {
     this.data('dragging', false)
+    if (window.groupMoved) {
+      window.selected.forEach(element => {
+        window.setSelected(element, false)
+      })
+      window.selected = []
+      window.groupMoved = 0
+    }
+    console.log('dragEnd', window.selected)
   }
 
   Element.prototype.smartdrag = function () {

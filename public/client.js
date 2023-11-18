@@ -27,6 +27,8 @@ window.client = (() => {
   let seed = null
   window.layers = []
   window.plots = []
+  window.selected = []
+  window.groupMoved = 0
 
   const unique = arr => {
     const s = new Set(arr)
@@ -58,6 +60,17 @@ window.client = (() => {
   paper.mouseup(event => {
     if (event.button === 2) paper.zpd({ pan: false }, paperError)
   })
+
+  window.setSelected = function (component, selected) {
+    if (['card', 'bit'].includes(component.data('type'))) {
+      console.log('setSelected')
+      const selectedElement = hiddens[component.data('selectedId')]
+      console.log('selectedElement', selectedElement)
+      const display = selected ? 'block' : 'none'
+      console.log('display', display)
+      selectedElement.node.style.display = display
+    }
+  }
 
   window.setSide = function (component, side) {
     if (['card', 'screen'].includes(component.data('type'))) {
@@ -179,6 +192,8 @@ window.client = (() => {
         const string = getTemplateString(name)
         return templates[string].clone()
       }
+      const cardSelected = templates['card/selected'].clone()
+      const goldSelected = templates['gold/selected'].clone()
       const hidden = getTemplate('hidden')
       const facedown = getTemplate('facedown')
       const back = getTemplate('back')
@@ -232,6 +247,16 @@ window.client = (() => {
         component.data('type', 'screen')
         screens.push(component)
       }
+      if (type === 'bit') {
+        hiddens.push(goldSelected)
+        component.data('selectedId', hiddens.length - 1)
+        group.add(goldSelected)
+        goldSelected.node.style.display = 'block'
+        component.append(goldSelected)
+        goldSelected.node.style.display = 'none'
+        goldSelected.attr({ opacity: 1 })
+        goldSelected.transform('')
+      }
       if (twoSided) {
         component.data('twoSided', true)
         component.data('side', 'front')
@@ -265,6 +290,16 @@ window.client = (() => {
         back.attr({ opacity: 0 })
         back.transform('')
         back.data('details', 'Back')
+
+        hiddens.push(cardSelected)
+        component.data('selectedId', hiddens.length - 1)
+        group.add(cardSelected)
+        cardSelected.node.style.display = 'block'
+        component.append(cardSelected)
+        cardSelected.node.style.display = 'none'
+        cardSelected.attr({ opacity: 1 })
+        cardSelected.transform('')
+
         if (side === 'facedown') window.setSide(component, 'facedown')
       }
     })
@@ -288,7 +323,7 @@ window.client = (() => {
     const extraFiles = [
       'card/back', 'card/hidden', 'card/facedown', 'card/hourglass', 'card/gold',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
-      'board/ready-back', 'card/pawn'
+      'board/ready-back', 'card/pawn', 'card/selected', 'gold/selected'
     ]
     const files = unique(descriptions.map(item => item.file)).concat(extraFiles)
     files.forEach(file => {
