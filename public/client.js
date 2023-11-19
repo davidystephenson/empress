@@ -7,6 +7,7 @@ window.colors = {
   Yellow: '#ffffa3ff',
   None: 'white'
 }
+window.loaded = false
 
 window.client = (() => {
   const range = window.range
@@ -49,7 +50,14 @@ window.client = (() => {
     else console.warn('zoom complete')
     paper.panTo(800, 500, 200, null, function (err) {
       if (err) console.error(err)
-      else console.warn('pan complete')
+      else {
+        console.warn('pan complete')
+        if (!window.loaded) {
+          window.loaded = true
+          const loading = document.getElementById('loading')
+          loading.style.display = 'none'
+        }
+      }
     })
   })
 
@@ -63,11 +71,8 @@ window.client = (() => {
 
   window.setSelected = function (component, selected) {
     if (['card', 'bit'].includes(component.data('type'))) {
-      console.log('setSelected')
       const selectedElement = hiddens[component.data('selectedId')]
-      console.log('selectedElement', selectedElement)
       const display = selected ? 'block' : 'none'
-      console.log('display', display)
       selectedElement.node.style.display = display
     }
   }
