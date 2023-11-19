@@ -48,6 +48,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   const dragStart = function (x, y, event) {
+    console.log('dragStart', event)
     const controlDown = event.ctrlKey
     const shiftDown = event.shiftKey
     const groupSelect = event.button === 0 && shiftDown && !controlDown
@@ -63,6 +64,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       this.data('ot', this.transform().local)
       window.setSelected(this, true)
       console.log('dragStart', window.selected)
+      window.deselecting = false
     }
     if (this.data('type') === 'card' & !inStack) {
       window.bringToTop(this)
@@ -101,6 +103,22 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       this.data('moved', true)
     }
   }
+
+  function deselect () {
+    window.selected.forEach(element => {
+      window.setSelected(element, false)
+    })
+    window.selected = []
+    window.groupMoved = 0
+  }
+
+  window.addEventListener('mousedown', event => {
+    console.log('mousedown', event)
+    if (event.button === 0 && !event.ctrlKey && !event.shiftKey && window.deselecting) {
+      console.log('deselecting')
+      // deselect()
+    }
+  })
 
   const mouseover = function () {
     if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
@@ -151,11 +169,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   const dragEnd = function (event) {
     this.data('dragging', false)
     if (window.groupMoved) {
-      window.selected.forEach(element => {
-        window.setSelected(element, false)
-      })
-      window.selected = []
-      window.groupMoved = 0
+      deselect()
     }
     console.log('dragEnd', window.selected)
   }
