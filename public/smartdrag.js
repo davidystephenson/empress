@@ -94,6 +94,9 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     }
     if (move) {
       this.data('ot', this.transform().local)
+      window.selected.forEach(element => {
+        element.data('ot', element.transform().local)
+      })
       this.data('dragging', true)
       this.data('rotating', false)
       this.data('moved', true)
@@ -169,7 +172,11 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   const dragEnd = function (event) {
     this.data('dragging', false)
     if (window.groupMoved) {
-      deselect()
+      // window.selected.forEach(element => {
+      //   window.setSelected(element, false)
+      // })
+      // window.selected = []
+      window.groupMoved = 0
     }
     console.log('dragEnd', window.selected)
   }
