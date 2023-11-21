@@ -168,9 +168,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   const dragEnd = function (event) {
+    if (event.shiftKey) {
+      return
+    }
     this.data('dragging', false)
     if (window.groupMoved) {
       window.groupMoved = 0
+      deselect()
     }
   }
 
