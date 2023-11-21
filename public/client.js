@@ -7,7 +7,6 @@ window.colors = {
   Yellow: '#ffffa3ff',
   None: 'white'
 }
-window.loaded = false
 
 window.client = (() => {
   const range = window.range
@@ -29,7 +28,6 @@ window.client = (() => {
   window.layers = []
   window.plots = []
   window.selected = []
-  window.groupMoved = 0
 
   const unique = arr => {
     const s = new Set(arr)
@@ -52,11 +50,6 @@ window.client = (() => {
       if (err) console.error(err)
       else {
         console.warn('pan complete')
-        if (!window.loaded) {
-          window.loaded = true
-          const loading = document.getElementById('loading')
-          loading.style.display = 'none'
-        }
       }
     })
   })
@@ -320,6 +313,8 @@ window.client = (() => {
       msg.state.map(processUpdate)
       if (msg.layers.length > 0) updateLayers(msg.layers)
       screens.forEach((s, i) => i > 0 ? screens[0].after(s) : false)
+      const loading = document.getElementById('loading')
+      loading.style.display = 'none'
       setInterval(updateServer, 300)
     }
   }

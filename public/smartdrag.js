@@ -94,10 +94,12 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     }
     if (move) {
       this.data('ot', this.transform().local)
+      window.selected.forEach(element => {
+        element.data('ot', element.transform().local)
+      })
       this.data('dragging', true)
       this.data('rotating', false)
       this.data('moved', true)
-      window.groupMoved = 0
     } else if (flip || this.data('type') === 'screen') {
       window.flipComponent(this)
       this.data('moved', true)
@@ -105,7 +107,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   function deselect () {
-    console.log('deselect')
     window.selected.forEach(element => {
       window.setSelected(element, false)
     })
@@ -147,7 +148,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       this.data('inStack', inStack)
       this.data('moved', true)
       if (this.data('type') === 'bit' || this.data('type') === 'card') {
-        window.groupMoved += Math.abs(dx) + Math.abs(dy)
         const snapInvMatrix = this.transform().diffMatrix.invert()
         snapInvMatrix.e = 0
         snapInvMatrix.f = 0
@@ -168,14 +168,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   const dragEnd = function (event) {
-    if (event.shiftKey) {
-      return
-    }
     this.data('dragging', false)
-    if (window.groupMoved) {
-      window.groupMoved = 0
-      deselect()
-    }
   }
 
   Element.prototype.smartdrag = function () {
