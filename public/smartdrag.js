@@ -171,11 +171,19 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     this.data('dragging', false)
   }
 
+  const hover = function () {
+    console.log(this)
+  }
+
+  // SVGSVGElement.getIntersectionList()  (from SVGSVGElement)
+  // Element.hover    (from Snap.svg)
+
   Element.prototype.smartdrag = function () {
     this.drag(dragMove, dragStart, dragEnd)
     this.mousedown(mouseClick)
     this.mouseover(mouseover)
     this.mouseout(handleMouseout)
+    this.hover(hover)
     return this
   }
 })

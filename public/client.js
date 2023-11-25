@@ -315,6 +315,8 @@ window.client = (() => {
       screens.forEach((s, i) => i > 0 ? screens[0].after(s) : false)
       const loading = document.getElementById('loading')
       loading.style.display = 'none'
+      const title = document.getElementById('title')
+      title.style.visibility = 'visible'
       setInterval(updateServer, 300)
     }
   }

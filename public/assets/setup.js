@@ -69,8 +69,6 @@ const annotate = function (description) {
   description.details = ''
   if (description.type === 'card') {
     const plot = window.plots[description.cardId]
-    // console.log('description', description)
-    // console.log('plot', plot)
     description.time = plot.time
     description.color = plot.color
     description.details = window.annotateScheme(plot)

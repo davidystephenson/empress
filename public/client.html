@@ -48,27 +48,89 @@
       <svg id="mysvg"></svg>
     </div>
     <div
+      id="title"
+      style="
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 2vh;
+        padding: 2vh;
+        visibility: hidden;
+        z-index: -1;
+      "
+    >
+      <p
+        style="
+          font-size: 3vh;
+          font-weight: bold;
+        "
+      >
+        Long Live the Empress
+      </p>
+      <p
+        style="
+          font-size: 2vh;
+        "
+      >
+        Every monarch has blood on their hands
+      </p>
+    </div>
+    <div
       id="loading"
       style="
         position: absolute;
-        width: 100%;
+        width: 75%;
         height: 100%;
         background: rgba(255, 255, 255, 0.2);
         display: flex;
         justify-content: center;
         align-items: center;
+        right: 0;
       "
     >
-      <p
+      <div
         style="
-          font-size: 5vh;
-          font-weight: bold;
-          background: rgba(255, 255, 255, 0.5);
-          padding: 5vh;
+          background: rgba(255, 255, 255, 1);
+          padding: 1vh;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 6vh;
         "
       >
-        Loading...
-      </p>
+        <p
+          style="
+            font-size: 9vh;
+            font-weight: bold;
+          "
+        >
+          Long Live the Empress
+        </p>
+
+        <p
+          style="
+            font-size: 6vh;
+          "
+        >
+          Every monarch has blood on their hands
+        </p>
+        
+        <p
+          style="
+            font-size: 5vh;
+            font-weight: bold;
+          "
+        >
+          Loading...
+        </p>
+      </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script> 
     <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
