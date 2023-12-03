@@ -213,7 +213,7 @@ window.client = (() => {
           const pawn = templates['card/pawn'].clone()
           component.append(pawn)
           pawn.node.style.display = 'block'
-          pawn.transform('t15,940')
+          pawn.transform('t20,925')
         }
         const buyBonus = plot.rank === '14' || plot.rank === '15'
         if (buyBonus) {
@@ -441,31 +441,12 @@ window.client = (() => {
 })()
 
 window.annotateScheme = function (scheme) {
-  return `<b>${scheme.title}</b><br><br>
+  return `<h1>${scheme.rank}</h1><br><br>
     Color: ${scheme.color}<br><br>
     Time: ${scheme.time}<br><br>
-    Rank: ${scheme.rank}<br><br>
     ${scheme.beginning}<br><br>
     ${scheme.end}<br><br>
     ${scheme.bonus && scheme.bonus !== '' ? `<strong>Bonus</strong>: ${scheme.bonus}<br><br>` : ''}
-    <table>
-      <tr>
-        <td style="vertical-align: middle;">
-          <img src="${scheme.icon1}" style="height: 16px" />
-        </td>
-        <td style="vertical-align: middle;">
-          <a href="${scheme.link1}" target="_blank">${scheme.label1}</a>
-        </td>
-      </tr>
-      <tr>
-        <td style="vertical-align: middle;">
-          <img src="${scheme.icon2}" style="height: 16px" />
-        </td>
-        <td style="vertical-align: middle;">
-          <a href="${scheme.link2}" target="_blank">${scheme.label2}</a>
-        </td>
-      </tr>
-    </table>
   `
 }
 

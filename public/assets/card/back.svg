@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.81228895"
-     inkscape:cx="-456.11848"
-     inkscape:cy="-30.777225"
+     inkscape:cx="-579.22738"
+     inkscape:cy="-29.546136"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
      showgrid="true"
@@ -76,18 +76,28 @@
          width="187.76584"
          id="rect4175"
          style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:12.2342;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.5714px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.33929"
-         x="880.46368"
-         y="-30.499266"
-         id="text2762-3"
-         transform="rotate(90)"><tspan
-           sodipodi:role="line"
-           id="tspan2760-6"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:53.57140075px;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;stroke-width:1.33929"
-           x="880.46368"
-           y="-30.499266">SCHEME</tspan></text>
+      <g
+         aria-label="SHIP"
+         transform="rotate(90,-2.1222046e-5,8.7779542e-6)"
+         id="text2762"
+         style="font-weight:bold;font-size:85.7698px;line-height:1.25;-inkscape-font-specification:'sans-serif, Bold';stroke-width:1.33929;fill:#ffffff">
+        <path
+           d="m 938.26516,-79.33679 v 13.234012 q -5.15122,-2.303388 -10.05115,-3.476022 -4.89994,-1.172634 -9.25543,-1.172634 -5.77941,0 -8.54348,1.591432 -2.76406,1.591432 -2.76406,4.941814 0,2.512787 1.84271,3.9367 1.88459,1.382033 6.78452,2.387148 l 6.86829,1.382033 q 10.42806,2.093989 14.82544,6.365727 4.39738,4.271738 4.39738,12.145137 0,10.344307 -6.15633,15.411761 -6.11445,5.025574 -18.72027,5.025574 -5.94692,0 -11.93573,-1.130754 -5.98881,-1.130754 -11.97762,-3.350383 v -13.61093 q 5.98881,3.182864 11.55882,4.816175 5.61189,1.591432 10.80498,1.591432 5.27686,0 8.0828,-1.758951 2.80595,-1.758951 2.80595,-5.025574 0,-2.931585 -1.92647,-4.523017 -1.88459,-1.591431 -7.58024,-2.847825 l -6.24009,-1.382033 q -9.38107,-2.010229 -13.73657,-6.407607 -4.31362,-4.397377 -4.31362,-11.851979 0,-9.339192 6.03069,-14.364766 6.03069,-5.025574 17.33823,-5.025574 5.15121,0 10.59559,0.795716 5.44437,0.753836 11.26566,2.303388 z"
+           id="path5533"
+           style="fill:#ffffff" />
+        <path
+           d="m 956.52474,-81.30514 h 16.12372 v 23.829598 h 23.78772 V -81.30514 h 16.12372 v 62.526518 h -16.12372 v -26.509903 h -23.78772 v 26.509903 h -16.12372 z"
+           id="path5535"
+           style="fill:#ffffff" />
+        <path
+           d="m 1028.3067,-81.30514 h 16.1237 v 62.526518 h -16.1237 z"
+           id="path5537"
+           style="fill:#ffffff" />
+        <path
+           d="m 1060.2191,-81.30514 h 26.7612 q 11.9357,0 18.3014,5.318733 6.4076,5.276853 6.4076,15.076722 0,9.84175 -6.4076,15.160482 -6.3657,5.276853 -18.3014,5.276853 h -10.6375 v 21.693728 h -16.1237 z m 16.1237,11.68446 v 17.46387 h 8.9204 q 4.6905,0 7.2452,-2.261508 2.5547,-2.303388 2.5547,-6.491367 0,-4.187978 -2.5547,-6.449486 -2.5547,-2.261509 -7.2452,-2.261509 z"
+           id="path5539"
+           style="fill:#ffffff" />
+      </g>
     </g>
   </g>
 </svg>

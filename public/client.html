@@ -2,43 +2,43 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>Long Live the Empress</title>
+    <title>Apocalypse Tycoon</title>
     <link rel="stylesheet" href="client.css">
     <script src="snap.svg-min.js"></script>
     <script src="snap.svg.zpd.js"></script>
   </head>
   <body>
     <div style="width: 25%; height: 100vh; float: left;">
-      <div style="font-size: 1.5vh; text-align: left; height: 51vh; border: 5px solid black; border-top: 0px; padding: 0 5px; user-select: none; overflow: hidden;">
+      <div style="font-size: 1.5vh; text-align: left; height: 55vh; border: 5px solid black; border-top: 0px; padding: 0 5px; user-select: none; overflow: hidden;">
       <div>
-<h3>Play</h3>
+<h3>Launch</h3>
 <pre>
-- Exile 1 scheme in your hand face down
-- Play 1 scheme from your hand face down
-- Reveal play scheme simultaneously
-- If total time is more than player count, summon left timeline scheme to court
-- Take listed actions
+- Scrap 1 ship in your hand face down
+- Launch 1 ship into orbit from your hand face down
+- Reveal ship simultaneously
+- If total time is more than player count, move smallest supply ship to market
+- Take listed actions on ship in orbit
 </pre>
-<h3>Trial</h3>
+<h3>Piracy</h3>
 <pre>
-- Draw until you have at least 3 schemes in hand
-- Summon highest rank in play to court, ties go to dungeon
-- If timeline is empty, game ends:
-  - Points equals rank on schemes in hand
-  - 1 point for each gold and silver
-  - Tiebreaker is highest rank scheme in hand
+- Draw until you have at least 3 ship in hand
+- Biggest ship in orbit goes to market, ties go to the masses
+- If supply is empty, game ends:
+  - Points equals size on schemes in hand
+  - 1 point for dollars and credits
+  - Tiebreaker is biggest ship in hand
 </pre>
-<h3>Bribery</h3>
+<h3>Auction</h3>
 <pre>
-- Raise bid by any amount of gold at any time
+- Raise bid by any amount of dollars at any time
 - Withdraw if tied and not last bidder
-- When no one wants to, highest untied bidder takes left timeline scheme
-- Buyer may take any schemes from court
+- When no one wants to, highest untied bidder takes smallest supply ship
+- Buyer may take any ships from market
 </pre>
-<h3>Verdict</h3>
+<h3>Production</h3>
 <pre>
-- Imprison lowest rank from court to dungeon
-- Reserve schemes in play from lowest to highest
+- Give smallest ship in market to masses
+- Move ships in orbit to production from lowest to highest
 </pre>
       </div>
       </div>
@@ -70,15 +70,15 @@
           font-weight: bold;
         "
       >
-        Long Live the Empress
+        Apocalypse Tycoon
       </p>
-      <p
+      <!-- <p
         style="
           font-size: 2vh;
         "
       >
         Every monarch has blood on their hands
-      </p>
+      </p> -->
     </div>
     <div
       id="loading"
@@ -111,17 +111,9 @@
             font-weight: bold;
           "
         >
-          Long Live the Empress
+          Apocalypse Tycoon
         </p>
 
-        <p
-          style="
-            font-size: 6vh;
-          "
-        >
-          Every monarch has blood on their hands
-        </p>
-        
         <p
           style="
             font-size: 5vh;

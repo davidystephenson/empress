@@ -30,7 +30,7 @@ pre {
   border: 5px solid black; 
   border-top: 0px; 
   border-bottom: 0px; 
-  padding: 20px 5px; 
+  padding: 15px; 
   user-select: none; 
   overflow: auto;
 }

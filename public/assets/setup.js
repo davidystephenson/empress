@@ -35,10 +35,13 @@ const describePortfolio = (x, y, playerIndex) => {
     return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 500, type: 'card', cardId: reserveId })
   })
   const gold = [
-    ...describeRow('gold/5', x - 220, y - sgn * 150, 'bit', 4, 100),
-    ...describeRow('gold/10', x + 130, y - sgn * 150, 'bit', 3, 300)
+    ...describeRow('gold/5', x - 250, y - sgn * 150, 'bit', 4, 320),
+    ...describeRow('gold/10', x + 250, y - sgn * 150, 'bit', 3, 240)
   ]
-  const descriptions = [...boards, ...hand, ...reserve, ...gold]
+  const pods = [
+    window.client.describe({ file: 'card/front', x: x + 730, y: y + sgn * 500, type: 'card', cardId: 1, clones: 50 })
+  ]
+  const descriptions = [...boards, ...hand, ...reserve, ...gold, ...pods]
   return descriptions
 }
 
@@ -50,11 +53,9 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/10', x: x + 60, y: y - 120, type: 'bit', clones: 30 }),
   window.client.describe({ file: 'gold/10', x: x + 60, y: y + 120, type: 'bit', clones: 30 }),
   window.client.describe({ file: 'gold/25', x: x + 260, y: y - 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'gold/50', x: x + 440, y: y - 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'gold/50', x: x + 440, y: y + 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'card/front', x: x + 600, y: y + 120, type: 'card', cardId: 1, clones: 50 }),
-  window.client.describe({ file: 'card/front', x: x + 600, y: y - 120, type: 'card', cardId: 1, clones: 50 })
+  window.client.describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 })
+  // window.client.describe({ file: 'gold/50', x: x + 440, y: y - 120, type: 'bit', clones: 15 }),
+  // window.client.describe({ file: 'gold/50', x: x + 440, y: y + 120, type: 'bit', clones: 15 }),
 ]
 
 const describeCourt = (x, y) => {

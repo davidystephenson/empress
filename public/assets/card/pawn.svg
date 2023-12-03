@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="40mm"
-   height="86.72802mm"
-   viewBox="0 0 40 86.728017"
+   width="105.01294"
+   height="449.99988"
+   viewBox="0 0 27.784673 119.06247"
    version="1.1"
    id="svg322"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.77593294"
-     inkscape:cx="77.970656"
+     inkscape:cx="-85.703283"
      inkscape:cy="422.71694"
      inkscape:window-width="1920"
      inkscape:window-height="1031"
@@ -39,11 +39,27 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-41.980237,-41.75848)">
-    <path
-       class="st0"
-       d="m 81.980237,112.98547 c 0,-2.24948 -3.435583,-7.21881 -8.650307,-10.67484 L 70.098847,76.093859 c 3.067484,-0.572598 5.051124,-1.451943 5.051124,-2.433539 0,-1.083843 -2.413087,-3.537832 -6.053169,-5.173824 4.294478,-2.474437 7.198364,-7.096114 7.198364,-12.413088 0,-7.91411 -6.400818,-14.314928 -14.314929,-14.314928 -7.91411,0 -14.314928,6.400818 -14.314928,14.314928 0,5.316974 2.903885,9.938651 7.198363,12.413088 -3.640081,1.635992 -6.053169,4.089981 -6.053169,5.173824 0,0.981596 1.98364,1.860941 5.051124,2.433539 l -3.231083,26.216771 c -5.235174,3.47648 -8.650307,8.44581 -8.650307,10.67484 0,0.79755 0.429448,1.57465 1.247444,2.2904 -0.797547,2.49488 -1.247444,5.84867 -1.247444,6.64622 0,3.61962 8.957055,6.56441 20,6.56441 11.042945,0 20,-2.94479 20,-6.56441 0,-0.818 -0.449897,-4.06954 -1.288344,-6.62577 0.838447,-0.69531 1.288344,-1.49285 1.288344,-2.31085 z"
-       id="path4"
-       style="fill:#000000;stroke-width:0.264583" />
+     transform="translate(-41.980235,-41.758765)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:51.4531px;line-height:0.8;font-family:monospace;-inkscape-font-specification:'monospace, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264584"
+       x="40.436642"
+       y="78.496277"
+       id="text2634"><tspan
+         sodipodi:role="line"
+         id="tspan2632"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:51.4531px;font-family:monospace;-inkscape-font-specification:'monospace, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264584"
+         x="40.436642"
+         y="78.496277">P</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:51.4531px;font-family:monospace;-inkscape-font-specification:'monospace, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264584"
+         x="40.436642"
+         y="119.65875"
+         id="tspan2636">O</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:51.4531px;font-family:monospace;-inkscape-font-specification:'monospace, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264584"
+         x="40.436642"
+         y="160.82123"
+         id="tspan2638">D</tspan></text>
   </g>
 </svg>
