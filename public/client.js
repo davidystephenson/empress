@@ -220,7 +220,7 @@ window.client = (() => {
           const gold = templates['card/gold'].clone()
           component.append(gold)
           gold.node.style.display = 'block'
-          gold.transform('t50,105')
+          gold.transform('t-5,118')
         }
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
