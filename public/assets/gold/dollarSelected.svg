@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
-   width="1.3437084in"
-   height="1.3332779in"
-   viewBox="0 0 120.93375 119.99501"
+   width="1.343375in"
+   height="1.0416667in"
+   viewBox="0 0 120.90374 93.750004"
    id="svg2"
    version="1.1"
    inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="selected.svg"
+   sodipodi:docname="dollarSelected.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,20 +23,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.829514"
-     inkscape:cx="41.814383"
-     inkscape:cy="63.95141"
+     inkscape:zoom="1.6245779"
+     inkscape:cx="-162.81152"
+     inkscape:cy="202.51414"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
      showgrid="true"
      units="in"
      inkscape:showpageshadow="false"
-     showguides="true"
+     showguides="false"
      inkscape:window-width="1920"
      inkscape:window-height="1031"
      inkscape:window-x="1920"
      inkscape:window-y="24"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      objecttolerance="10000"
      inkscape:snap-bbox="true"
      guidetolerance="10000"
@@ -48,22 +46,10 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:bbox-nodes="false"
-     inkscape:snap-page="false"
-     inkscape:snap-global="true"
-     inkscape:guide-bbox="true"
+     inkscape:document-rotation="0"
+     inkscape:snap-bbox-midpoints="true"
      inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1">
-    <sodipodi:guide
-       position="242.91371,-11.192556"
-       orientation="0,1"
-       id="guide1452"
-       inkscape:locked="false" />
-    <sodipodi:guide
-       position="240.72621,-63.145657"
-       orientation="0,1"
-       id="guide1454"
-       inkscape:locked="false" />
-  </sodipodi:namedview>
+     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -79,15 +65,17 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(167.2341,-827.06498)">
+     transform="translate(63.367983,-785.35118)">
     <g
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
-      <path
-         style="fill:#ffffff;fill-opacity:0.5;stroke:none;stroke-width:10.0713;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         d="m -191.14314,916.69614 c -28.69876,-6.2579 -52.25512,-27.7436 -61.35357,-55.9601 -1.38873,-4.3068 -2.22258,-10.6901 -2.60711,-19.9579 -0.48261,-11.63171 -0.24166,-14.89517 1.64631,-22.29822 7.33361,-28.75621 29.53836,-51.40629 58.1002,-59.26547 9.58512,-2.63747 32.61037,-2.69362 42.14161,-0.10277 22.0629,5.99731 40.88383,21.15171 51.53098,41.49214 23.7097,45.29522 -0.83083,100.97332 -50.65798,114.93402 -11.23379,3.1476 -27.45712,3.6318 -38.80044,1.1583 z"
-         id="path824"
-         inkscape:connector-curvature="0" />
+      <rect
+         style="fill:#ffffff;fill-opacity:0.5;stroke:none;stroke-width:10.0446;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1004"
+         width="162.67503"
+         height="123.88397"
+         x="-106.93196"
+         y="697.36877" />
     </g>
   </g>
 </svg>
