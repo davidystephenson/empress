@@ -24,7 +24,8 @@ const describePortfolio = (x, y, playerIndex) => {
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 750, type: 'board' }),
     window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 150, type: 'screen', rotation: angle, player: playerIndex }),
     window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' }),
-    window.client.describe({ file: sgn === 1 ? 'board/reserve' : 'board/reserve-top', x: x, y: y + sgn * 500, type: 'board' })
+    window.client.describe({ file: sgn === 1 ? 'board/reserve' : 'board/reserve-top', x: x, y: y + sgn * 500, type: 'board' }),
+    window.client.describe({ file: 'board/stack', x: x + 730, y: y + sgn * 500, type: 'stack' })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160

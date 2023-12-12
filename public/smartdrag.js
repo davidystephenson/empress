@@ -2,6 +2,8 @@
 const detailDiv = document.getElementById('detail')
 
 window.Snap.plugin(function (Snap, Element, Paper, global) {
+  const cursor = { stacksOver: [] }
+
   const mouseClick = event => {
     //
   }
@@ -26,6 +28,37 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     .parent()
     .children()
 
+  const getStacksOver = (x, y) => {
+    if (window.lastOver == null) return false
+    const elements = siblings(window.lastOver)
+    const stacks = elements.filter(a => a.data('type') === 'stack')
+    return stacks.filter(stack => {
+      const box = stack.node.getBoundingClientRect()
+      const inX = box.left < x && x < box.right
+      const inY = box.top < y && y < box.bottom
+      return inX && inY
+    })
+  }
+
+  window.prepareTenPods = function (n) {
+    console.log('n', n)
+    if (cursor.stacksOver.length !== 1) return false
+    const stack = cursor.stacksOver[0]
+    const elements = siblings(window.lastOver)
+    const cards = elements.filter(element => element.data('type') === 'card')
+    const pods = cards.filter(card => card.data('rank') === 1)
+    const podsInStack = pods.filter(pod => intersect(pod, stack))
+    const tenPods = podsInStack.slice(0, n)
+    tenPods.forEach((pod, index) => {
+      select(pod)
+      const y = 0
+      const x = 50 * (tenPods.length - index - 1)
+      pod.transform(stack.transform().string + 't' + x + ',' + y)
+      window.bringToTop(pod)
+    })
+    console.log('window.selected.length', window.selected.length)
+  }
+
   const isInStack = a => siblings(a)
     .filter(bit => ['deck', 'discard'].includes(bit.data('type')))
     .some(stack => intersect(a, stack))
@@ -48,6 +81,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       : bit.data('color')
   }
 
+  const select = (element) => {
+    window.selected.push(element)
+    element.data('ot', element.transform().local)
+    window.setSelected(element, true)
+    window.clickingGroup = true
+  }
+
   const dragStart = function (x, y, event) {
     const controlDown = event.ctrlKey
     const shiftDown = event.shiftKey
@@ -60,10 +100,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     const cardOrBit = this.data('type') === 'card' || this.data('type') === 'bit'
     this.data('inStack', inStack)
     if (groupSelect && cardOrBit) {
-      window.selected.push(this)
-      this.data('ot', this.transform().local)
-      window.setSelected(this, true)
-      window.clickingGroup = true
+      select(this)
     }
     if (window.selected.includes(this)) {
       window.clickingGroup = true
@@ -120,7 +157,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     window.clickingGroup = false
   })
 
+  const mousemove = function (event) {
+    cursor.stacksOver = getStacksOver(event.clientX, event.clientY)
+    console.log('cursor.stacksOver.length', cursor.stacksOver.length)
+  }
+
   const mouseover = function () {
+    window.lastOver = this
     if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
       const details = getDetails(this)
       detailDiv.innerHTML = details
@@ -172,11 +215,12 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   const hover = function () {
-    console.log(this)
+    // console.log(this)
   }
 
   // SVGSVGElement.getIntersectionList()  (from SVGSVGElement)
   // Element.hover    (from Snap.svg)
+  document.addEventListener('mousemove', mousemove)
 
   Element.prototype.smartdrag = function () {
     this.drag(dragMove, dragStart, dragEnd)

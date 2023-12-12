@@ -62,6 +62,13 @@ window.client = (() => {
     if (event.button === 2) paper.zpd({ pan: false }, paperError)
   })
 
+  window.addEventListener('keydown', (event) => {
+    console.log('event.key', event.key)
+    const n = Number(event.key) === 0 ? 10 : Number(event.key)
+    if (isNaN(n)) return false
+    if (n > 0) window.prepareTenPods(n)
+  })
+
   window.setSelected = function (component, selected) {
     if (['card', 'bit'].includes(component.data('type'))) {
       const selectedElement = hiddens[component.data('selectedId')]
@@ -198,6 +205,7 @@ window.client = (() => {
       if (type === 'card') {
         component.data('type', 'card')
         const plot = window.plots[description.cardId]
+        component.data('rank', Number(plot.rank))
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: window.colors[plot.color] })
         const rank1 = plot.rank === '1'
@@ -450,7 +458,7 @@ window.annotateScheme = function (scheme) {
   `
 }
 
-const cursor = { x: 0, y: 0 }
+window.cursor = { x: 0, y: 0 }
 
 function renderSchemeOverlay (eventName) {
   if (window.overDetails == null) {
@@ -476,25 +484,25 @@ function renderSchemeOverlay (eventName) {
   const background = window.colors[window.overColor]
   window.schemeOverlay.style.backgroundColor = background
   document.body.appendChild(window.schemeOverlay)
-  const overRight = cursor.x + 175 > window.innerWidth
+  const overRight = window.cursor.x + 175 > window.innerWidth
   if (overRight) {
     window.schemeOverlay.style.right = '0px'
   } else {
-    const left = cursor.x - 175
+    const left = window.cursor.x - 175
     window.schemeOverlay.style.left = `${left}px`
   }
-  const overTop = cursor.y - window.schemeOverlay.clientHeight < 0
+  const overTop = window.cursor.y - window.schemeOverlay.clientHeight < 0
   if (overTop) {
     window.schemeOverlay.style.top = '0px'
   } else {
-    const bottom = window.innerHeight - cursor.y
+    const bottom = window.innerHeight - window.cursor.y
     window.schemeOverlay.style.bottom = `${bottom}px`
   }
 }
 
 document.addEventListener('mousemove', e => {
-  cursor.x = e.clientX
-  cursor.y = e.clientY
+  window.cursor.x = e.clientX
+  window.cursor.y = e.clientY
   // saveCursorPosition(e.clientX, e.clientY)
   if (!window.spaceDown) {
     return
