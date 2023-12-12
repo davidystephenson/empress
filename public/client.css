@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden; 
+  background: #321A43
 } 
 canvas { 
   padding-left: 0;
@@ -26,7 +27,7 @@ pre {
 #detail {
   font-size: 1.8vh; 
   text-align: left; 
-  height: 50vh; 
+  height: 42vh; 
   border: 5px solid black; 
   border-top: 0px; 
   border-bottom: 0px; 

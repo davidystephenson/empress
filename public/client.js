@@ -158,6 +158,7 @@ window.client = (() => {
 
   const addComponent = (description) => {
     const { x, y, rotation, type, clones, file, details, side, player, color } = description
+    console.log('file', file)
     const template = templates[file]
     const startMatrix = template.transform().localMatrix.translate(x, y)
     range(clones + 1).forEach(i => {
@@ -197,8 +198,6 @@ window.client = (() => {
         const string = getTemplateString(name)
         return templates[string].clone()
       }
-      const cardSelected = templates['card/selected'].clone()
-      const goldSelected = templates['gold/selected'].clone()
       const hidden = getTemplate('hidden')
       const facedown = getTemplate('facedown')
       const back = getTemplate('back')
@@ -228,7 +227,7 @@ window.client = (() => {
           const gold = templates['card/gold'].clone()
           component.append(gold)
           gold.node.style.display = 'block'
-          gold.transform('t-5,118')
+          gold.transform('t-5,120')
         }
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
@@ -254,14 +253,27 @@ window.client = (() => {
         screens.push(component)
       }
       if (type === 'bit') {
-        hiddens.push(goldSelected)
-        component.data('selectedId', hiddens.length - 1)
-        group.add(goldSelected)
-        goldSelected.node.style.display = 'block'
-        component.append(goldSelected)
-        goldSelected.node.style.display = 'none'
-        goldSelected.attr({ opacity: 1 })
-        goldSelected.transform('')
+        if (file === 'gold/1') {
+          const goldSelected = templates['gold/selected'].clone()
+          hiddens.push(goldSelected)
+          component.data('selectedId', hiddens.length - 1)
+          group.add(goldSelected)
+          goldSelected.node.style.display = 'block'
+          component.append(goldSelected)
+          goldSelected.node.style.display = 'none'
+          goldSelected.attr({ opacity: 1 })
+          goldSelected.transform('')
+        } else {
+          const dollarSelected = templates['gold/dollarSelected'].clone()
+          hiddens.push(dollarSelected)
+          component.data('selectedId', hiddens.length - 1)
+          group.add(dollarSelected)
+          dollarSelected.node.style.display = 'block'
+          component.append(dollarSelected)
+          dollarSelected.node.style.display = 'none'
+          dollarSelected.attr({ opacity: 1 })
+          dollarSelected.transform('')
+        }
       }
       if (twoSided) {
         component.data('twoSided', true)
@@ -296,7 +308,7 @@ window.client = (() => {
         back.attr({ opacity: 0 })
         back.transform('')
         back.data('details', 'Back')
-
+        const cardSelected = templates['card/selected'].clone()
         hiddens.push(cardSelected)
         component.data('selectedId', hiddens.length - 1)
         group.add(cardSelected)
@@ -333,7 +345,7 @@ window.client = (() => {
     const extraFiles = [
       'card/back', 'card/hidden', 'card/facedown', 'card/hourglass', 'card/gold',
       'board/screen-back', 'board/screen-hidden', 'board/screen-facedown',
-      'board/ready-back', 'card/pawn', 'card/selected', 'gold/selected'
+      'board/ready-back', 'card/pawn', 'card/selected', 'gold/selected', 'gold/dollarSelected'
     ]
     const files = unique(descriptions.map(item => item.file)).concat(extraFiles)
     files.forEach(file => {
