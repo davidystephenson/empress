@@ -91,7 +91,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   const dragStart = function (x, y, event) {
     const controlDown = event.ctrlKey
     const shiftDown = event.shiftKey
-    const groupSelect = event.button === 0 && shiftDown && !controlDown
+    const groupSelect = event.button === 2 || (shiftDown && !controlDown)
     const move = event.button === 0 && !isFrozen(this) && !controlDown && ['card', 'bit'].includes(this.data('type'))
     const flip = (event.button === 0 && controlDown && this.data('twoSided')) ||
       (event.button === 1 && this.data('twoSided')) ||
