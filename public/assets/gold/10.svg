@@ -2,10 +2,10 @@
 <svg
    width="1.343375in"
    height="1.0416667in"
-   viewBox="0 0 120.90374 93.750006"
+   viewBox="0 0 120.90374 93.750004"
    id="svg2"
    version="1.1"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
    sodipodi:docname="10.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,8 +24,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6245779"
-     inkscape:cx="-48.320244"
-     inkscape:cy="149.57731"
+     inkscape:cx="-82.790736"
+     inkscape:cy="202.51414"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
      showgrid="true"
@@ -33,9 +33,9 @@
      inkscape:showpageshadow="false"
      showguides="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1031"
-     inkscape:window-x="0"
-     inkscape:window-y="24"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      objecttolerance="10000"
      inkscape:snap-bbox="true"
@@ -48,7 +48,6 @@
      inkscape:bbox-nodes="false"
      inkscape:document-rotation="0"
      inkscape:snap-bbox-midpoints="true"
-     inkscape:snap-global="true"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1" />
   <metadata
@@ -66,7 +65,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(198.45723,-834.40232)">
+     transform="translate(63.367983,-785.35118)">
     <g
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
@@ -75,18 +74,20 @@
          id="rect1004"
          width="162.67503"
          height="123.88397"
-         x="-299.9166"
-         y="767.44183" />
+         x="-106.93196"
+         y="697.36877" />
       <g
-         aria-label="10 "
-         id="text495"
-         style="font-weight:600;font-size:101.347px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';fill:#ffffff;stroke-width:1.33929">
+         aria-label="10"
+         id="text3028"
+         style="font-size:99.3115px;line-height:1.25;stroke-width:2.4828">
         <path
-           d="m -252.27694,815.34726 h -17.22899 v -9.42527 q 18.64785,0 21.9923,-12.87107 h 9.42527 v 71.85502 h -14.18858 z"
-           id="path725" />
+           d="m -58.615503,745.55612 v 48.56333 h 13.90361 v -70.41186 h -9.23597 c -2.184853,8.34217 -9.434592,12.61256 -21.550595,12.61256 v 9.23597 z"
+           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Bold';fill:#ffffff"
+           id="path6602" />
         <path
-           d="m -180.21924,864.39921 q -4.96601,2.83772 -12.16164,2.83772 -7.19564,0 -12.16164,-2.83772 -4.96601,-2.93906 -7.70238,-8.31045 -2.63502,-5.3714 -3.74983,-11.75626 -1.11482,-6.4862 -1.11482,-14.89801 0,-18.3438 5.57408,-28.07311 5.57409,-9.83066 19.15459,-9.83066 7.09429,0 11.95894,2.73637 4.96601,2.63502 7.70237,7.90506 2.73637,5.27005 3.85119,11.95895 1.21616,6.6889 1.21616,15.70878 0,8.10776 -1.11481,14.49262 -1.11482,6.28352 -3.74984,11.75626 -2.63502,5.37139 -7.70237,8.31045 z m -1.62156,-34.86337 q 0,-14.69531 -2.73636,-20.57344 -2.63503,-5.97947 -7.80372,-5.97947 -5.67544,0 -8.10776,5.77678 -2.43233,5.67543 -2.43233,20.57344 0,10.33739 1.31751,16.21552 1.31751,5.77678 3.4458,7.70237 2.22963,1.82425 5.77678,1.82425 3.44579,0 5.57408,-1.82425 2.22964,-1.82425 3.54715,-7.60103 1.41885,-5.87812 1.41885,-16.11417 z"
-           id="path727" />
+           d="m 0.07757005,796.40361 c 19.56436595,0 24.23200595,-16.88295 24.23200595,-36.64594 0,-12.9105 -1.588984,-21.64991 -4.965575,-27.11204 -4.171083,-6.75319 -11.0235764,-10.42771 -19.26643095,-10.42771 -7.54767405,0 -14.00292205,3.17797 -18.27331605,9.03735 -4.071772,5.46213 -5.95869,14.49948 -5.95869,28.10515 0,20.45817 4.866263,37.04319 24.23200605,37.04319 z M 10.405966,759.45973 c 0,7.84561 -0.7944919,15.79053 -1.7876069,18.57125 -1.588984,4.17109 -4.568329,6.45525 -8.54078905,6.45525 -6.45524755,0 -10.32839605,-4.27039 -10.32839605,-25.22512 0,-19.96161 3.177968,-25.82099 10.32839605,-25.82099 6.35593605,0 10.32839595,4.07177 10.32839595,26.01961 z"
+           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Bold';fill:#ffffff"
+           id="path6604" />
       </g>
     </g>
   </g>

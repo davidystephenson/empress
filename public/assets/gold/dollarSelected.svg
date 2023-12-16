@@ -5,10 +5,6 @@
    viewBox="0 0 120.90374 93.750004"
    id="svg2"
    version="1.1"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="dollarSelected.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -16,40 +12,6 @@
    xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
      id="defs4" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="1.6245779"
-     inkscape:cx="-162.81152"
-     inkscape:cy="202.51414"
-     inkscape:document-units="in"
-     inkscape:current-layer="g20"
-     showgrid="true"
-     units="in"
-     inkscape:showpageshadow="false"
-     showguides="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1031"
-     inkscape:window-x="1920"
-     inkscape:window-y="24"
-     inkscape:window-maximized="1"
-     objecttolerance="10000"
-     inkscape:snap-bbox="true"
-     guidetolerance="10000"
-     inkscape:object-nodes="true"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     inkscape:bbox-nodes="false"
-     inkscape:document-rotation="0"
-     inkscape:snap-bbox-midpoints="true"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -62,8 +24,6 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1"
      transform="translate(63.367983,-785.35118)">
     <g

@@ -5,8 +5,8 @@
    viewBox="0 0 1781.1389 314.59348"
    id="svg2"
    version="1.1"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
-   sodipodi:docname="screen-facedown.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   sodipodi:docname="screen-back.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -33,9 +33,9 @@
      inkscape:showpageshadow="false"
      showguides="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1031"
-     inkscape:window-x="1920"
-     inkscape:window-y="24"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      objecttolerance="10000"
      inkscape:snap-bbox="false"
@@ -86,7 +86,7 @@
         <g
            id="g818"
            transform="matrix(1.1443349,0,0,0.80044841,-65.129903,180.89972)"
-           style="fill:#0000ff;stroke-width:1.04486;stroke:#000000">
+           style="fill:#0000ff;stroke-width:1.04486;stroke:#0000ff;stroke-opacity:1">
           <rect
              ry="0"
              y="-1153.5879"
@@ -94,12 +94,12 @@
              height="722.30042"
              width="193.36134"
              id="rect4183-8-5-9-3-6-3-7-5-6-1-7-1-1-5-3-9-7"
-             style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:6.01837;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:6.01837;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
              transform="rotate(90)" />
         </g>
         <rect
            transform="rotate(90)"
-           style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#000511;stroke-width:5.76;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:5.76;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="rect4183-8-5-9-3-6-3-7-5-6-1-7-1-1-5-3-9-7-8"
            width="36.557217"
            height="35.930813"
@@ -108,7 +108,7 @@
            ry="0" />
         <rect
            transform="rotate(90)"
-           style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#000511;stroke-width:5.76;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:#0000ff;stroke-width:5.76;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="rect4183-8-5-9-3-6-3-7-5-6-1-7-1-1-5-3-9-7-8-6"
            width="36.557217"
            height="35.930813"
