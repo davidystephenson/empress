@@ -24,8 +24,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.70747801"
-     inkscape:cx="771.0487"
-     inkscape:cy="156.89534"
+     inkscape:cx="827.58756"
+     inkscape:cy="158.30881"
      inkscape:document-units="in"
      inkscape:current-layer="g847"
      showgrid="true"
@@ -84,13 +84,21 @@
       <g
          id="g847"
          transform="matrix(1.1,0,0,1.1,-110.27421,-123.26047)">
+        <rect
+           style="fill:#008000;stroke:none;stroke-width:6.06546;stroke-linecap:round"
+           id="rect8858"
+           width="665.53918"
+           height="133.71483"
+           x="617.06213"
+           y="1059.0549"
+           ry="0" />
         <path
            id="path283"
-           style="color:#000000;fill:#008000;fill-opacity:0.510549;fill-rule:evenodd;stroke-linecap:round;-inkscape-stroke:none"
+           style="color:#000000;fill:#ffffff;fill-opacity:0.510549;fill-rule:evenodd;stroke-linecap:round;-inkscape-stroke:none"
            d="m 663.18754,1176.5632 -30.6898,-53.157 h 12.50621 l 0.004,-0.2574 -0.002,0.2574 c 0,-7.246 1.56577,-17.5025 10.68537,-28.908 9.11958,-11.4055 26.31558,-20.4664 49.40429,-20.2406 h 0.26811 l 0.269,0.011 c 5.36656,0.2113 28.54902,-0.998 49.45756,0.01 a 18.181801,18.181801 0 0 1 17.28693,19.0332 18.181801,18.181801 0 0 1 -19.0332,17.2869 c -17.83259,-0.8575 -37.19045,0.4222 -48.68963,0.023 0.03,3e-4 0.056,-0 0.0861,-9e-4 l -0.53711,-0.012 c 0.14403,0.01 0.30438,0.01 0.45099,0.013 -14.59646,-0.1269 -18.25984,3.7104 -20.56019,6.5874 -1.60925,2.0126 -2.27075,5.1348 -2.54084,6.1976 h 12.32511 z" />
         <path
            id="path4788-2"
-           style="fill:#008000;fill-opacity:0.509804;stroke:none;stroke-width:10.3306;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.510549"
+           style="fill:#ffffff;fill-opacity:0.509804;stroke:none;stroke-width:10.3306;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.510549"
            inkscape:transform-center-x="19.490924"
            inkscape:transform-center-y="-0.00054735606"
            d="m 833.26832,1123.1177 -53.15606,-30.6898 53.15606,-30.6898 v 12.4858 c 90.67709,-0.6394 337.16248,0.693 409.16098,0.076 l 21.7587,-12.5622 v 61.3796 l -21.598,-12.4689 c -18.3171,0.1563 -46.7393,0.1968 -81.629,0.1678 -104.9313,-0.087 -260.3463,-0.7197 -327.69268,-0.2521 z" />
@@ -141,14 +149,14 @@
         </g>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:36.079px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#008000;fill-opacity:1;stroke:none;stroke-width:0.454545;stroke-opacity:1"
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:36.079px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.454545;stroke-opacity:1"
            x="1158.2443"
            y="1169.635"
            id="text15701"
            transform="scale(0.99481681,1.0052102)"><tspan
              sodipodi:role="line"
              id="tspan15699"
-             style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:36.079px;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#008000;fill-opacity:1;stroke:none;stroke-width:0.454545;stroke-opacity:1"
+             style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:36.079px;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.454545;stroke-opacity:1"
              x="1158.2443"
              y="1169.635">Repair</tspan></text>
       </g>

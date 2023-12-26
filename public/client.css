@@ -5,14 +5,14 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden; 
-  background: rgb(0,0,0);
+  background: #070700 ;
 } 
 canvas { 
   padding-left: 0;
   padding-right: 0;
   margin-top: 0px;
   border: 0px solid black;
-  background: black;
+  background: #070700;
 }
 svg { 
   width: 100%;

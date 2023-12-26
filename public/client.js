@@ -183,7 +183,7 @@ window.client = (() => {
       if (type === 'discard') component.data('targetDeck', description.targetDeck)
       if (file === 'board/nametag') {
         const textbox = component.text(component.getBBox().width / 2, 760, 'Name Tag')
-        textbox.attr({ 'font-size': 100, 'text-anchor': 'middle' })
+        textbox.attr({ 'font-size': 100, 'text-anchor': 'middle', fill: 'white' })
       }
       function getTemplateString (name) {
         if (file === 'board/ready') {
@@ -222,13 +222,13 @@ window.client = (() => {
           pawn.node.style.display = 'block'
           pawn.transform('t20,925')
         }
-        const buyBonus = plot.rank === '14' || plot.rank === '15'
-        if (buyBonus) {
-          const gold = templates['card/gold'].clone()
-          component.append(gold)
-          gold.node.style.display = 'block'
-          gold.transform('t-5,120')
-        }
+        // const buyBonus = plot.rank === '14' || plot.rank === '15'
+        // if (buyBonus) {
+        //   const gold = templates['card/gold'].clone()
+        //   component.append(gold)
+        //   gold.node.style.display = 'block'
+        //   gold.transform('t-5,120')
+        // }
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
