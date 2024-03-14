@@ -2,57 +2,59 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>Fight the Power</title>
+    <title>Kronstadt 1921</title>
     <link rel="stylesheet" href="client.css">
     <script src="snap.svg-min.js"></script>
     <script src="snap.svg.zpd.js"></script>
   </head>
   <body>
     <div style="
-      background: #333333;
-      color: ghostwhite;
-      width: 25%; height: 100vh; float: left;
+      background: snow;
+      color: black;
+      width: 26%;
+      height: 100vh; float: left;
     ">
-      <div style="font-size: 1.5vh; text-align: left; height: 46vh; border: 5px solid black; border-top: 0px; padding: 5px; user-select: none; overflow: hidden;">
-<h3>Launch</h3>
+      <div style="font-size: 1.5vh; text-align: left; height: 47vh; border: 5px solid black; border-top: 0px; padding: 5px; user-select: none; overflow: hidden;">
+<h3>Liberation</h3>
 <pre>
-- Scrap 1 ship in your hand face down
-- Launch 1 ship into orbit from your hand face down
-- Reveal ship simultaneously
-- If total time is more than player count, move smallest supply ship to market
-- Take listed actions on ship in orbit
+- Abandon 1 city in your hand face down
+- Liberate 1 city from your hand face down
+- Reveal liberated city simultaneously
+- If total unrest in liberated cities is more than player count, smallest front line city falls into chaos
+- Use listed powers on your liberated city
+- Draw cities or villages until you have at least 3 in hand
 </pre>
-<h3>Piracy</h3>
+<h3>Counterattack</h3>
 <pre>
-- Repair until you have at least 3 ships in hand
-- Biggest ship in orbit goes to market, ties go to the masses
-- If supply is empty, game ends
+- Biggest liberated city falls into chaos, Tsar takes ties
+- If front line is empty, game ends
 </pre>
 <h3>Auction</h3>
 <pre>
-- Raise bid by any amount of dollars at any time
+- Use bonus powers on liberated cities
+- Raise bid by any amount of imperial rubles any time
 - Withdraw if tied and not last bidder
-- When no one wants to, highest untied bidder takes smallest supply ship
-- Buyer may take any ships from market
+- When no one wants to, highest untied bidder liberates smallest city on the front line
+- Buyer may liberate any cities in chaos
 </pre>
-<h3>Repair</h3>
+<h3>Reaction</h3>
 <pre>
-- Give smallest ship in market to masses
-- Move ships in orbit to repair from lowest to highest
+- Tsar takes remaining cities in chaos
+- Liberated cities go to agenda from lowest to highest
 </pre>
       </div>
       <div id="detail" style="color: black;"></div>
-      <div style="font-size: 1.5vh; text-align: left; height: 13vh; border: 5px solid black; border-bottom: 0px; padding: 5px 5px 5px 5px; user-select: none; overflow: hidden;">
+      <div style="font-size: 1.5vh; text-align: left; height: 15vh; border: 5px solid black; border-bottom: 0px; padding: 5px 5px 5px 5px; user-select: none; overflow: hidden;">
 <h3>Victory</h3>
 <pre>
-- Points equals size on ships in hand and orbit
-- 1 point for dollars and credits
-- No points for ships in repair 
-- Tiebreaker is biggest ship in hand
+- Points equals size on liberated and hand cities
+- 1 point for rubles
+- No points for cities in agenda
+- Tiebreaker is biggest city in hand
 </pre>
       </div>
     </div>
-    <div style="width: 75%; height: 100vh; border: 0px; padding: 0px; float: right;">
+    <div style="width: 74%; height: 100vh; border: 0px; padding: 0px; float: right;">
       <svg id="mysvg"></svg>
     </div>
     <div
@@ -61,7 +63,7 @@
         position: absolute;
         bottom: 0;
         right: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: snow;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -76,10 +78,10 @@
         style="
           font-size: 3vh;
           font-weight: bold;
-          color: ghostwhite;
+          color: black;
         "
       >
-        Fight the Power
+        Kronstadt 1921
       </p>
       <!-- <p
         style="
@@ -95,17 +97,16 @@
         position: absolute;
         width: 75%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: f7f1f5;
         display: flex;
         justify-content: center;
         align-items: center;
         right: 0;
-        color: ghostwhite;
+        color: black;
       "
     >
       <div
         style="
-          background: rgba(0, 0, 0, 0.5);
           padding: 1vh;
           text-align: center;
           display: flex;
@@ -121,7 +122,7 @@
             font-weight: bold;
           "
         >
-          Fight the Power
+          Kronstadt 1921
         </p>
 
         <p

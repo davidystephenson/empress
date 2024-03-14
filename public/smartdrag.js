@@ -40,7 +40,7 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     })
   }
 
-  window.prepareTenPods = function (n) {
+  window.preparePods = function (n) {
     console.log('n', n)
     if (cursor.stacksOver.length !== 1) return false
     const stack = cursor.stacksOver[0]
@@ -48,13 +48,15 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     const cards = elements.filter(element => element.data('type') === 'card')
     const pods = cards.filter(card => card.data('rank') === 1)
     const podsInStack = pods.filter(pod => intersect(pod, stack))
-    const tenPods = podsInStack.slice(0, n)
-    tenPods.forEach((pod, index) => {
+    const drawnPods = podsInStack.slice(0, n)
+    drawnPods.forEach((pod, index) => {
       select(pod)
       const y = 0
-      const x = 50 * (tenPods.length - index - 1)
+      const x = 50 * (drawnPods.length - index - 1)
       pod.transform(stack.transform().string + 't' + x + ',' + y)
       window.bringToTop(pod)
+      window.flipComponent(pod)
+      pod.data('moved', true)
     })
     console.log('window.selected.length', window.selected.length)
   }

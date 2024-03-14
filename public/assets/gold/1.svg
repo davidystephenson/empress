@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.829514"
-     inkscape:cx="59.305367"
+     inkscape:cx="-25.416586"
      inkscape:cy="63.95141"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
@@ -84,23 +84,18 @@
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
       <path
-         style="fill:#b3b3b3;fill-opacity:0.55;stroke:#000000;stroke-width:10.0713;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#ff0000;fill-opacity:1;stroke:#000000;stroke-width:10.0713;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -191.14314,916.69614 c -28.69876,-6.2579 -52.25512,-27.7436 -61.35357,-55.9601 -1.38873,-4.3068 -2.22258,-10.6901 -2.60711,-19.9579 -0.48261,-11.63171 -0.24166,-14.89517 1.64631,-22.29822 7.33361,-28.75621 29.53836,-51.40629 58.1002,-59.26547 9.58512,-2.63747 32.61037,-2.69362 42.14161,-0.10277 22.0629,5.99731 40.88383,21.15171 51.53098,41.49214 23.7097,45.29522 -0.83083,100.97332 -50.65798,114.93402 -11.23379,3.1476 -27.45712,3.6318 -38.80044,1.1583 z"
          id="path824"
          inkscape:connector-curvature="0" />
       <g
-         aria-label="5"
-         id="text837"
-         style="font-style:normal;font-weight:normal;font-size:53.5714px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.33929"
-         transform="translate(-48.427918,-157.35553)">
-        <g
-           aria-label="1"
-           id="text900"
-           style="font-size:104.682px;font-family:FreeSans;-inkscape-font-specification:FreeSans;stroke-width:1.79369">
-          <path
-             d="m -127.27088,979.24924 h -16.43507 v -6.59497 q 10.67756,-1.36086 13.92271,-3.76855 3.24514,-2.40769 5.65282,-10.99161 h 6.07156 v 74.21949 h -9.21202 z"
-             id="path914" />
-        </g>
+         aria-label="1"
+         id="text7264"
+         style="font-weight:600;font-size:104.682px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';fill:#ffffff;stroke-width:1.33929"
+         transform="translate(-8.0357146)">
+        <path
+           d="m -172.38296,823.56862 h -17.79594 v -9.73543 q 19.26149,0 22.716,-13.29461 h 9.73542 v 74.21954 h -14.65548 z"
+           id="path7266" />
       </g>
     </g>
   </g>

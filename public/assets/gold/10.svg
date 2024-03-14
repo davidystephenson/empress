@@ -5,7 +5,7 @@
    viewBox="0 0 120.90374 93.750004"
    id="svg2"
    version="1.1"
-   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="10.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -24,7 +24,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6245779"
-     inkscape:cx="-82.790736"
+     inkscape:cx="-236.98463"
      inkscape:cy="202.51414"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
@@ -33,9 +33,9 @@
      inkscape:showpageshadow="false"
      showguides="false"
      inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="1912"
-     inkscape:window-y="-8"
+     inkscape:window-height="1031"
+     inkscape:window-x="1920"
+     inkscape:window-y="24"
      inkscape:window-maximized="1"
      objecttolerance="10000"
      inkscape:snap-bbox="true"
@@ -70,7 +70,7 @@
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
       <rect
-         style="fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:10.0446;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#ffffa3;fill-opacity:1;stroke:#000000;stroke-width:10.0446;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
          id="rect1004"
          width="162.67503"
          height="123.88397"
@@ -79,14 +79,14 @@
       <g
          aria-label="10"
          id="text3028"
-         style="font-size:99.3115px;line-height:1.25;stroke-width:2.4828">
+         style="font-size:99.3115px;line-height:1.25;stroke-width:2.4828;fill:#800080">
         <path
            d="m -58.615503,745.55612 v 48.56333 h 13.90361 v -70.41186 h -9.23597 c -2.184853,8.34217 -9.434592,12.61256 -21.550595,12.61256 v 9.23597 z"
-           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Bold';fill:#ffffff"
+           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Bold';fill:#800080"
            id="path6602" />
         <path
            d="m 0.07757005,796.40361 c 19.56436595,0 24.23200595,-16.88295 24.23200595,-36.64594 0,-12.9105 -1.588984,-21.64991 -4.965575,-27.11204 -4.171083,-6.75319 -11.0235764,-10.42771 -19.26643095,-10.42771 -7.54767405,0 -14.00292205,3.17797 -18.27331605,9.03735 -4.071772,5.46213 -5.95869,14.49948 -5.95869,28.10515 0,20.45817 4.866263,37.04319 24.23200605,37.04319 z M 10.405966,759.45973 c 0,7.84561 -0.7944919,15.79053 -1.7876069,18.57125 -1.588984,4.17109 -4.568329,6.45525 -8.54078905,6.45525 -6.45524755,0 -10.32839605,-4.27039 -10.32839605,-25.22512 0,-19.96161 3.177968,-25.82099 10.32839605,-25.82099 6.35593605,0 10.32839595,4.07177 10.32839595,26.01961 z"
-           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Bold';fill:#ffffff"
+           style="font-weight:bold;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Bold';fill:#800080"
            id="path6604" />
       </g>
     </g>

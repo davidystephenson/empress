@@ -24,7 +24,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6245779"
-     inkscape:cx="-82.790736"
+     inkscape:cx="-162.81152"
      inkscape:cy="202.51414"
      inkscape:document-units="in"
      inkscape:current-layer="g20"
@@ -34,7 +34,7 @@
      showguides="false"
      inkscape:window-width="1920"
      inkscape:window-height="1031"
-     inkscape:window-x="0"
+     inkscape:window-x="1920"
      inkscape:window-y="24"
      inkscape:window-maximized="1"
      objecttolerance="10000"
@@ -70,7 +70,7 @@
        id="g20"
        transform="matrix(0.7,0,0,0.7,15,300.70865)">
       <rect
-         style="fill:#008000;fill-opacity:1;stroke:#000000;stroke-width:10.0446;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+         style="fill:#ffffa3;fill-opacity:1;stroke:#000000;stroke-width:10.0446;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
          id="rect1004"
          width="162.67503"
          height="123.88397"
@@ -79,10 +79,11 @@
       <g
          aria-label="5"
          id="text495"
-         style="font-weight:600;font-size:101.347px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';fill:#ffffff;stroke-width:1.33929">
+         style="font-weight:600;font-size:101.347px;line-height:1.25;font-family:FreeSans;-inkscape-font-specification:'FreeSans, Semi-Bold';fill:#800080;stroke-width:1.33929">
         <path
            d="m -3.6021446,722.21773 v 12.66838 H -33.296816 l -2.330981,14.99935 q 5.776779,-4.35792 12.465681,-4.35792 9.932006,0 16.1141734,6.8916 6.28351403,6.89159 6.28351403,17.93842 0,11.6549 -7.19563703,18.85054 -7.1956374,7.19563 -18.7491954,7.19563 -10.438741,0 -17.026296,-5.77677 -6.486208,-5.87813 -6.688902,-15.3034 h 13.985886 q 0.506735,8.91853 9.932006,8.91853 5.371391,0 8.411801,-3.64849 3.141757,-3.64849 3.141757,-9.932 0,-6.48621 -3.141757,-10.1347 -3.04041,-3.74984 -8.411801,-3.74984 -6.790249,0 -9.12123,5.47274 h -12.769722 l 6.384861,-40.03207 z"
-           id="path740" />
+           id="path740"
+           style="fill:#800080" />
       </g>
     </g>
   </g>

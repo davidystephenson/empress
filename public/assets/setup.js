@@ -22,27 +22,38 @@ const describePortfolio = (x, y, playerIndex) => {
   const angle = sgn === -1 ? 180 : 0
   const boards = [
     window.client.describe({ file: 'board/nametag', x: x, y: y + sgn * 750, type: 'board' }),
-    window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 150, type: 'screen', rotation: angle, player: playerIndex }),
-    window.client.describe({ file: 'board/playarea', x: x, y: y - sgn * 400, type: 'board' }),
-    window.client.describe({ file: sgn === 1 ? 'board/reserve' : 'board/reserve-top', x: x, y: y + sgn * 500, type: 'board' }),
-    window.client.describe({ file: 'board/stack', x: x + 730, y: y + sgn * 500, type: 'stack' })
+    window.client.describe({ file: 'board/screen', x: x, y: y + sgn * 500, type: 'screen', rotation: angle, player: playerIndex }),
+    window.client.describe({ file: sgn === 1 ? 'board/tableau-bottom' : 'board/tableau-top', x: x, y: y - sgn * 200, type: 'board' }),
+    window.client.describe({ file: 'board/stack', x: x + 730, y: y - sgn * 50, type: 'stack' })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
-    return window.client.describe({ file: 'card/front', x: x + (i - 2) * space, y: y + sgn * 150, type: 'card', cardId: handId })
+    return window.client.describe({
+      file: 'card/front',
+      x: x + (i - 2) * space,
+      y: y + sgn * 500,
+      type: 'card',
+      cardId: handId
+    })
   })
   const reserve = deal.reserveIds.map((reserveId, i) => {
     const space = 160
-    return window.client.describe({ file: 'card/front', x: x + (i - 3) * space, y: y + sgn * 500, type: 'card', cardId: reserveId })
+    return window.client.describe({
+      file: 'card/front',
+      x: x + (i - 3) * space,
+      y: y - sgn * 50,
+      type: 'card',
+      cardId: reserveId
+    })
   })
   const gold = [
-    ...describeRow('gold/5', x - 250, y - sgn * 150, 'bit', 4, 320),
-    ...describeRow('gold/10', x + 250, y - sgn * 150, 'bit', 3, 240)
+    ...describeRow('gold/5', x - 250, y + sgn * 225, 'bit', 4, 320),
+    ...describeRow('gold/10', x + 250, y + sgn * 225, 'bit', 3, 240)
   ]
-  const pods = [
-    window.client.describe({ file: 'card/front', x: x + 730, y: y + sgn * 500, type: 'card', cardId: 1, clones: 50 })
+  const villages = [
+    window.client.describe({ file: 'card/front', x: x + 730, y: y - sgn * 50, type: 'card', cardId: 1, clones: 50 })
   ]
-  const descriptions = [...boards, ...hand, ...reserve, ...gold, ...pods]
+  const descriptions = [...boards, ...hand, ...reserve, ...gold, ...villages]
   return descriptions
 }
 
@@ -55,8 +66,6 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/10', x: x + 60, y: y + 120, type: 'bit', clones: 30 }),
   window.client.describe({ file: 'gold/25', x: x + 260, y: y - 120, type: 'bit', clones: 15 }),
   window.client.describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 })
-  // window.client.describe({ file: 'gold/50', x: x + 440, y: y - 120, type: 'bit', clones: 15 }),
-  // window.client.describe({ file: 'gold/50', x: x + 440, y: y + 120, type: 'bit', clones: 15 }),
 ]
 
 const describeCourt = (x, y) => {
@@ -99,7 +108,7 @@ const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
   const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 5 && i !== 1))
   console.log('shuffle', shuffledIds)
-  deal.empressIds = shuffledIds.slice(0, numPlayers + 14)
+  deal.empressIds = shuffledIds.slice(0, numPlayers + 13)
   console.log('empressIds', deal.empressIds)
   deal.empressIds.sort((a, b) => a - b)
   deal.courtId = deal.empressIds.shift()
@@ -113,7 +122,6 @@ const setupCards = (msg, numPlayers) => {
   console.log('yellow', yellow)
   deal.dungeonId = green.shift()
   deal.portfolioIds = [5, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
-  // deal.portfolioIds.push(deal.empressIds.filter(i => !deal.portfolioIds.includes(i))[0])
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice()
   deal.reserveIds = deal.handIds.slice(-2)

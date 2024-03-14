@@ -66,7 +66,7 @@ window.client = (() => {
     console.log('event.key', event.key)
     const n = Number(event.key) === 0 ? 10 : Number(event.key)
     if (isNaN(n)) return false
-    if (n > 0) window.prepareTenPods(n)
+    if (n > 0) window.preparePods(n)
   })
 
   window.setSelected = function (component, selected) {
@@ -183,7 +183,7 @@ window.client = (() => {
       if (type === 'discard') component.data('targetDeck', description.targetDeck)
       if (file === 'board/nametag') {
         const textbox = component.text(component.getBBox().width / 2, 760, 'Name Tag')
-        textbox.attr({ 'font-size': 100, 'text-anchor': 'middle', fill: 'white' })
+        textbox.attr({ 'font-size': 100, 'text-anchor': 'middle', fill: 'black' })
       }
       function getTemplateString (name) {
         if (file === 'board/ready') {
@@ -208,7 +208,7 @@ window.client = (() => {
         const rectElement = component.children()[1].children()[1]
         rectElement.attr({ fill: window.colors[plot.color] })
         const rank1 = plot.rank === '1'
-        const rankX = rank1 ? 25 : 50
+        const rankX = rank1 ? 20 : 50
         const rankY = rank1 ? 1050 : 1040
         const rankTextElement = group.text(rankX, rankY, plot.rank)
         rankTextElement.attr({ fontSize: 80 })
@@ -220,7 +220,7 @@ window.client = (() => {
           const pawn = templates['card/pawn'].clone()
           component.append(pawn)
           pawn.node.style.display = 'block'
-          pawn.transform('t20,925')
+          pawn.transform('t443,978')
         }
         // const buyBonus = plot.rank === '14' || plot.rank === '15'
         // if (buyBonus) {
@@ -461,9 +461,11 @@ window.client = (() => {
 })()
 
 window.annotateScheme = function (scheme) {
-  return `<h1>${scheme.rank}</h1><br><br>
+  return `
+    <h1>Size: ${scheme.rank}</h1>
+    <h2>${scheme.title}</h2><br>
     Color: ${scheme.color}<br><br>
-    Time: ${scheme.time}<br><br>
+    Unrest: ${scheme.time}<br><br>
     ${scheme.beginning}<br><br>
     ${scheme.end}<br><br>
     ${scheme.bonus && scheme.bonus !== '' ? `<strong>Bonus</strong>: ${scheme.bonus}<br><br>` : ''}
