@@ -17,7 +17,7 @@ const describeRow = (file, x, y, type, n, length, side = 'front') => range(n).ma
   return window.client.describe({ file, x: myX, y, type, side })
 })
 
-const describePortfolio = (x, y, playerIndex) => {
+const describePortfolio = (x, y, playerIndex, numPlayers) => {
   const sgn = Math.sign(y)
   const angle = sgn === -1 ? 180 : 0
   const boards = [
@@ -47,8 +47,8 @@ const describePortfolio = (x, y, playerIndex) => {
     })
   })
   const gold = [
-    ...describeRow('gold/5', x - 250, y + sgn * 225, 'bit', 4, 320),
-    ...describeRow('gold/10', x + 250, y + sgn * 225, 'bit', 3, 240)
+    ...describeRow('gold/5', x + 250, y + sgn * 225, 'bit', 8 - numPlayers, 50 * (8 - numPlayers)),
+    ...describeRow('gold/10', x - 250, y + sgn * 225, 'bit', 2, 100)
   ]
   const villages = [
     window.client.describe({ file: 'card/front', x: x + 730, y: y - sgn * 50, type: 'card', cardId: 1, clones: 50 })
@@ -108,7 +108,7 @@ const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
   const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 5 && i !== 1))
   console.log('shuffle', shuffledIds)
-  deal.empressIds = shuffledIds.slice(0, numPlayers + 13)
+  deal.empressIds = shuffledIds
   console.log('empressIds', deal.empressIds)
   deal.empressIds.sort((a, b) => a - b)
   deal.courtId = deal.empressIds.shift()
@@ -116,18 +116,19 @@ const setupCards = (msg, numPlayers) => {
   const green = deal.empressIds.filter(i => msg.plots[i].color === 'Green').sort((a, b) => a - b)
   const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red').sort((a, b) => a - b)
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow').sort((a, b) => a - b)
-
   console.log('green', green)
   console.log('red', red)
   console.log('yellow', yellow)
   deal.dungeonId = green.shift()
-  deal.portfolioIds = [5, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
+  const basePortfolioIds = [5, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
+  const remainingIds = deal.empressIds.filter(id => !basePortfolioIds.includes(id))
+  deal.portfolioIds = [basePortfolioIds, remainingIds.slice(0, numPlayers - 2)].flat()
   deal.portfolioIds.sort((a, b) => a - b)
-  deal.handIds = deal.portfolioIds.slice()
-  deal.reserveIds = deal.handIds.slice(-2)
-  deal.handIds = deal.handIds.slice(0, -2)
+  deal.handIds = deal.portfolioIds.slice(0, 5)
+  deal.reserveIds = deal.portfolioIds.slice(5)
   deal.timelineIds = deal.empressIds.filter(id => !deal.portfolioIds.includes(id) && deal.dungeonId !== id)
   console.log('handIds', deal.handIds)
+  console.log('reserveIds', deal.reserveIds)
   console.log('courtId', deal.courtId)
   console.log('dungeonId', deal.dungeonId)
   console.log('timelineIds', deal.timelineIds)
@@ -136,7 +137,7 @@ const setupCards = (msg, numPlayers) => {
 window.setup = msg => {
   const numPlayers = msg.config.numPlayers
   setupCards(msg, numPlayers)
-  const tableWidth = numPlayers < 7 ? 3500 : 5000
+  const tableWidth = 3700
   const numBottomRowPlayers = Math.round(numPlayers / 2)
   const numTopRowPlayers = numPlayers - numBottomRowPlayers
   const topRowOrigins = getRowOrigins(numTopRowPlayers, -900, tableWidth)
@@ -145,7 +146,7 @@ window.setup = msg => {
   const portfolios = origins.map((origin, i) => {
     const x = origin[0]
     const y = origin[1]
-    return describePortfolio(x, y, i)
+    return describePortfolio(x, y, i, numPlayers)
   }).flat()
   const bank = describeBank(2000, 0)
   const court = describeCourt(-2200, 0)

@@ -222,13 +222,6 @@ window.client = (() => {
           pawn.node.style.display = 'block'
           pawn.transform('t443,978')
         }
-        // const buyBonus = plot.rank === '14' || plot.rank === '15'
-        // if (buyBonus) {
-        //   const gold = templates['card/gold'].clone()
-        //   component.append(gold)
-        //   gold.node.style.display = 'block'
-        //   gold.transform('t-5,120')
-        // }
         if (description.time >= 1) {
           const hourglass = templates['card/hourglass'].clone()
           component.append(hourglass)
