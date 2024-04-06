@@ -7,7 +7,7 @@ try {
 } catch (error) {
   config = {
     secure: false,
-    numPlayers: 4
+    numPlayers: 2
   }
 }
 

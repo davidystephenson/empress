@@ -46,9 +46,17 @@ const describePortfolio = (x, y, playerIndex, numPlayers) => {
       cardId: reserveId
     })
   })
+  const counts = {
+    2: { five: 6, ten: 2 },
+    3: { five: 4, ten: 2 },
+    4: { five: 2, ten: 2 },
+    5: { five: 2, ten: 1 },
+    6: { five: 2, ten: 0 }
+  }
+  const count = counts[numPlayers]
   const gold = [
-    ...describeRow('gold/5', x + 250, y + sgn * 225, 'bit', 8 - numPlayers, 50 * (8 - numPlayers)),
-    ...describeRow('gold/10', x - 250, y + sgn * 225, 'bit', 2, 100)
+    ...describeRow('gold/5', x + 250, y + sgn * 225, 'bit', count.five, 50 * (8 - numPlayers)),
+    ...describeRow('gold/10', x - 250, y + sgn * 225, 'bit', count.ten, 100)
   ]
   const villages = [
     window.client.describe({ file: 'card/front', x: x + 730, y: y - sgn * 50, type: 'card', cardId: 1, clones: 50 })
@@ -106,32 +114,54 @@ const deal = {}
 
 const setupCards = (msg, numPlayers) => {
   console.log('msg.plots', msg.plots)
-  const shuffledIds = shuffle([...Array(window.plots.length).keys()].filter(i => i !== 5 && i !== 1))
-  console.log('shuffle', shuffledIds)
-  deal.empressIds = shuffledIds
+  const ids = [...msg.plots.keys()]
+  console.log('ids', ids)
+  const shuffleable = ids.filter(i => i !== 5 && i !== 1)
+  console.log('shuffleable', shuffleable)
+  const shuffled = shuffle(shuffleable)
+  console.log('shuffled', shuffled)
+  const dealCount = 11 + numPlayers * 2
+  console.log('slice', dealCount)
+  const sliced = shuffled.slice(0, dealCount)
+  console.log('slicedIds', sliced)
+  const shuffledOut = shuffled.slice(dealCount)
+  console.log('shuffledOut', shuffledOut)
+  deal.empressIds = [...sliced].sort((a, b) => a - b)
   console.log('empressIds', deal.empressIds)
-  deal.empressIds.sort((a, b) => a - b)
   deal.courtId = deal.empressIds.shift()
-  deal.timelineLength = numPlayers + 5
+  console.log('courtId', deal.courtId)
   const green = deal.empressIds.filter(i => msg.plots[i].color === 'Green').sort((a, b) => a - b)
-  const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red').sort((a, b) => a - b)
-  const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow').sort((a, b) => a - b)
   console.log('green', green)
-  console.log('red', red)
-  console.log('yellow', yellow)
   deal.dungeonId = green.shift()
-  const basePortfolioIds = [5, green.slice(0, 2), red.slice(0, 2), yellow.slice(0, 2)].flat()
-  const remainingIds = deal.empressIds.filter(id => !basePortfolioIds.includes(id))
-  deal.portfolioIds = [basePortfolioIds, remainingIds.slice(0, numPlayers - 2)].flat()
+  console.log('dungeonId', deal.dungeonId)
+  const red = deal.empressIds.filter(i => msg.plots[i].color === 'Red').sort((a, b) => a - b)
+  console.log('red', red)
+  const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow').sort((a, b) => a - b)
+  console.log('yellow', yellow)
+  const portfolioCounts = {
+    2: { green: 2, red: 2, yellow: 2 },
+    3: { green: 2, red: 3, yellow: 2 },
+    4: { green: 2, red: 3, yellow: 3 },
+    5: { green: 3, red: 3, yellow: 3 },
+    6: { green: 3, red: 4, yellow: 3 }
+  }
+  const portfolioCount = portfolioCounts[numPlayers]
+  const portfolioGreen = green.slice(0, portfolioCount.green)
+  console.log('portfolioGreen', portfolioGreen)
+  const portfolioRed = red.slice(0, portfolioCount.red)
+  console.log('portfolioRed', portfolioRed)
+  const portfolioYellow = yellow.slice(0, portfolioCount.yellow)
+  console.log('portfolioYellow', portfolioYellow)
+  deal.portfolioIds = [5, ...portfolioGreen, ...portfolioRed, ...portfolioYellow]
   deal.portfolioIds.sort((a, b) => a - b)
   deal.handIds = deal.portfolioIds.slice(0, 5)
-  deal.reserveIds = deal.portfolioIds.slice(5)
-  deal.timelineIds = deal.empressIds.filter(id => !deal.portfolioIds.includes(id) && deal.dungeonId !== id)
   console.log('handIds', deal.handIds)
+  deal.reserveIds = deal.portfolioIds.slice(5)
   console.log('reserveIds', deal.reserveIds)
-  console.log('courtId', deal.courtId)
-  console.log('dungeonId', deal.dungeonId)
+  deal.timelineIds = deal.empressIds.filter(id => !deal.portfolioIds.includes(id) && deal.dungeonId !== id)
   console.log('timelineIds', deal.timelineIds)
+  deal.timelineLength = numPlayers + 5
+  console.log('timelineLength', deal.timelineLength)
 }
 
 window.setup = msg => {
@@ -154,8 +184,8 @@ window.setup = msg => {
     const offset = deal.timelineLength / 2 - 0.5
     return window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: deal.timelineIds[i] })
   })
-  const descriptions = [...portfolios, ...bank, ...court, ...timeline]
   console.log('timeline', timeline)
+  const descriptions = [...portfolios, ...bank, ...court, ...timeline]
   descriptions.map(x => annotate(x))
   descriptions.sort(compareLayers)
   window.client.start(descriptions, msg)

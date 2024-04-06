@@ -41,7 +41,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   window.preparePods = function (n) {
-    console.log('n', n)
     if (cursor.stacksOver.length !== 1) return false
     const stack = cursor.stacksOver[0]
     const elements = siblings(window.lastOver)
@@ -58,7 +57,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
       window.flipComponent(pod)
       pod.data('moved', true)
     })
-    console.log('window.selected.length', window.selected.length)
   }
 
   const isInStack = a => siblings(a)
@@ -161,7 +159,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
 
   const mousemove = function (event) {
     cursor.stacksOver = getStacksOver(event.clientX, event.clientY)
-    console.log('cursor.stacksOver.length', cursor.stacksOver.length)
   }
 
   const mouseover = function () {
@@ -217,7 +214,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
   }
 
   const hover = function () {
-    // console.log(this)
   }
 
   // SVGSVGElement.getIntersectionList()  (from SVGSVGElement)

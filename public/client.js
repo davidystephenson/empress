@@ -63,7 +63,6 @@ window.client = (() => {
   })
 
   window.addEventListener('keydown', (event) => {
-    console.log('event.key', event.key)
     const n = Number(event.key) === 0 ? 10 : Number(event.key)
     if (isNaN(n)) return false
     if (n > 0) window.preparePods(n)
@@ -158,7 +157,6 @@ window.client = (() => {
 
   const addComponent = (description) => {
     const { x, y, rotation, type, clones, file, details, side, player, color } = description
-    console.log('file', file)
     const template = templates[file]
     const startMatrix = template.transform().localMatrix.translate(x, y)
     range(clones + 1).forEach(i => {
