@@ -1,5 +1,11 @@
 
 const detailDiv = document.getElementById('detail')
+const hand1Div = document.getElementById('hand-1')
+const hand2Div = document.getElementById('hand-2')
+const hand3Div = document.getElementById('hand-3')
+const hand4Div = document.getElementById('hand-4')
+const hand5Div = document.getElementById('hand-5')
+const hand6Div = document.getElementById('hand-6')
 
 window.Snap.plugin(function (Snap, Element, Paper, global) {
   const cursor = { stacksOver: [] }
@@ -10,6 +16,13 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
 
   const intersect = function (a, b) {
     return Snap.path.isBBoxIntersect(a.getBBox(), b.getBBox())
+  }
+
+  const getOverlapCardsCount = function (screen) {
+    const allBits = screen.parent().children()
+    const cards = allBits.filter(bit => bit.data('type') === 'card')
+    const overlapCards = cards.filter(card => intersect(card, screen))
+    return overlapCards.length
   }
 
   const isFrozen = bit => {
@@ -161,19 +174,6 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     cursor.stacksOver = getStacksOver(event.clientX, event.clientY)
   }
 
-  const mouseover = function () {
-    window.lastOver = this
-    if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
-      const details = getDetails(this)
-      detailDiv.innerHTML = details
-      window.overDetails = details
-      const color = getColor(this)
-      const background = window.colors[color]
-      detailDiv.style.backgroundColor = background
-      window.overColor = color
-    }
-  }
-
   function handleMouseout () {
     if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
       window.overDetails = null
@@ -213,12 +213,28 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     this.data('dragging', false)
   }
 
-  const hover = function () {
+  const mouseover = function () {
+    window.lastOver = this
+    if (this.data('type') === 'card' && ['front', 'hidden'].includes(this.data('side'))) {
+      const details = getDetails(this)
+      detailDiv.innerHTML = details
+      window.overDetails = details
+      const color = getColor(this)
+      const background = window.colors[color]
+      detailDiv.style.backgroundColor = background
+      window.overColor = color
+    }
+  }
+
+  const hover = function (event) {
   }
 
   // SVGSVGElement.getIntersectionList()  (from SVGSVGElement)
   // Element.hover    (from Snap.svg)
   document.addEventListener('mousemove', mousemove)
+
+  let handIndex = 0
+  const handDivs = [hand1Div, hand2Div, hand3Div, hand4Div, hand5Div, hand6Div]
 
   Element.prototype.smartdrag = function () {
     this.drag(dragMove, dragStart, dragEnd)
@@ -226,6 +242,20 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     this.mouseover(mouseover)
     this.mouseout(handleMouseout)
     this.hover(hover)
+    setTimeout(() => {
+      const timeoutType = this.data('type')
+      console.log('timeoutType', timeoutType)
+      if (timeoutType === 'screen') {
+        const handDiv = handDivs[handIndex]
+        handIndex += 1
+        setInterval(() => {
+          if (this.data('type') === 'screen') {
+            const overlapCardsCount = getOverlapCardsCount(this)
+            handDiv.innerHTML = `The hand counts are: ${overlapCardsCount}`
+          }
+        }, 100)
+      }
+    }, 100)
     return this
   }
 })
