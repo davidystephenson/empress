@@ -243,16 +243,22 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     this.mouseout(handleMouseout)
     this.hover(hover)
     setTimeout(() => {
-      const timeoutType = this.data('type')
-      console.log('timeoutType', timeoutType)
-      if (timeoutType === 'screen') {
+      const type = this.data('type')
+      if (type === 'screen') {
         const handDiv = handDivs[handIndex]
+        if (handDiv == null) {
+          return
+        }
         handIndex += 1
         setInterval(() => {
-          if (this.data('type') === 'screen') {
-            const overlapCardsCount = getOverlapCardsCount(this)
-            handDiv.innerHTML = `The hand counts are: ${overlapCardsCount}`
-          }
+          const overlapCardsCount = getOverlapCardsCount(this)
+          handDiv.innerHTML = overlapCardsCount
+          const bounds = this.node.getBoundingClientRect()
+          const leftOffset = handDiv.offsetWidth - 10
+          const left = bounds.x - leftOffset
+          handDiv.style.left = `${left}px`
+          const top = bounds.y + 17
+          handDiv.style.top = `${top}px`
         }, 100)
       }
     }, 100)
