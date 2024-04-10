@@ -11,6 +11,7 @@ window.colors = {
 window.client = (() => {
   const range = window.range
   const paper = window.Snap('#mysvg')
+  window.paper = paper
   const group = paper.group()
 
   const socket = window.io({ transports: ['websocket'], upgrade: false })

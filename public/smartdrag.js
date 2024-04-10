@@ -251,14 +251,21 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
         }
         handIndex += 1
         setInterval(() => {
+          const matrix = window.paper.zpd('save')
+
           const overlapCardsCount = getOverlapCardsCount(this)
           handDiv.innerHTML = overlapCardsCount
           const bounds = this.node.getBoundingClientRect()
-          const leftOffset = handDiv.offsetWidth - 10
-          const left = bounds.x - leftOffset
+          const leftEdge = bounds.x - handDiv.offsetWidth
+          const leftOffset = 30 * matrix.a
+          const left = leftEdge + leftOffset
           handDiv.style.left = `${left}px`
-          const top = bounds.y + 17
+          const factor = matrix.a * 110
+          const topOffset = factor
+          const top = bounds.y + topOffset
           handDiv.style.top = `${top}px`
+          const fontSize = factor / 10
+          handDiv.style.fontSize = `${fontSize}vh`
         }, 100)
       }
     }, 100)
