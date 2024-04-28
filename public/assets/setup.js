@@ -45,7 +45,7 @@ const describePortfolio = (x, y, playerIndex, numPlayers) => {
     const space = 160
     return window.client.describe({
       file: 'card/front',
-      x: x + (i - 3) * space,
+      x: x - 75 + (i - 3) * space,
       y: y - sgn * -50,
       type: 'card',
       cardId: reserveId
@@ -82,16 +82,10 @@ const describeBank = (x, y) => [
 ]
 
 const describeCourt = (x, y, numPlayers) => {
-  function getOffset () {
-    if (numPlayers === 2) return x
-    if (numPlayers < 5) return x - 600
-    return x - 1200
-  }
-  const offset = getOffset()
   return [
-    window.client.describe({ file: 'board/court', x: offset, y: 0, type: 'board' }),
-    window.client.describe({ file: 'card/front', x: offset, y: y - 150, type: 'card', cardId: deal.courtId }),
-    window.client.describe({ file: 'card/front', x: offset, y: y + 150, type: 'card', cardId: deal.dungeonId })
+    window.client.describe({ file: 'board/court', x, y: 0, type: 'board' }),
+    window.client.describe({ file: 'card/front', x: x - 225, y: y - 100, type: 'card', cardId: deal.courtId }),
+    window.client.describe({ file: 'card/front', x: x - 225, y: y + 200, type: 'card', cardId: deal.dungeonId })
   ]
 }
 
@@ -181,8 +175,8 @@ window.setup = msg => {
   const tableWidth = 3700
   const numBottomRowPlayers = Math.round(numPlayers / 2)
   const numTopRowPlayers = numPlayers - numBottomRowPlayers
-  const topRowOrigins = getRowOrigins(numTopRowPlayers, -900, tableWidth)
-  const bottomRowOrigins = getRowOrigins(numBottomRowPlayers, 900, tableWidth)
+  const topRowOrigins = getRowOrigins(numTopRowPlayers, -1050, tableWidth)
+  const bottomRowOrigins = getRowOrigins(numBottomRowPlayers, 1050, tableWidth)
   const origins = topRowOrigins.concat(bottomRowOrigins)
   const portfolios = origins.map((origin, i) => {
     const x = origin[0]
@@ -190,7 +184,7 @@ window.setup = msg => {
     return describePortfolio(x, y, i, numPlayers)
   }).flat()
   const bank = describeBank(2000, 0)
-  const court = describeCourt(-2200, 0, numPlayers)
+  const court = describeCourt(-1950, -50, numPlayers)
   const timeline = range(deal.timelineLength).map(i => {
     const offset = deal.timelineLength / 2 - 0.5
     return window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: deal.timelineIds[i] })
