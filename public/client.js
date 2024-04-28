@@ -456,8 +456,10 @@ window.annotateScheme = function (scheme) {
   return `
     <h1>Size: ${scheme.rank}</h1>
     <h2>${scheme.title}</h2><br>
-    Color: ${scheme.color}<br><br>
+    Color: ${scheme.color}<br>
     Unrest: ${scheme.time}<br><br>
+    <hr style="border: 1px solid black; margin-bottom: 10px;"/>
+    <h3>Powers</h3><br>
     ${scheme.beginning}<br><br>
     ${scheme.end}<br><br>
     ${scheme.bonus && scheme.bonus !== '' ? `<strong>Bonus</strong>: ${scheme.bonus}<br><br>` : ''}
