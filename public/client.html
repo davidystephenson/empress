@@ -17,7 +17,7 @@
     <div style="
       background: snow;
       color: black;
-      width: 26%;
+      width: 30%;
       height: 100vh; float: left;
     ">
       <div style="font-size: 1.5vh; text-align: left; height: 47vh; border: 5px solid black; border-top: 0px; padding: 5px; user-select: none; overflow: hidden;">
@@ -27,44 +27,45 @@
 - Abandon 1 city in your hand face down
 - Attack 1 city from your hand face down
 - Reveal attacked city simultaneously
-- If total unrest in attacked cities is more than player count, smallest front line city falls into chaos
+- If total unrest in attacked cities is more than player count, smallest front line city goes into battle
 - Use listed powers on city you attacked
 </pre>
 <h3>Phase 2 - Regroup</h3>
 <pre>
-- Draw from agenda or villages until you have at least 3 in hand
+- Control attacked cities
+- Draw from chaos or villages until you have at least 3 in hand
 </pre>
 <h3>Phase 3 - Counterattack</h3>
 <pre>
-- Biggest city under attack falls into chaos, Tsar takes ties
+- Biggest controlled city goes into battle, Tsar takes ties
 - If front line is empty, game ends
 </pre>
 <h3>Phase 4 - Auction</h3>
 <pre>
-- Use bonus powers on cities under attack
+- Use bonus powers on controlled cities
 - Raise bid by any amount of imperial rubles any time
 - Withdraw if tied and not last bidder
-- When no one wants to, highest untied bidder attacks smallest city on the front line
-- Buyer may attack any cities in chaos
+- When no one wants to, highest untied bidder controls smallest city on the front line
+- Buyer may control any cities in battle
 </pre>
 <h3>Phase 5 - Reaction</h3>
 <pre>
-- Tsar takes remaining cities in chaos
-- Attacked cities go to agenda from lowest to highest
+- Tsar takes remaining cities in battle
+- Controlled cities fall into chaos from lowest to highest
 </pre>
       </div>
       <div id="detail" style="color: black;"></div>
       <div style="font-size: 1.5vh; text-align: left; height: 15vh; border: 5px solid black; border-bottom: 0px; padding: 5px 5px 5px 5px; user-select: none; overflow: hidden;">
 <h3>Victory</h3>
 <pre>
-- Points equals size on liberated and hand cities
+- Points equals size on controlled and hand cities
 - 1 point for rubles
-- No points for cities in agenda
+- No points for cities in chaos
 - Tiebreaker is biggest city in hand
 </pre>
       </div>
     </div>
-    <div style="width: 74%; height: 100vh; border: 0px; padding: 0px; float: right;">
+    <div style="width: 70%; height: 100vh; border: 0px; padding: 0px; float: right;">
       <svg id="mysvg"></svg>
     </div>
     <div
