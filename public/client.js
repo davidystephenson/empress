@@ -23,6 +23,7 @@ window.client = (() => {
   const handlers = {}
 
   let moveSlow = 10
+  const keyboard = new Map()
   const screens = []
 
   let seed = null
@@ -64,10 +65,68 @@ window.client = (() => {
   })
 
   window.addEventListener('keydown', (event) => {
+    keyboard.set(event.key, true)
+    keyboardPan()
+    keyboardZoom()
     const n = Number(event.key) === 0 ? 10 : Number(event.key)
     if (isNaN(n)) return false
     if (n > 0) window.preparePods(n)
   })
+
+  window.addEventListener('keyup', event => {
+    keyboard.set(event.key, false)
+  })
+
+  function isKeyDown (key) {
+    if (keyboard.has(key)) return keyboard.get(key)
+    return false
+  }
+
+  function keyboardPan () {
+    let xPan = 0
+    let yPan = 0
+    const panSpeed = 10
+    if (isKeyDown('ArrowUp')) {
+      yPan += panSpeed
+    }
+    if (isKeyDown('ArrowDown')) {
+      yPan -= panSpeed
+    }
+    if (isKeyDown('ArrowRight')) {
+      xPan -= panSpeed
+    }
+    if (isKeyDown('ArrowLeft')) {
+      xPan += panSpeed
+    }
+    const panLength = Math.sqrt(xPan * xPan + yPan * yPan)
+    const xPanSign = Math.sign(xPan) < 0 ? '-' : '+'
+    const yPanSign = Math.sign(yPan) < 0 ? '-' : '+'
+    const xPanString = `${xPanSign}${Math.abs(xPan)}`
+    const yPanString = `${yPanSign}${Math.abs(yPan)}`
+    if (panLength > 0) {
+      paper.zpd({ pan: false }, paperError)
+      paper.panTo(`${xPanString}`, `${yPanString}`)
+    }
+  }
+
+  function keyboardZoom () {
+    let zoomChange = 0
+    if (isKeyDown('PageUp')) zoomChange -= 0.01
+    if (isKeyDown('PageDown')) zoomChange += 0.01
+    const matrix = window.paper.zpd('save')
+    const oldZoom = matrix.a
+    const newZoom = Math.max(0.01, oldZoom + zoomChange)
+    if (Math.abs(zoomChange) > 0) {
+      paper.zoomTo(newZoom, 1, null)
+    }
+  }
+
+  function handleKeyboard () {
+    keyboardPan()
+    keyboardZoom()
+  }
+
+  setInterval(handleKeyboard, 50)
 
   window.setSelected = function (component, selected) {
     if (['card', 'bit'].includes(component.data('type'))) {

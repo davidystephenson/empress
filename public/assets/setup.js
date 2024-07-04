@@ -26,10 +26,9 @@ const describePortfolio = (x, y, playerIndex, numPlayers) => {
     window.client.describe({
       file: sgn === 1 ? 'board/tableau-bottom' : 'board/tableau-top',
       x: x,
-      y: sgn === 1 ? y - sgn * -50 : y - sgn * 250,
+      y: sgn === 1 ? y - sgn * 250 : y - sgn * 250,
       type: 'board'
-    }),
-    window.client.describe({ file: 'board/stack', x: x + 730, y: y - sgn * -50, type: 'stack' })
+    })
   ]
   const hand = deal.handIds.map((handId, i) => {
     const space = 160
@@ -45,8 +44,8 @@ const describePortfolio = (x, y, playerIndex, numPlayers) => {
     const space = 160
     return window.client.describe({
       file: 'card/front',
-      x: x - 75 + (i - 3) * space,
-      y: y - sgn * -50,
+      x: x - 50 + (i - 3) * space,
+      y: y - sgn * +25,
       type: 'card',
       cardId: reserveId
     })
@@ -55,18 +54,14 @@ const describePortfolio = (x, y, playerIndex, numPlayers) => {
     2: { five: 6, ten: 2 },
     3: { five: 4, ten: 2 },
     4: { five: 2, ten: 2 },
-    5: { five: 2, ten: 1 },
-    6: { five: 2, ten: 0 }
+    5: { five: 2, ten: 1 }
   }
   const count = counts[numPlayers]
   const gold = [
     ...describeRow('gold/5', x + 250, y + sgn * 275, 'bit', count.five, 50 * (8 - numPlayers)),
     ...describeRow('gold/10', x - 250, y + sgn * 275, 'bit', count.ten, 100)
   ]
-  const villages = [
-    window.client.describe({ file: 'card/front', x: x + 730, y: y - sgn * -50, type: 'card', cardId: 1, clones: 50 })
-  ]
-  const descriptions = [...boards, ...hand, ...reserve, ...gold, ...villages]
+  const descriptions = [...boards, ...hand, ...reserve, ...gold]
   return descriptions
 }
 
@@ -78,14 +73,18 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/10', x: x + 60, y: y - 120, type: 'bit', clones: 30 }),
   window.client.describe({ file: 'gold/10', x: x + 60, y: y + 120, type: 'bit', clones: 30 }),
   window.client.describe({ file: 'gold/25', x: x + 260, y: y - 120, type: 'bit', clones: 15 }),
-  window.client.describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 })
+  window.client.describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 }),
+  window.client.describe({ file: 'card/front', x: x - 450, y: y - 120, type: 'card', cardId: 1, clones: 50 }),
+  window.client.describe({ file: 'board/stack', x: x - 450, y: y - 120, type: 'stack' }),
+  window.client.describe({ file: 'card/front', x: x - 450, y: y + 120, type: 'card', cardId: 1, clones: 50 }),
+  window.client.describe({ file: 'board/stack', x: x - 450, y: y + 120, type: 'stack' })
 ]
 
 const describeCourt = (x, y, numPlayers) => {
   return [
     window.client.describe({ file: 'board/court', x, y: 0, type: 'board' }),
-    window.client.describe({ file: 'card/front', x: x - 225, y: y - 100, type: 'card', cardId: deal.courtId }),
-    window.client.describe({ file: 'card/front', x: x - 225, y: y + 200, type: 'card', cardId: deal.dungeonId })
+    window.client.describe({ file: 'card/front', x: x - 250, y: y - 150, type: 'card', cardId: deal.courtId }),
+    window.client.describe({ file: 'card/front', x: x - 250, y: y + 150, type: 'card', cardId: deal.dungeonId })
   ]
 }
 
@@ -125,7 +124,7 @@ const setupCards = (msg, numPlayers) => {
   console.log('shuffleable', shuffleable)
   const shuffled = shuffle(shuffleable)
   console.log('shuffled', shuffled)
-  const dealCount = 11 + numPlayers * 2
+  const dealCount = 13 + numPlayers * 2
   console.log('slice', dealCount)
   const sliced = shuffled.slice(0, dealCount)
   console.log('slicedIds', sliced)
@@ -144,11 +143,10 @@ const setupCards = (msg, numPlayers) => {
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow').sort((a, b) => a - b)
   console.log('yellow', yellow)
   const portfolioCounts = {
-    2: { green: 2, red: 2, yellow: 2 },
-    3: { green: 2, red: 3, yellow: 2 },
-    4: { green: 2, red: 3, yellow: 3 },
-    5: { green: 3, red: 3, yellow: 3 },
-    6: { green: 3, red: 4, yellow: 3 }
+    2: { green: 2, red: 3, yellow: 3 },
+    3: { green: 3, red: 3, yellow: 3 },
+    4: { green: 3, red: 4, yellow: 3 },
+    5: { green: 3, red: 4, yellow: 4 }
   }
   const portfolioCount = portfolioCounts[numPlayers]
   const portfolioGreen = green.slice(0, portfolioCount.green)
@@ -184,7 +182,7 @@ window.setup = msg => {
     return describePortfolio(x, y, i, numPlayers)
   }).flat()
   const bank = describeBank(2000, 0)
-  const court = describeCourt(-1950, -50, numPlayers)
+  const court = describeCourt(-1950, 0, numPlayers)
   const timeline = range(deal.timelineLength).map(i => {
     const offset = deal.timelineLength / 2 - 0.5
     return window.client.describe({ file: 'card/front', x: 0 + (i - offset) * 150, y: 0, type: 'card', cardId: deal.timelineIds[i] })
