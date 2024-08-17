@@ -68,9 +68,10 @@ window.client = (() => {
     keyboard.set(event.key, true)
     keyboardPan()
     keyboardZoom()
+    handleResetZoom()
     const n = Number(event.key) === 0 ? 10 : Number(event.key)
     if (isNaN(n)) return false
-    if (n > 0) window.preparePods(n)
+    if (n > 0) window.prepareMoney(n)
   })
 
   window.addEventListener('keyup', event => {
@@ -80,6 +81,12 @@ window.client = (() => {
   function isKeyDown (key) {
     if (keyboard.has(key)) return keyboard.get(key)
     return false
+  }
+
+  function handleResetZoom () {
+    if (isKeyDown('/')) {
+      paper.zoomTo(0.2, 1, null)
+    }
   }
 
   function keyboardPan () {
@@ -111,8 +118,8 @@ window.client = (() => {
 
   function keyboardZoom () {
     let zoomChange = 0
-    if (isKeyDown('PageUp')) zoomChange -= 0.01
-    if (isKeyDown('PageDown')) zoomChange += 0.01
+    if (isKeyDown('PageUp') || isKeyDown(',')) zoomChange -= 0.01
+    if (isKeyDown('PageDown') || isKeyDown('.')) zoomChange += 0.01
     const matrix = window.paper.zpd('save')
     const oldZoom = matrix.a
     const newZoom = Math.max(0.01, oldZoom + zoomChange)

@@ -53,18 +53,21 @@ window.Snap.plugin(function (Snap, Element, Paper, global) {
     })
   }
 
-  window.preparePods = function (n) {
+  window.prepareMoney = function (n) {
     if (cursor.stacksOver.length !== 1) return false
+    console.log('Here be stacks')
     const stack = cursor.stacksOver[0]
     const elements = siblings(window.lastOver)
-    const cards = elements.filter(element => element.data('type') === 'card')
-    const pods = cards.filter(card => card.data('rank') === 1)
-    const podsInStack = pods.filter(pod => intersect(pod, stack))
-    const drawnPods = podsInStack.slice(0, n)
-    drawnPods.forEach((pod, index) => {
+    const elementsInStack = elements.filter(element => intersect(element, stack))
+    const bitsInStack = elementsInStack.filter(element => element.data('type') === 'bit')
+    const drawBits = bitsInStack.slice(0, n)
+    drawBits.forEach((pod, index) => {
       select(pod)
-      const y = 0
-      const x = 50 * (drawnPods.length - index - 1)
+      const x = 0
+      const count = drawBits.length - index
+      const yBase = 10 * (drawBits.length - 2)
+      const yDown = 50 * count
+      const y = -yBase + yDown
       pod.transform(stack.transform().string + 't' + x + ',' + y)
       window.bringToTop(pod)
       window.flipComponent(pod)

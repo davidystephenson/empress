@@ -75,9 +75,15 @@ const describeBank = (x, y) => [
   window.client.describe({ file: 'gold/25', x: x + 260, y: y - 120, type: 'bit', clones: 15 }),
   window.client.describe({ file: 'gold/25', x: x + 260, y: y + 120, type: 'bit', clones: 15 }),
   window.client.describe({ file: 'card/front', x: x - 450, y: y - 120, type: 'card', cardId: 1, clones: 50 }),
-  window.client.describe({ file: 'board/stack', x: x - 450, y: y - 120, type: 'stack' }),
   window.client.describe({ file: 'card/front', x: x - 450, y: y + 120, type: 'card', cardId: 1, clones: 50 }),
-  window.client.describe({ file: 'board/stack', x: x - 450, y: y + 120, type: 'stack' })
+  window.client.describe({ file: 'board/stack1', x: x - 280, y: y - 120, type: 'stack' }),
+  window.client.describe({ file: 'board/stack1', x: x - 280, y: y + 120, type: 'stack' }),
+  window.client.describe({ file: 'board/stack5', x: x - 120, y: y - 120, type: 'stack' }),
+  window.client.describe({ file: 'board/stack5', x: x - 120, y: y + 120, type: 'stack' }),
+  window.client.describe({ file: 'board/stack10', x: x + 60, y: y - 120, type: 'stack' }),
+  window.client.describe({ file: 'board/stack10', x: x + 60, y: y + 120, type: 'stack' }),
+  window.client.describe({ file: 'board/stack25', x: x + 260, y: y - 120, type: 'stack' }),
+  window.client.describe({ file: 'board/stack25', x: x + 260, y: y + 120, type: 'stack' })
 ]
 
 const describeCourt = (x, y, numPlayers) => {
@@ -143,10 +149,9 @@ const setupCards = (msg, numPlayers) => {
   const yellow = deal.empressIds.filter(i => msg.plots[i].color === 'Yellow').sort((a, b) => a - b)
   console.log('yellow', yellow)
   const portfolioCounts = {
-    2: { green: 2, red: 3, yellow: 3 },
-    3: { green: 3, red: 3, yellow: 3 },
-    4: { green: 3, red: 4, yellow: 3 },
-    5: { green: 3, red: 4, yellow: 4 }
+    2: { green: 2, red: 3, yellow: 2 },
+    3: { green: 2, red: 3, yellow: 3 },
+    4: { green: 3, red: 3, yellow: 3 }
   }
   const portfolioCount = portfolioCounts[numPlayers]
   const portfolioGreen = green.slice(0, portfolioCount.green)
